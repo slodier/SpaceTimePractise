@@ -1,0 +1,24 @@
+//
+//  PrefixHeader.pch
+//  SpaceTime
+//
+//  Created by CC on 2016/12/13.
+//  Copyright © 2016年 CC. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+#define KScreenWidth  [UIScreen mainScreen].bounds.size.width
+#define KScreenHeight [UIScreen mainScreen].bounds.size.height
+
+#define BundlePath [[NSBundle mainBundle].resourcePath stringByAppendingPathComponent:@"BtnImages.bundle"]
+#define Bundle  [NSBundle bundleWithPath:BundlePath]
+#define Img_path(imgName) [Bundle pathForResource:imgName ofType:@"png"]
+
+#define JsonStr(value) [TrangerModel toStringValue:(value)]
+
+#define KColorWithRGB(r, g, b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1]
+
+
+#endif /* PrefixHeader_pch */
