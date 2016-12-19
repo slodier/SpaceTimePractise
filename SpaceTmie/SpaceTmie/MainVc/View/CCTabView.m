@@ -65,6 +65,17 @@ typedef void(^ReturnBlock)(void);
     NSLog(@"123");
 }
 
+#pragma mark - 重置
+- (void)storeMainBtn {
+    [UIView animateWithDuration:0.5 animations:^{
+        self.frame = CGRectMake(0, 0.922 *KScreenHeight, KScreenWidth, 0.158 *KScreenHeight);
+        [_flowerBtn removeFromSuperview];
+        [_chipBtn removeFromSuperview];
+        [_tangerineBtn removeFromSuperview];
+    }];
+    _mainBtn.selected = NO;
+}
+
 #pragma mark - 延迟执行
 - (void)delayRun:(ReturnBlock)block {
     dispatch_time_t time = dispatch_time(DISPATCH_TIME_NOW, 0.8 *NSEC_PER_SEC);

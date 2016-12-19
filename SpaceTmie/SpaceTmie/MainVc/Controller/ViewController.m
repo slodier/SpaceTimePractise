@@ -12,6 +12,7 @@
 #import "GoodsCell.h"
 #import "CCTabView.h"
 #import "TangerineVC.h"
+#import "CardModel.h"
 #import "BombTransitioning.h"
 
 static NSString *const goodCellID = @"goodsCell";
@@ -29,11 +30,16 @@ static NSString *const goodCellID = @"goodsCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.view addSubview:self.ccTabView];
-    self.navigationController.delegate = self;
+    
+    UIBarButtonItem *backItem = [[UIBarButtonItem alloc]init];
+    backItem.title = @"主界面";
+    self.navigationItem.backBarButtonItem = backItem;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [self layoutUI];
+    [_ccTabView storeMainBtn];
+    self.navigationController.delegate = self;
 }
 
 #pragma mark - 按钮点击
@@ -46,8 +52,8 @@ static NSString *const goodCellID = @"goodsCell";
 #pragma mark - UINavigationControllerDelegate
 - (id<UIViewControllerAnimatedTransitioning>)navigationController:(UINavigationController *)navigationController animationControllerForOperation:(UINavigationControllerOperation)operation fromViewController:(UIViewController *)fromVC toViewController:(UIViewController *)toVC
 {
-    BombTransitioning *bombTransitioning = [[BombTransitioning alloc]init];
-    return bombTransitioning;
+    BombTransitioning *cardModel = [[BombTransitioning alloc]init];
+    return cardModel;
 }
 
 #pragma mark - UICollectionViewDataSource

@@ -14,5 +14,6 @@
 @property (nonatomic, strong) UIButton *chipBtn;      //金币按钮
 @property (nonatomic, strong) UIButton *tangerineBtn; //橙子按钮
 
+- (void)storeMainBtn;
 
 @end

@@ -7,9 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TrangerModel.h"
 
 @interface TrangerineCell : UICollectionViewCell
 
-@property (nonatomic, strong) UIButton *btn;
+@property (nonatomic, strong) UIImageView *imageView;
+@property (nonatomic, strong) UILabel *titleLabel;
+
+- (void)refresh:(TrangerModel *)model;
 
 @end

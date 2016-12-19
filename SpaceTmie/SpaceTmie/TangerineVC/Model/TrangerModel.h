@@ -14,7 +14,9 @@
 @property (nonatomic, copy) NSString *title; //按钮标题
 @property (nonatomic, copy) NSString *icon;  //按钮图片
 
-+ (void)createArray:(NSMutableArray *)array
++ (void)createArray:(NSMutableArray *)sectionArray
+         firstArray:(NSMutableArray *)array1
+        secondArray:(NSMutableArray *)array2
      collectionView:(UICollectionView *)collectionView;
 
 + (NSString *)toStringValue:(id)value;

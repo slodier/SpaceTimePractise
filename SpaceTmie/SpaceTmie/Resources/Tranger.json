@@ -1,33 +1,38 @@
 {
-    "array":[
-             {
-             "title":"下载",
-             "icon":"download@2x"
-             },
-             
-             {
-             "title":"下载",
-             "icon":"download@2x"
-             },
-             
-             {
-             "title":"下载",
-             "icon":"download@2x"
-             },
-             
-             {
-             "title":"下载",
-             "icon":"download@2x"
-             },
-             
-             {
-             "title":"下载",
-             "icon":"download@2x"
-             },
-             
-             {
-             "title":"下载",
-             "icon":"download@2x"
-             },
-             ]
+    "content":{
+               "bigImg":[
+                         {
+                         "title":"饮料",
+                         "icon":"juice@2x"
+                         },
+                         
+                         {
+                         "title":"吃药",
+                         "icon":"pill@2x"
+                         },
+                         
+                         {
+                         "title":"饭饭",
+                         "icon":"hamburg@2x"
+                         },
+                         
+                         {
+                         "title":"待定",
+                         "icon":"melon@2x"
+                         }
+                         ],
+               
+               "smallImg":[
+                           {
+                           "title":"下载",
+                           "icon":"download@2x"
+                           },
+                           
+                           {
+                           "title":"分享",
+                           "icon":"share@2x"
+                           }
+                           ]
+    }
+    
 }

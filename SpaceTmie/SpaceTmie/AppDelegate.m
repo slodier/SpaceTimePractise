@@ -17,6 +17,11 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+
+    //同时只可点击一个按钮
+    [[UIButton appearance] setExclusiveTouch:YES];
+
+    
     return YES;
 }
 

@@ -42,7 +42,7 @@
     
     [containerView sendSubviewToBack:fromView];
     
-    // 动画
+    /** 动画(旋转+缩小) **/
     NSTimeInterval duration = [self transitionDuration:transitionContext];
     [UIView animateWithDuration:duration animations:^{
         for (UIView *view in snapshots) {
@@ -54,6 +54,7 @@
         }
     } completion:^(BOOL finished) {
         for (UIView *view in snapshots) {
+            /** 移除碎片 **/
             [view removeFromSuperview];
         }
         [transitionContext completeTransition:![transitionContext transitionWasCancelled]];
@@ -61,12 +62,13 @@
     
 }
 
-#pragma mark - 执行时间
+#pragma mark - UIViewControllerAnimatedTransitioning
+#pragma mark 执行时间
 - (NSTimeInterval)transitionDuration:(id<UIViewControllerContextTransitioning>)transitionContext {
     return 1;
 }
 
-#pragma mark - 执行的事件
+#pragma mark 执行的事件
 - (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext
 {
     UIViewController *fromVC = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
@@ -77,6 +79,7 @@
     [self animateTransition:transitionContext fromVC:fromVC toVC:toVC fromView:fromView toView:toView];
 }
 
+#pragma mark - 自定义方法,碎片
 - (float)randomFloatBetween:(float)smallNumber and:(float)bigNumber {
     float diff = bigNumber - smallNumber;
     return (((float) (arc4random() % ((unsigned)RAND_MAX + 1)) / RAND_MAX) * diff) + smallNumber;
