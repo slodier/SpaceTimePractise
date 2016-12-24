@@ -18,4 +18,8 @@
 
 - (BOOL)deleteDownloadFile;
 
+- (BOOL)removeTempFile:(NSURL *)tempUrl;
+
+- (NSData *)seleteTempData;
+
 @end

@@ -12,4 +12,6 @@
 
 @property (nonatomic, strong) UILabel *tipLabel;   // 提示文字
 
+- (void)createCornerInView:(UIView *)view corners:(UIRectCorner)corner cgsize:(CGSize)size;
+
 @end

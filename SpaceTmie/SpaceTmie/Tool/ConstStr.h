@@ -14,3 +14,4 @@ UIKIT_EXTERN NSString *const urlImageStr2;
 UIKIT_EXTERN NSString *const urlImageStr3;
 UIKIT_EXTERN NSString *const urlImageStr4;
 UIKIT_EXTERN NSString *const urlImageStr5;
+UIKIT_EXTERN NSString *const downloadStr;

@@ -1,21 +1,22 @@
 //
-//  AttentionView.m
+//  ActionView.m
 //  SpaceTmie
 //
-//  Created by CC on 2016/12/16.
+//  Created by CC on 2016/12/22.
 //  Copyright © 2016年 CC. All rights reserved.
 //
 
-#import "AttentionView.h"
+#import "ActionView.h"
 #import "Masonry.h"
+#import "AttentionView.h"
 
-@interface AttentionView ()
+@interface ActionView ()
 
 @property (nonatomic, strong) UIButton *closeBtn;  //关闭按钮
 
 @end
 
-@implementation AttentionView
+@implementation ActionView
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
@@ -45,7 +46,9 @@
     bgView.frame = CGRectMake(KScreenWidth /6, KScreenHeight /3, KScreenWidth *2/3, KScreenHeight /3);
     bgView.userInteractionEnabled = YES;
     bgView.backgroundColor = KColorWithRGB(0, 128, 128);
-    [self createCornerInView:bgView corners:UIRectCornerTopLeft|UIRectCornerTopRight cgsize:CGSizeMake(50, 50)];
+    
+    AttentionView *attentionView = [[AttentionView alloc]initWithFrame:CGRectZero];
+    [attentionView createCornerInView:bgView corners:UIRectCornerTopLeft|UIRectCornerTopRight cgsize:CGSizeMake(50, 50)];
     
     _tipLabel = [[UILabel alloc]initWithFrame:CGRectZero];
     [bgView addSubview:_tipLabel];
@@ -55,39 +58,28 @@
         make.size.mas_equalTo(CGSizeMake(0.56 *KScreenWidth, 0.2 *KScreenHeight));
     }];
     _tipLabel.textColor = [UIColor whiteColor];
-    _tipLabel.font = [UIFont systemFontOfSize:15];
+    _tipLabel.font = [UIFont systemFontOfSize:17];
+    _tipLabel.textAlignment = NSTextAlignmentCenter;
     _tipLabel.numberOfLines = 0;
     
-    _closeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [bgView addSubview:_closeBtn];
-    [_closeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(bgView).offset(0.193 *KScreenWidth);
+    //新的下载
+    _downloadBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [_downloadBtn setTitle:@"重新下载" forState:UIControlStateNormal];
+    [bgView addSubview:_downloadBtn];
+    [_downloadBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(bgView).offset(0.035 *KScreenWidth);
         make.top.equalTo(_tipLabel).offset(0.23 *KScreenHeight);
         make.size.mas_equalTo(CGSizeMake(0.28 *KScreenWidth, 0.1 *KScreenWidth));
     }];
-    [_closeBtn setImage:[UIImage imageNamed:@"确定"] forState:UIControlStateNormal];
-    [_closeBtn addTarget:self action:@selector(closeTipView) forControlEvents:UIControlEventTouchUpInside];
-}
 
-#pragma mark - 自定义圆角
-- (void)createCornerInView:(UIView *)view corners:(UIRectCorner)corner cgsize:(CGSize)size
-{
-    /*
-     typedef NS_OPTIONS(NSUInteger, UIRectCorner) {
-     UIRectCornerTopLeft     = 1 << 0,  - 左上角
-     UIRectCornerTopRight    = 1 << 1,  - 右上角
-     UIRectCornerBottomLeft  = 1 << 2,  - 左下角
-     UIRectCornerBottomRight = 1 << 3,  - 右下角
-     UIRectCornerAllCorners  = ~0UL     - 四只角
-     };
-     */
-    //贝塞尔曲线
-    UIBezierPath *bezierPath = [UIBezierPath bezierPathWithRoundedRect:view.bounds byRoundingCorners:corner cornerRadii:size];
-    CAShapeLayer *maskLayer = [CAShapeLayer layer];
-    maskLayer.frame = view.bounds;
-    maskLayer.path = bezierPath.CGPath;
-    view.layer.mask = maskLayer;
+    _resumeDownBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [_resumeDownBtn setTitle:@"继续下载" forState:UIControlStateNormal];
+    [bgView addSubview:_resumeDownBtn];
+    [_resumeDownBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(_downloadBtn).offset(0.315 *KScreenWidth);
+        make.top.equalTo(_downloadBtn);
+        make.size.mas_equalTo(_downloadBtn);
+    }];
 }
 
 @end
-
