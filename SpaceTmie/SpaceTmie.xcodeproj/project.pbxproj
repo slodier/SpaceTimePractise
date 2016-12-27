@@ -55,6 +55,8 @@
 		422D785F1E0BA49600AE1FD9 /* 取消.png in Resources */ = {isa = PBXBuildFile; fileRef = 422D785E1E0BA49600AE1FD9 /* 取消.png */; };
 		422D78621E0BA51600AE1FD9 /* ActionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 422D78611E0BA51600AE1FD9 /* ActionView.m */; };
 		422D78651E0BABE800AE1FD9 /* FloatView.m in Sources */ = {isa = PBXBuildFile; fileRef = 422D78641E0BABE800AE1FD9 /* FloatView.m */; };
+		427EC3F11E0F8FED00E2DEFA /* HamburgerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 427EC3F01E0F8FED00E2DEFA /* HamburgerVC.m */; };
+		427EC3F81E0F948B00E2DEFA /* FlowerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 427EC3F71E0F948B00E2DEFA /* FlowerVC.m */; };
 		428682D11E0281BD0045A6A8 /* BombTransitioning.m in Sources */ = {isa = PBXBuildFile; fileRef = 428682D01E0281BD0045A6A8 /* BombTransitioning.m */; };
 		42E44BE51E03BFE6002C0659 /* CardModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E44BE41E03BFE6002C0659 /* CardModel.m */; };
 		42E44BEE1E03D2CC002C0659 /* DownloadModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E44BED1E03D2CC002C0659 /* DownloadModel.m */; };
@@ -184,6 +186,10 @@
 		422D78611E0BA51600AE1FD9 /* ActionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionView.m; sourceTree = "<group>"; };
 		422D78631E0BABE800AE1FD9 /* FloatView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FloatView.h; sourceTree = "<group>"; };
 		422D78641E0BABE800AE1FD9 /* FloatView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FloatView.m; sourceTree = "<group>"; };
+		427EC3EF1E0F8FED00E2DEFA /* HamburgerVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HamburgerVC.h; sourceTree = "<group>"; };
+		427EC3F01E0F8FED00E2DEFA /* HamburgerVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HamburgerVC.m; sourceTree = "<group>"; };
+		427EC3F61E0F948B00E2DEFA /* FlowerVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlowerVC.h; sourceTree = "<group>"; };
+		427EC3F71E0F948B00E2DEFA /* FlowerVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlowerVC.m; sourceTree = "<group>"; };
 		428682CF1E0281BD0045A6A8 /* BombTransitioning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BombTransitioning.h; sourceTree = "<group>"; };
 		428682D01E0281BD0045A6A8 /* BombTransitioning.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BombTransitioning.m; sourceTree = "<group>"; };
 		42E44BE31E03BFE6002C0659 /* CardModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardModel.h; sourceTree = "<group>"; };
@@ -273,6 +279,7 @@
 			children = (
 				4205B2241E0185B100933D6C /* MainVc */,
 				4205B2821E01862400933D6C /* TangerineVC */,
+				427EC3F21E0F946C00E2DEFA /* FlowerVC */,
 				4205B2891E01863200933D6C /* Resources */,
 				4205B27D1E0185ED00933D6C /* Tool */,
 				4205B2331E0185CD00933D6C /* Library */,
@@ -451,6 +458,8 @@
 				4205B2851E01862400933D6C /* TangerineVC.m */,
 				4229D4D51E03A00300FA6E0A /* DownLoadVC.h */,
 				4229D4D61E03A00300FA6E0A /* DownLoadVC.m */,
+				427EC3EF1E0F8FED00E2DEFA /* HamburgerVC.h */,
+				427EC3F01E0F8FED00E2DEFA /* HamburgerVC.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -499,6 +508,39 @@
 				4205B2951E018C6700933D6C /* Tranger.json */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		427EC3F21E0F946C00E2DEFA /* FlowerVC */ = {
+			isa = PBXGroup;
+			children = (
+				427EC3F31E0F946C00E2DEFA /* Controller */,
+				427EC3F41E0F946C00E2DEFA /* Model */,
+				427EC3F51E0F946C00E2DEFA /* View */,
+			);
+			path = FlowerVC;
+			sourceTree = "<group>";
+		};
+		427EC3F31E0F946C00E2DEFA /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				427EC3F61E0F948B00E2DEFA /* FlowerVC.h */,
+				427EC3F71E0F948B00E2DEFA /* FlowerVC.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		427EC3F41E0F946C00E2DEFA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		427EC3F51E0F946C00E2DEFA /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		428682CB1E0281790045A6A8 /* Model */ = {
@@ -690,6 +732,7 @@
 				42E44C141E042BC8002C0659 /* MASCompositeConstraint.m in Sources */,
 				42E44C161E042BC8002C0659 /* MASConstraintMaker.m in Sources */,
 				42E44C181E042BC8002C0659 /* MASViewAttribute.m in Sources */,
+				427EC3F11E0F8FED00E2DEFA /* HamburgerVC.m in Sources */,
 				4205B2681E0185CD00933D6C /* TADotView.m in Sources */,
 				42E44C191E042BC8002C0659 /* MASViewConstraint.m in Sources */,
 				4205B2311E0185B100933D6C /* GoodsCell.m in Sources */,
@@ -698,6 +741,7 @@
 				4205B2881E01862400933D6C /* TangerineVC.m in Sources */,
 				4205B2731E0185CD00933D6C /* SDWebImageDownloaderOperation.m in Sources */,
 				42E44C1C1E042BC8002C0659 /* View+MASAdditions.m in Sources */,
+				427EC3F81E0F948B00E2DEFA /* FlowerVC.m in Sources */,
 				4205B2661E0185CD00933D6C /* TAAbstractDotView.m in Sources */,
 				4205B2DA1E018FFC00933D6C /* TrangerModel.m in Sources */,
 				42E44BF71E042B1E002C0659 /* AttentionView.m in Sources */,

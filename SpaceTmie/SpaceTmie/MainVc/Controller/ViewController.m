@@ -14,6 +14,7 @@
 #import "TangerineVC.h"
 #import "CardModel.h"
 #import "BombTransitioning.h"
+#import "FlowerVC.h"
 
 static NSString *const goodCellID = @"goodsCell";
 
@@ -47,6 +48,17 @@ static NSString *const goodCellID = @"goodsCell";
 - (void)tangerineClick {
     TangerineVC *tangerVC = [[TangerineVC alloc]init];
     [self.navigationController pushViewController:tangerVC animated:YES];
+}
+
+#pragma mark 鲜花按钮
+- (void)flowerClick {
+    FlowerVC *flowerVC = [[FlowerVC alloc]init];
+    [self.navigationController pushViewController:flowerVC animated:YES];
+}
+
+#pragma mark 金币按钮
+- (void)chipClick {
+    
 }
 
 #pragma mark - UINavigationControllerDelegate
@@ -98,6 +110,8 @@ static NSString *const goodCellID = @"goodsCell";
     if (!_ccTabView) {
         _ccTabView = [[CCTabView alloc]initWithFrame:CGRectMake(0, 0.922 *KScreenHeight, KScreenWidth, 0.156 *KScreenHeight)];
         [_ccTabView.tangerineBtn addTarget:self action:@selector(tangerineClick) forControlEvents:UIControlEventTouchUpInside];
+        [_ccTabView.flowerBtn addTarget:self action:@selector(flowerClick) forControlEvents:UIControlEventTouchUpInside];
+        [_ccTabView.chipBtn addTarget:self action:@selector(chipClick) forControlEvents:UIControlEventTouchUpInside];
     }
     return _ccTabView;
 }

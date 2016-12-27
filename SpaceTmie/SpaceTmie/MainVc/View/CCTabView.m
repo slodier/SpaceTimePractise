@@ -61,10 +61,6 @@ typedef void(^ReturnBlock)(void);
     }
 }
 
-- (void)click2 {
-    NSLog(@"123");
-}
-
 #pragma mark - 重置
 - (void)storeMainBtn {
     [UIView animateWithDuration:0.5 animations:^{
@@ -111,8 +107,6 @@ typedef void(^ReturnBlock)(void);
     [_flowerBtn setImage:[UIImage imageNamed:Img_path(@"flower@2x")] forState:UIControlStateNormal];
     [_chipBtn setImage:[UIImage imageNamed:Img_path(@"chip@2x")] forState:UIControlStateNormal];
     [_tangerineBtn setImage:[UIImage imageNamed:Img_path(@"tangerine@2x")] forState:UIControlStateNormal];
-    
-    [_chipBtn addTarget:self action:@selector(click2) forControlEvents:UIControlEventTouchUpInside];
 }
 
 @end

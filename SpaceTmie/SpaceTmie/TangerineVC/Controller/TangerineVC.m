@@ -12,8 +12,11 @@
 #import "UIImageView+WebCache.h"
 #import "DownLoadVC.h"
 #import "FlodModel.h"
+#import "CardModel.h"
+#import "HamburgerVC.h"
+#import "BombTransitioning.h"
 
-static NSString *const collBgStr = @"http://pic.58pic.com/58pic/15/69/49/60p58PICtXG_1024.jpg";
+static NSString *const cellBgStr = @"http://pic.58pic.com/58pic/15/69/49/60p58PICtXG_1024.jpg";
 static NSString *const trangerCellID = @"tangerCell";
 
 @interface TangerineVC ()<UICollectionViewDelegate,UICollectionViewDataSource,UINavigationControllerDelegate>
@@ -24,6 +27,8 @@ static NSString *const trangerCellID = @"tangerCell";
 @property (nonatomic, strong) NSMutableArray *sectionArray;
 @property (nonatomic, strong) NSMutableArray *firstArray;
 @property (nonatomic, strong) NSMutableArray *secondArray;
+
+@property (nonatomic, strong) NSIndexPath *selectIndexPath;  // 记录点击
 
 @end
 
@@ -47,21 +52,43 @@ static NSString *const trangerCellID = @"tangerCell";
     [TrangerModel createArray:_sectionArray firstArray:_firstArray secondArray:_secondArray collectionView:_trangerCollectionView];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    _selectIndexPath = NULL;
+}
+
+#pragma mark - UINavigationControllerDelegate
 - (id<UIViewControllerAnimatedTransitioning>)navigationController:(UINavigationController *)navigationController animationControllerForOperation:(UINavigationControllerOperation)operation fromViewController:(UIViewController *)fromVC toViewController:(UIViewController *)toVC
 {
-    FlodModel *flod = [[FlodModel alloc]init];
-    flod.reverse = YES;
-    return flod;
+    if (_selectIndexPath) {
+        if (_selectIndexPath.section == 0) {
+            CardModel *cardModel = [[CardModel alloc]init];
+            cardModel.duration = 2;
+            cardModel.reverse = YES;
+            return cardModel;
+        }else if(_selectIndexPath.section == 1){
+            FlodModel *flod = [[FlodModel alloc]init];
+            flod.reverse = YES;
+            return flod;
+        }
+    }
+    // 每次返回主界面,返回爆炸转场动画
+    BombTransitioning *bombTransition = [[BombTransitioning alloc]init];
+    return bombTransition;
 }
 
 #pragma mark - UICollectionViewDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
+    _selectIndexPath = indexPath;
+    
     UIBarButtonItem *backItem = [[UIBarButtonItem alloc]init];
     if (indexPath.section == 0) {
         TrangerModel *model = _firstArray[indexPath.row];
         backItem.title = model.title;
-        
+        if (indexPath.row == 2) {
+            HamburgerVC *hanburgerVC = [[HamburgerVC alloc]init];
+            [self.navigationController pushViewController:hanburgerVC animated:YES];
+        }
         
     }else{
         TrangerModel *model = _secondArray[indexPath.row];
@@ -108,9 +135,9 @@ static NSString *const trangerCellID = @"tangerCell";
 - (void)layoutUI {
     _collBgView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 64, KScreenWidth, 0.5 *KScreenHeight)];
     _collBgView.userInteractionEnabled = YES;
-    NSURL *collBgUrl = [NSURL URLWithString:collBgStr];
+    NSURL *cellBgUrl = [NSURL URLWithString:cellBgStr];
     UIImage *placaholderimage = [UIImage imageNamed:Img_path(@"placeholder")];
-    [_collBgView sd_setImageWithURL:collBgUrl placeholderImage:placaholderimage];
+    [_collBgView sd_setImageWithURL:cellBgUrl placeholderImage:placaholderimage];
     [self.view addSubview:_collBgView];
     [_collBgView addSubview:self.trangerCollectionView];
 }
