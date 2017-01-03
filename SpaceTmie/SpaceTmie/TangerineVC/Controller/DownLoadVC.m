@@ -14,6 +14,7 @@
 #import "ActionView.h"
 #import "FloatView.h"
 #import "SDWebImageCompat.h"
+#import "ZZCircleProgress.h"
 
 //static NSString *const downloadStr = @"http://dldir1.qq.com/qqfile/qq/QQ7.6/15742/QQ7.6.exe";
 
@@ -29,10 +30,10 @@ static NSString *const downloadStr = @"http://dlsw.baidu.com/sw-search-sp/soft/9
 
 @property (nonatomic, strong) NSURLSessionDownloadTask *downloadTask;
 
-@property (nonatomic, strong) CCProgressView *ccProgressView;//进度条
+@property (nonatomic, strong) ZZCircleProgress *circle3; //进度条
 @property (nonatomic, strong) AttentionView *attentionView;  //提示框
 @property (nonatomic, strong) FloatView *floatView;          //飘提示
-@property (nonatomic, strong) ActionView *actionView;  //提示框
+@property (nonatomic, strong) ActionView *actionView;    //提示框
 
 @property (nonatomic, strong) UILabel *countLabel; //下载进度
 
@@ -44,7 +45,7 @@ static NSString *const downloadStr = @"http://dlsw.baidu.com/sw-search-sp/soft/9
 
 @property (nonatomic, strong) NSUserDefaults *userDefaults;
 
-@property (nonatomic, strong) UIButton *suspendBtn;  // 挂起按钮
+@property (nonatomic, strong) UIButton *suspendBtn; // 挂起按钮
 @property (nonatomic, strong) UIButton *resumeBtn;  // 继续按钮
 
 @end
@@ -97,11 +98,9 @@ static NSString *const downloadStr = @"http://dlsw.baidu.com/sw-search-sp/soft/9
 -(void)setUIStatus:(int64_t)totalBytesWritten expectedTowrite:(int64_t)totalBytesExpectedWritten
 {
     float progress = (float)totalBytesWritten / totalBytesExpectedWritten;
-    _ccProgressView.progress = progress;
     //主线程,更新 UI
     dispatch_async(dispatch_get_main_queue(), ^{
-        [_ccProgressView setNeedsDisplay];
-        _countLabel.text = [NSString stringWithFormat:@"%.2f%s",progress *100,"%"];
+        _circle3.progress = progress;
     });
 }
 
@@ -133,7 +132,7 @@ static NSString *const downloadStr = @"http://dlsw.baidu.com/sw-search-sp/soft/9
 #pragma mark 任务完成，不管是否下载成功
 -(void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didCompleteWithError:(NSError *)error {
     if (error) {
-        NSLog(@"downloadError;%@",error.localizedDescription);
+        NSLog(@"downloadError:%@",error.localizedDescription);
         if ([error.localizedDescription isEqualToString:@"The request timed out."]) {
             self.actionView.tipLabel.text = @"下载超时,请重试";
             [self.view addSubview:self.attentionView];
@@ -174,7 +173,6 @@ static NSString *const downloadStr = @"http://dlsw.baidu.com/sw-search-sp/soft/9
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_async(queue, ^{
         [weakSelf downloadBy:downloadStr];
-        _ccProgressView.layer.opacity = 1;
     });
 }
 
@@ -209,7 +207,6 @@ static NSString *const downloadStr = @"http://dlsw.baidu.com/sw-search-sp/soft/9
                 dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
                 dispatch_async(queue, ^{
                     [weakSelf downloadBy:downloadStr];
-                    _ccProgressView.layer.opacity = 1;
                 });
             }
         }
@@ -232,7 +229,7 @@ static NSString *const downloadStr = @"http://dlsw.baidu.com/sw-search-sp/soft/9
             [_userDefaults synchronize];
         }
     }];
-    [_ccProgressView removeFromSuperview];
+    _circle3.progress = 0;
     [_countLabel removeFromSuperview];
     
     [self addInterface];
@@ -270,16 +267,13 @@ static NSString *const downloadStr = @"http://dlsw.baidu.com/sw-search-sp/soft/9
 
 #pragma mark - 构建 UI
 - (void)addInterface {
-    _ccProgressView = [[CCProgressView alloc]initWithFrame:CGRectMake(0, 64, KScreenWidth, KScreenHeight /2)];
-    [self.view addSubview:_ccProgressView];
-    _ccProgressView.backgroundColor = [UIColor cyanColor];
-    
-    _countLabel = [[UILabel alloc]init];
-    _countLabel.bounds = CGRectMake(0, 0, 80, 40);
-    _countLabel.center = _ccProgressView.center;
-    _countLabel.textAlignment = NSTextAlignmentCenter;
-    [self.view addSubview:_countLabel];
-    _countLabel.backgroundColor = [UIColor redColor];
+    CGFloat itemWidth = 0.2 *KScreenHeight;
+    CGFloat xCrack = KScreenWidth /2.0 - itemWidth / 2;
+    CGFloat yCrack = (KScreenWidth - itemWidth *2) / 3;
+    //自定义起始角度
+    _circle3 = [[ZZCircleProgress alloc] initWithFrame:CGRectMake(xCrack, yCrack, itemWidth, itemWidth) pathBackColor:nil pathFillColor:KColorWithRGB(arc4random()%255, arc4random()%255, arc4random()%255) startAngle:-255 strokeWidth:10];
+    _circle3.reduceValue = 0.04 *KScreenWidth;
+    [self.view addSubview:_circle3];
 }
 
 - (void)layoutUI {
