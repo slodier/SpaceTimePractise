@@ -55,8 +55,6 @@
 		422D785F1E0BA49600AE1FD9 /* 取消.png in Resources */ = {isa = PBXBuildFile; fileRef = 422D785E1E0BA49600AE1FD9 /* 取消.png */; };
 		422D78621E0BA51600AE1FD9 /* ActionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 422D78611E0BA51600AE1FD9 /* ActionView.m */; };
 		422D78651E0BABE800AE1FD9 /* FloatView.m in Sources */ = {isa = PBXBuildFile; fileRef = 422D78641E0BABE800AE1FD9 /* FloatView.m */; };
-		4233B5431E1B586C0037BDE1 /* NSTimer+timerBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = 4233B5401E1B586C0037BDE1 /* NSTimer+timerBlock.m */; };
-		4233B5441E1B586C0037BDE1 /* ZZCircleProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = 4233B5421E1B586C0037BDE1 /* ZZCircleProgress.m */; };
 		427EC3F11E0F8FED00E2DEFA /* HamburgerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 427EC3F01E0F8FED00E2DEFA /* HamburgerVC.m */; };
 		427EC3F81E0F948B00E2DEFA /* FlowerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 427EC3F71E0F948B00E2DEFA /* FlowerVC.m */; };
 		428682D11E0281BD0045A6A8 /* BombTransitioning.m in Sources */ = {isa = PBXBuildFile; fileRef = 428682D01E0281BD0045A6A8 /* BombTransitioning.m */; };
@@ -188,10 +186,6 @@
 		422D78611E0BA51600AE1FD9 /* ActionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionView.m; sourceTree = "<group>"; };
 		422D78631E0BABE800AE1FD9 /* FloatView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FloatView.h; sourceTree = "<group>"; };
 		422D78641E0BABE800AE1FD9 /* FloatView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FloatView.m; sourceTree = "<group>"; };
-		4233B53F1E1B586C0037BDE1 /* NSTimer+timerBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTimer+timerBlock.h"; sourceTree = "<group>"; };
-		4233B5401E1B586C0037BDE1 /* NSTimer+timerBlock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+timerBlock.m"; sourceTree = "<group>"; };
-		4233B5411E1B586C0037BDE1 /* ZZCircleProgress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZCircleProgress.h; sourceTree = "<group>"; };
-		4233B5421E1B586C0037BDE1 /* ZZCircleProgress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZCircleProgress.m; sourceTree = "<group>"; };
 		427EC3EF1E0F8FED00E2DEFA /* HamburgerVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HamburgerVC.h; sourceTree = "<group>"; };
 		427EC3F01E0F8FED00E2DEFA /* HamburgerVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HamburgerVC.m; sourceTree = "<group>"; };
 		427EC3F61E0F948B00E2DEFA /* FlowerVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlowerVC.h; sourceTree = "<group>"; };
@@ -490,7 +484,6 @@
 		4205B2871E01862400933D6C /* View */ = {
 			isa = PBXGroup;
 			children = (
-				4233B53E1E1B586C0037BDE1 /* ZZCircleProgress */,
 				4205B2921E018B9500933D6C /* TrangerineCell.h */,
 				4205B2931E018B9500933D6C /* TrangerineCell.m */,
 				42E44BF51E042B1E002C0659 /* AttentionView.h */,
@@ -515,17 +508,6 @@
 				4205B2951E018C6700933D6C /* Tranger.json */,
 			);
 			path = Resources;
-			sourceTree = "<group>";
-		};
-		4233B53E1E1B586C0037BDE1 /* ZZCircleProgress */ = {
-			isa = PBXGroup;
-			children = (
-				4233B53F1E1B586C0037BDE1 /* NSTimer+timerBlock.h */,
-				4233B5401E1B586C0037BDE1 /* NSTimer+timerBlock.m */,
-				4233B5411E1B586C0037BDE1 /* ZZCircleProgress.h */,
-				4233B5421E1B586C0037BDE1 /* ZZCircleProgress.m */,
-			);
-			path = ZZCircleProgress;
 			sourceTree = "<group>";
 		};
 		427EC3F21E0F946C00E2DEFA /* FlowerVC */ = {
@@ -776,7 +758,6 @@
 				42E44BE51E03BFE6002C0659 /* CardModel.m in Sources */,
 				4205B27B1E0185CD00933D6C /* UIImageView+WebCache.m in Sources */,
 				4205B27A1E0185CD00933D6C /* UIImageView+HighlightedWebCache.m in Sources */,
-				4233B5441E1B586C0037BDE1 /* ZZCircleProgress.m in Sources */,
 				42E44BEE1E03D2CC002C0659 /* DownloadModel.m in Sources */,
 				422D78651E0BABE800AE1FD9 /* FloatView.m in Sources */,
 				42E44C151E042BC8002C0659 /* MASConstraint.m in Sources */,
@@ -789,7 +770,6 @@
 				4205B2301E0185B100933D6C /* CCTabView.m in Sources */,
 				4205B2811E0185ED00933D6C /* ConstStr.m in Sources */,
 				4205B2751E0185CD00933D6C /* SDWebImagePrefetcher.m in Sources */,
-				4233B5431E1B586C0037BDE1 /* NSTimer+timerBlock.m in Sources */,
 				42E44BF41E03D7D5002C0659 /* CCProgressView.m in Sources */,
 				4205B2941E018B9500933D6C /* TrangerineCell.m in Sources */,
 				422D78621E0BA51600AE1FD9 /* ActionView.m in Sources */,
@@ -951,7 +931,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = /Users/chenchen/Swift/SpaceTmie/SpaceTmie/Tool/PrefixHeader.pch;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/SpaceTmie/Tool/PrefixHeader.pch";
 				INFOPLIST_FILE = SpaceTmie/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = CC.SpaceTmie;
@@ -964,7 +944,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = /Users/chenchen/Swift/SpaceTmie/SpaceTmie/Tool/PrefixHeader.pch;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/SpaceTmie/Tool/PrefixHeader.pch";
 				INFOPLIST_FILE = SpaceTmie/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = CC.SpaceTmie;

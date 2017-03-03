@@ -14,7 +14,6 @@
 #import "ActionView.h"
 #import "FloatView.h"
 #import "SDWebImageCompat.h"
-#import "ZZCircleProgress.h"
 
 //static NSString *const downloadStr = @"http://dldir1.qq.com/qqfile/qq/QQ7.6/15742/QQ7.6.exe";
 
@@ -30,7 +29,7 @@ static NSString *const downloadStr = @"http://dlsw.baidu.com/sw-search-sp/soft/9
 
 @property (nonatomic, strong) NSURLSessionDownloadTask *downloadTask;
 
-@property (nonatomic, strong) ZZCircleProgress *circle3; //进度条
+@property (nonatomic, strong) CCProgressView *ccProgressView;
 @property (nonatomic, strong) AttentionView *attentionView;  //提示框
 @property (nonatomic, strong) FloatView *floatView;          //飘提示
 @property (nonatomic, strong) ActionView *actionView;    //提示框
@@ -100,7 +99,9 @@ static NSString *const downloadStr = @"http://dlsw.baidu.com/sw-search-sp/soft/9
     float progress = (float)totalBytesWritten / totalBytesExpectedWritten;
     //主线程,更新 UI
     dispatch_async(dispatch_get_main_queue(), ^{
-        _circle3.progress = progress;
+        _ccProgressView.progress = progress;
+        [_ccProgressView setNeedsDisplay];
+        _countLabel.text = [NSString stringWithFormat:@"%.2f%@",progress *100,@"%"];
     });
 }
 
@@ -229,7 +230,8 @@ static NSString *const downloadStr = @"http://dlsw.baidu.com/sw-search-sp/soft/9
             [_userDefaults synchronize];
         }
     }];
-    _circle3.progress = 0;
+    //_circle3.progress = 0;
+    _ccProgressView.progress = 0;
     [_countLabel removeFromSuperview];
     
     [self addInterface];
@@ -267,13 +269,17 @@ static NSString *const downloadStr = @"http://dlsw.baidu.com/sw-search-sp/soft/9
 
 #pragma mark - 构建 UI
 - (void)addInterface {
-    CGFloat itemWidth = 0.2 *KScreenHeight;
-    CGFloat xCrack = KScreenWidth /2.0 - itemWidth / 2;
-    CGFloat yCrack = (KScreenWidth - itemWidth *2) / 3;
-    //自定义起始角度
-    _circle3 = [[ZZCircleProgress alloc] initWithFrame:CGRectMake(xCrack, yCrack, itemWidth, itemWidth) pathBackColor:nil pathFillColor:KColorWithRGB(arc4random()%255, arc4random()%255, arc4random()%255) startAngle:-255 strokeWidth:10];
-    _circle3.reduceValue = 0.04 *KScreenWidth;
-    [self.view addSubview:_circle3];
+
+    _ccProgressView = [[CCProgressView alloc]initWithFrame:CGRectMake(0, 64, KScreenWidth, KScreenHeight /2)];
+    [self.view addSubview:_ccProgressView];
+    _ccProgressView.backgroundColor = [UIColor cyanColor];
+    
+    _countLabel = [[UILabel alloc]init];
+    _countLabel.bounds = CGRectMake(0, 0, 80, 40);
+    _countLabel.center = _ccProgressView.center;
+    _countLabel.textAlignment = NSTextAlignmentCenter;
+    [self.view addSubview:_countLabel];
+    _countLabel.backgroundColor = [UIColor redColor];
 }
 
 - (void)layoutUI {

@@ -18,6 +18,13 @@
     return self;
 }
 
+//- (void)setProgress:(double)progress {
+//    if (progress == 0) {
+//        return;
+//    }
+//    [self setNeedsDisplay];
+//}
+
 - (void)drawRect:(CGRect)rect {
     
     //生成渐变色
