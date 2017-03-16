@@ -58,6 +58,9 @@
 		427EC3F11E0F8FED00E2DEFA /* HamburgerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 427EC3F01E0F8FED00E2DEFA /* HamburgerVC.m */; };
 		427EC3F81E0F948B00E2DEFA /* FlowerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 427EC3F71E0F948B00E2DEFA /* FlowerVC.m */; };
 		428682D11E0281BD0045A6A8 /* BombTransitioning.m in Sources */ = {isa = PBXBuildFile; fileRef = 428682D01E0281BD0045A6A8 /* BombTransitioning.m */; };
+		42AF9A2E1E7A41E10068B95B /* AboutSelfVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 42AF9A2D1E7A41E10068B95B /* AboutSelfVC.m */; };
+		42AF9A311E7A448B0068B95B /* MyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 42AF9A301E7A448B0068B95B /* MyTableViewCell.m */; };
+		42AF9A341E7A5FEE0068B95B /* MyHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 42AF9A331E7A5FEE0068B95B /* MyHeaderView.m */; };
 		42E44BE51E03BFE6002C0659 /* CardModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E44BE41E03BFE6002C0659 /* CardModel.m */; };
 		42E44BEE1E03D2CC002C0659 /* DownloadModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E44BED1E03D2CC002C0659 /* DownloadModel.m */; };
 		42E44BF41E03D7D5002C0659 /* CCProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E44BF31E03D7D5002C0659 /* CCProgressView.m */; };
@@ -192,6 +195,12 @@
 		427EC3F71E0F948B00E2DEFA /* FlowerVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlowerVC.m; sourceTree = "<group>"; };
 		428682CF1E0281BD0045A6A8 /* BombTransitioning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BombTransitioning.h; sourceTree = "<group>"; };
 		428682D01E0281BD0045A6A8 /* BombTransitioning.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BombTransitioning.m; sourceTree = "<group>"; };
+		42AF9A2C1E7A41E10068B95B /* AboutSelfVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutSelfVC.h; sourceTree = "<group>"; };
+		42AF9A2D1E7A41E10068B95B /* AboutSelfVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutSelfVC.m; sourceTree = "<group>"; };
+		42AF9A2F1E7A448B0068B95B /* MyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyTableViewCell.h; sourceTree = "<group>"; };
+		42AF9A301E7A448B0068B95B /* MyTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyTableViewCell.m; sourceTree = "<group>"; };
+		42AF9A321E7A5FEE0068B95B /* MyHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyHeaderView.h; sourceTree = "<group>"; };
+		42AF9A331E7A5FEE0068B95B /* MyHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyHeaderView.m; sourceTree = "<group>"; };
 		42E44BE31E03BFE6002C0659 /* CardModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardModel.h; sourceTree = "<group>"; };
 		42E44BE41E03BFE6002C0659 /* CardModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardModel.m; sourceTree = "<group>"; };
 		42E44BEC1E03D2CC002C0659 /* DownloadModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadModel.h; sourceTree = "<group>"; };
@@ -460,6 +469,8 @@
 				4229D4D61E03A00300FA6E0A /* DownLoadVC.m */,
 				427EC3EF1E0F8FED00E2DEFA /* HamburgerVC.h */,
 				427EC3F01E0F8FED00E2DEFA /* HamburgerVC.m */,
+				42AF9A2C1E7A41E10068B95B /* AboutSelfVC.h */,
+				42AF9A2D1E7A41E10068B95B /* AboutSelfVC.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -486,6 +497,10 @@
 			children = (
 				4205B2921E018B9500933D6C /* TrangerineCell.h */,
 				4205B2931E018B9500933D6C /* TrangerineCell.m */,
+				42AF9A2F1E7A448B0068B95B /* MyTableViewCell.h */,
+				42AF9A301E7A448B0068B95B /* MyTableViewCell.m */,
+				42AF9A321E7A5FEE0068B95B /* MyHeaderView.h */,
+				42AF9A331E7A5FEE0068B95B /* MyHeaderView.m */,
 				42E44BF51E042B1E002C0659 /* AttentionView.h */,
 				42E44BF61E042B1E002C0659 /* AttentionView.m */,
 				422D78601E0BA51600AE1FD9 /* ActionView.h */,
@@ -735,6 +750,7 @@
 				427EC3F11E0F8FED00E2DEFA /* HamburgerVC.m in Sources */,
 				4205B2681E0185CD00933D6C /* TADotView.m in Sources */,
 				42E44C191E042BC8002C0659 /* MASViewConstraint.m in Sources */,
+				42AF9A341E7A5FEE0068B95B /* MyHeaderView.m in Sources */,
 				4205B2311E0185B100933D6C /* GoodsCell.m in Sources */,
 				4205B2321E0185B100933D6C /* UIView+Animations.m in Sources */,
 				4205B22F1E0185B100933D6C /* ViewController.m in Sources */,
@@ -755,6 +771,7 @@
 				42E44C1B1E042BC8002C0659 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
 				4205B2741E0185CD00933D6C /* SDWebImageManager.m in Sources */,
 				4205B2721E0185CD00933D6C /* SDWebImageDownloader.m in Sources */,
+				42AF9A311E7A448B0068B95B /* MyTableViewCell.m in Sources */,
 				42E44BE51E03BFE6002C0659 /* CardModel.m in Sources */,
 				4205B27B1E0185CD00933D6C /* UIImageView+WebCache.m in Sources */,
 				4205B27A1E0185CD00933D6C /* UIImageView+HighlightedWebCache.m in Sources */,
@@ -775,6 +792,7 @@
 				422D78621E0BA51600AE1FD9 /* ActionView.m in Sources */,
 				4205B2761E0185CD00933D6C /* UIButton+WebCache.m in Sources */,
 				4205B2781E0185CD00933D6C /* UIImage+MultiFormat.m in Sources */,
+				42AF9A2E1E7A41E10068B95B /* AboutSelfVC.m in Sources */,
 				42E44C171E042BC8002C0659 /* MASLayoutConstraint.m in Sources */,
 				4205B2711E0185CD00933D6C /* SDWebImageDecoder.m in Sources */,
 				4205B27C1E0185CD00933D6C /* UIView+WebCacheOperation.m in Sources */,

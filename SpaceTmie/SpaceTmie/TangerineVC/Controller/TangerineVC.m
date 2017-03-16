@@ -15,6 +15,7 @@
 #import "CardModel.h"
 #import "HamburgerVC.h"
 #import "BombTransitioning.h"
+#import "AboutSelfVC.h"
 
 static NSString *const cellBgStr = @"http://pic.58pic.com/58pic/15/69/49/60p58PICtXG_1024.jpg";
 static NSString *const trangerCellID = @"tangerCell";
@@ -98,6 +99,8 @@ static NSString *const trangerCellID = @"tangerCell";
             DownLoadVC *downLoadVC = [[DownLoadVC alloc]init];
             [self.navigationController pushViewController:downLoadVC animated:YES];
         }else if (indexPath.row == 1){
+            AboutSelfVC *aboutVC = [[AboutSelfVC alloc]init];
+            [self.navigationController pushViewController:aboutVC animated:YES];
             
         }
     }
@@ -146,7 +149,8 @@ static NSString *const trangerCellID = @"tangerCell";
 - (UICollectionView *)trangerCollectionView {
     if (!_trangerCollectionView) {
         UICollectionViewFlowLayout *trangerFlowLayout = [[UICollectionViewFlowLayout alloc]init];
-        trangerFlowLayout.itemSize = CGSizeMake(0.156 *KScreenWidth, 0.156 *KScreenWidth);
+        //trangerFlowLayout.itemSize = CGSizeMake(0.156 *KScreenWidth, 0.156 *KScreenWidth);
+        trangerFlowLayout.itemSize = CGSizeMake(0.17 *KScreenWidth, 0.17 *KScreenWidth);
         trangerFlowLayout.minimumInteritemSpacing = 0.15 *KScreenWidth;
         trangerFlowLayout.minimumLineSpacing = 0.03 *KScreenHeight;
         trangerFlowLayout.headerReferenceSize = CGSizeMake(100, 0.03 *KScreenHeight);
@@ -156,6 +160,7 @@ static NSString *const trangerCellID = @"tangerCell";
         [_trangerCollectionView registerClass:[TrangerineCell class] forCellWithReuseIdentifier:trangerCellID];
         _trangerCollectionView.delegate = self;
         _trangerCollectionView.dataSource = self;
+        
     }
     return _trangerCollectionView;
 }

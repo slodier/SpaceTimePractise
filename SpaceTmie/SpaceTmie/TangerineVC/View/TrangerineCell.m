@@ -13,7 +13,7 @@
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
 
-        self.backgroundColor = [UIColor redColor];
+        //self.backgroundColor = [UIColor redColor];
         
         _imageView = [[UIImageView alloc]init];
         _imageView.frame = CGRectMake(0.031 *KScreenWidth, 0.01 *KScreenHeight, 0.094 *KScreenWidth, 0.05 *KScreenHeight);
