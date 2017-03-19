@@ -8,6 +8,7 @@
 
 #import "MyHeaderView.h"
 #import "Masonry.h"
+#import "CCUserDefaults.h"
 
 @interface MyHeaderView ()
 
@@ -32,9 +33,13 @@
 - (void)getValue {
     _nameLabel.text = @"onevcat";
     _descriLabel.text = @"该用户很懒,什么都没有留下.";
-    _avatarView.image = [UIImage imageNamed:Img_path(@"water@2x")];
     _arrowImageView.image = [UIImage imageNamed:@"19858PICScJ_1024.jpg"];
 
+    if ([CCUserDefaults isLocalExistImage]) {
+        _avatarView.image = [CCUserDefaults loadLocalData];
+    }else{
+        _avatarView.image = [UIImage imageNamed:Img_path(@"water@2x")];
+    }
 }
 
 #pragma mark - 构建 UI
@@ -52,7 +57,6 @@
     [_iconButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(_avatarView);
     }];
-    
     
     _nameLabel = [[UILabel alloc]init];
     [self addSubview:_nameLabel];

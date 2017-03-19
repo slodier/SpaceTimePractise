@@ -51,6 +51,8 @@
 		4205B2961E018C6700933D6C /* Tranger.json in Resources */ = {isa = PBXBuildFile; fileRef = 4205B2951E018C6700933D6C /* Tranger.json */; };
 		4205B2DA1E018FFC00933D6C /* TrangerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4205B2D91E018FFC00933D6C /* TrangerModel.m */; };
 		4211CD581E7E7D3D00ACA114 /* 19858PICScJ_1024.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4211CD571E7E7D3D00ACA114 /* 19858PICScJ_1024.jpg */; };
+		4211CD9D1E7E9DF200ACA114 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4211CD9C1E7E9DF200ACA114 /* AssetsLibrary.framework */; };
+		4211CDA31E7EA1C800ACA114 /* CCUserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 4211CDA11E7EA1C800ACA114 /* CCUserDefaults.m */; };
 		4229D4D41E02E1D800FA6E0A /* FlodModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4229D4D31E02E1D800FA6E0A /* FlodModel.m */; };
 		4229D4D71E03A00300FA6E0A /* DownLoadVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4229D4D61E03A00300FA6E0A /* DownLoadVC.m */; };
 		422D785F1E0BA49600AE1FD9 /* 取消.png in Resources */ = {isa = PBXBuildFile; fileRef = 422D785E1E0BA49600AE1FD9 /* 取消.png */; };
@@ -182,6 +184,9 @@
 		4205B2D81E018FFC00933D6C /* TrangerModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrangerModel.h; sourceTree = "<group>"; };
 		4205B2D91E018FFC00933D6C /* TrangerModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrangerModel.m; sourceTree = "<group>"; };
 		4211CD571E7E7D3D00ACA114 /* 19858PICScJ_1024.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 19858PICScJ_1024.jpg; sourceTree = "<group>"; };
+		4211CD9C1E7E9DF200ACA114 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		4211CDA11E7EA1C800ACA114 /* CCUserDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCUserDefaults.m; sourceTree = "<group>"; };
+		4211CDA21E7EA1C800ACA114 /* CCUserDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCUserDefaults.h; sourceTree = "<group>"; };
 		4229D4D21E02E1D800FA6E0A /* FlodModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlodModel.h; sourceTree = "<group>"; };
 		4229D4D31E02E1D800FA6E0A /* FlodModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlodModel.m; sourceTree = "<group>"; };
 		4229D4D51E03A00300FA6E0A /* DownLoadVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownLoadVC.h; sourceTree = "<group>"; };
@@ -245,6 +250,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4211CD9D1E7E9DF200ACA114 /* AssetsLibrary.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -272,6 +278,7 @@
 				4205B20A1E01857100933D6C /* SpaceTmieTests */,
 				4205B2151E01857100933D6C /* SpaceTmieUITests */,
 				4205B1EF1E01857100933D6C /* Products */,
+				4211CD9B1E7E9DF200ACA114 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -445,6 +452,8 @@
 		4205B27D1E0185ED00933D6C /* Tool */ = {
 			isa = PBXGroup;
 			children = (
+				4211CDA21E7EA1C800ACA114 /* CCUserDefaults.h */,
+				4211CDA11E7EA1C800ACA114 /* CCUserDefaults.m */,
 				4205B27E1E0185ED00933D6C /* ConstStr.h */,
 				4205B27F1E0185ED00933D6C /* ConstStr.m */,
 				4205B2801E0185ED00933D6C /* PrefixHeader.pch */,
@@ -526,6 +535,14 @@
 				4205B2951E018C6700933D6C /* Tranger.json */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		4211CD9B1E7E9DF200ACA114 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4211CD9C1E7E9DF200ACA114 /* AssetsLibrary.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		427EC3F21E0F946C00E2DEFA /* FlowerVC */ = {
@@ -779,6 +796,7 @@
 				42E44BE51E03BFE6002C0659 /* CardModel.m in Sources */,
 				4205B27B1E0185CD00933D6C /* UIImageView+WebCache.m in Sources */,
 				4205B27A1E0185CD00933D6C /* UIImageView+HighlightedWebCache.m in Sources */,
+				4211CDA31E7EA1C800ACA114 /* CCUserDefaults.m in Sources */,
 				42E44BEE1E03D2CC002C0659 /* DownloadModel.m in Sources */,
 				422D78651E0BABE800AE1FD9 /* FloatView.m in Sources */,
 				42E44C151E042BC8002C0659 /* MASConstraint.m in Sources */,

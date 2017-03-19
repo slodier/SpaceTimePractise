@@ -9,13 +9,16 @@
 #import "AboutSelfVC.h"
 #import "MyTableViewCell.h"
 #import "MyHeaderView.h"
+#import "CCUserDefaults.h"
 
-@interface AboutSelfVC ()<UITableViewDelegate,UITableViewDataSource>
+@interface AboutSelfVC ()<UITableViewDelegate,UITableViewDataSource,UINavigationControllerDelegate,UIImagePickerControllerDelegate>
 
 @property (nonatomic, strong) UITableView *myTableView;
 
 @property (nonatomic, strong) NSMutableArray *myDataSource; // 数据源
 @property (nonatomic, strong) NSMutableArray *secionArray;  // section 数据源
+
+@property (nonatomic, strong) MyHeaderView *headerView; // headerView
 
 @end
 
@@ -29,11 +32,37 @@ static NSString *clearCache = @"清理缓存";
     [self.view addSubview:self.myTableView];
 }
 
+#pragma mark - headerView 头像按钮点击事件
+#pragma mark - 打开本地图册
+- (void)openAlbum {
+    [self openImagePickerControllerWithType:UIImagePickerControllerSourceTypePhotoLibrary];
+}
+
+- (void)openImagePickerControllerWithType:(UIImagePickerControllerSourceType)type
+{
+    // 判断设备是否支持
+    if (![UIImagePickerController isSourceTypeAvailable:type]) {
+        return;
+    }
+    UIImagePickerController *imgPicker = [[UIImagePickerController alloc]init];
+    imgPicker.sourceType = type;
+    imgPicker.delegate = self;
+    [self presentViewController:imgPicker animated:YES completion:nil];
+}
+
+#pragma mark - UINavigationControllerDelegate, UIImagePickerControllerDelegate
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
+    UIImage *image = info[UIImagePickerControllerOriginalImage];
+    _headerView.avatarView.image = image;
+    [CCUserDefaults saveImage:image];
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 #pragma mark - UITableViewDelegate
 - (nullable UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    MyHeaderView *headerView = [[MyHeaderView alloc]initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight /6)];
-    //headerView.backgroundColor = [UIColor redColor];
-    return headerView;
+    _headerView = [[MyHeaderView alloc]initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight /6)];
+    [_headerView.iconButton addTarget:self action:@selector(openAlbum) forControlEvents:UIControlEventTouchUpInside];
+    return _headerView;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
