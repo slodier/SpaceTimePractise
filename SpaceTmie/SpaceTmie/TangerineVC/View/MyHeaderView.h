@@ -10,6 +10,8 @@
 
 @interface MyHeaderView : UIView
 
+@property (nonatomic, strong) UIButton *iconButton; // 头像按钮
+
 @property (nonatomic, strong) UIImageView *avatarView; // 头像
 
 @property (nonatomic, strong) UILabel *nameLabel; // 名字

@@ -32,7 +32,7 @@ static NSString *clearCache = @"清理缓存";
 #pragma mark - UITableViewDelegate
 - (nullable UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     MyHeaderView *headerView = [[MyHeaderView alloc]initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight /6)];
-    headerView.backgroundColor = [UIColor redColor];
+    //headerView.backgroundColor = [UIColor redColor];
     return headerView;
 }
 
@@ -42,7 +42,7 @@ static NSString *clearCache = @"清理缓存";
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
     UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, KScreenWidth, 22)];
-    view.backgroundColor = [UIColor blueColor];
+    view.backgroundColor = [UIColor grayColor];
     return view;
 }
 
@@ -64,6 +64,7 @@ static NSString *clearCache = @"清理缓存";
     if (!myCell) {
         myCell = [[MyTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
     }
+    myCell.selectionStyle = UITableViewCellSelectionStyleNone;
     myCell.itemLabel.text = _myDataSource[indexPath.section][indexPath.row];
     return myCell;
 }
@@ -73,6 +74,7 @@ static NSString *clearCache = @"清理缓存";
     if (!_myTableView) {
         _myTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, KScreenWidth, 0.6 *KScreenHeight) style:UITableViewStyleGrouped];
         //_myTableView.rowHeight =
+        _myTableView.backgroundColor = [UIColor whiteColor];
         _myTableView.delegate = self;
         _myTableView.dataSource = self;
     }

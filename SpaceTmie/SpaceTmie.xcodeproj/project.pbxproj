@@ -50,6 +50,7 @@
 		4205B2941E018B9500933D6C /* TrangerineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4205B2931E018B9500933D6C /* TrangerineCell.m */; };
 		4205B2961E018C6700933D6C /* Tranger.json in Resources */ = {isa = PBXBuildFile; fileRef = 4205B2951E018C6700933D6C /* Tranger.json */; };
 		4205B2DA1E018FFC00933D6C /* TrangerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4205B2D91E018FFC00933D6C /* TrangerModel.m */; };
+		4211CD581E7E7D3D00ACA114 /* 19858PICScJ_1024.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4211CD571E7E7D3D00ACA114 /* 19858PICScJ_1024.jpg */; };
 		4229D4D41E02E1D800FA6E0A /* FlodModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4229D4D31E02E1D800FA6E0A /* FlodModel.m */; };
 		4229D4D71E03A00300FA6E0A /* DownLoadVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4229D4D61E03A00300FA6E0A /* DownLoadVC.m */; };
 		422D785F1E0BA49600AE1FD9 /* 取消.png in Resources */ = {isa = PBXBuildFile; fileRef = 422D785E1E0BA49600AE1FD9 /* 取消.png */; };
@@ -180,6 +181,7 @@
 		4205B2951E018C6700933D6C /* Tranger.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Tranger.json; sourceTree = "<group>"; };
 		4205B2D81E018FFC00933D6C /* TrangerModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrangerModel.h; sourceTree = "<group>"; };
 		4205B2D91E018FFC00933D6C /* TrangerModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrangerModel.m; sourceTree = "<group>"; };
+		4211CD571E7E7D3D00ACA114 /* 19858PICScJ_1024.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 19858PICScJ_1024.jpg; sourceTree = "<group>"; };
 		4229D4D21E02E1D800FA6E0A /* FlodModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlodModel.h; sourceTree = "<group>"; };
 		4229D4D31E02E1D800FA6E0A /* FlodModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlodModel.m; sourceTree = "<group>"; };
 		4229D4D51E03A00300FA6E0A /* DownLoadVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownLoadVC.h; sourceTree = "<group>"; };
@@ -514,6 +516,7 @@
 		4205B2891E01863200933D6C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4211CD571E7E7D3D00ACA114 /* 19858PICScJ_1024.jpg */,
 				422D785E1E0BA49600AE1FD9 /* 取消.png */,
 				42E44C8D1E058480002C0659 /* 确定.png */,
 				4205B28A1E01863200933D6C /* BtnImages.bundle */,
@@ -711,6 +714,7 @@
 				422D785F1E0BA49600AE1FD9 /* 取消.png in Resources */,
 				42E44C131E042BC8002C0659 /* Info.plist in Resources */,
 				4205B28F1E01863200933D6C /* download_click.png in Resources */,
+				4211CD581E7E7D3D00ACA114 /* 19858PICScJ_1024.jpg in Resources */,
 				4205B1FE1E01857100933D6C /* Assets.xcassets in Resources */,
 				42E44C8E1E058480002C0659 /* 确定.png in Resources */,
 				4205B28E1E01863200933D6C /* BtnImages.bundle in Resources */,
