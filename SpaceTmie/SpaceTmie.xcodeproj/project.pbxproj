@@ -58,6 +58,9 @@
 		422D785F1E0BA49600AE1FD9 /* 取消.png in Resources */ = {isa = PBXBuildFile; fileRef = 422D785E1E0BA49600AE1FD9 /* 取消.png */; };
 		422D78621E0BA51600AE1FD9 /* ActionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 422D78611E0BA51600AE1FD9 /* ActionView.m */; };
 		422D78651E0BABE800AE1FD9 /* FloatView.m in Sources */ = {isa = PBXBuildFile; fileRef = 422D78641E0BABE800AE1FD9 /* FloatView.m */; };
+		4256B63D1E83C81B0053A256 /* WeatherController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4256B63C1E83C81B0053A256 /* WeatherController.m */; };
+		4256B6421E83C86E0053A256 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4256B6411E83C86E0053A256 /* CoreLocation.framework */; };
+		42788F701E7FD11E00F129E2 /* ShareView.m in Sources */ = {isa = PBXBuildFile; fileRef = 42788F6F1E7FD11E00F129E2 /* ShareView.m */; };
 		427EC3F11E0F8FED00E2DEFA /* HamburgerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 427EC3F01E0F8FED00E2DEFA /* HamburgerVC.m */; };
 		427EC3F81E0F948B00E2DEFA /* FlowerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 427EC3F71E0F948B00E2DEFA /* FlowerVC.m */; };
 		428682D11E0281BD0045A6A8 /* BombTransitioning.m in Sources */ = {isa = PBXBuildFile; fileRef = 428682D01E0281BD0045A6A8 /* BombTransitioning.m */; };
@@ -196,6 +199,11 @@
 		422D78611E0BA51600AE1FD9 /* ActionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionView.m; sourceTree = "<group>"; };
 		422D78631E0BABE800AE1FD9 /* FloatView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FloatView.h; sourceTree = "<group>"; };
 		422D78641E0BABE800AE1FD9 /* FloatView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FloatView.m; sourceTree = "<group>"; };
+		4256B63B1E83C81B0053A256 /* WeatherController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WeatherController.h; path = ../../Controller/WeatherController.h; sourceTree = "<group>"; };
+		4256B63C1E83C81B0053A256 /* WeatherController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WeatherController.m; path = ../../Controller/WeatherController.m; sourceTree = "<group>"; };
+		4256B6411E83C86E0053A256 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		42788F6E1E7FD11E00F129E2 /* ShareView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareView.h; sourceTree = "<group>"; };
+		42788F6F1E7FD11E00F129E2 /* ShareView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareView.m; sourceTree = "<group>"; };
 		427EC3EF1E0F8FED00E2DEFA /* HamburgerVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HamburgerVC.h; sourceTree = "<group>"; };
 		427EC3F01E0F8FED00E2DEFA /* HamburgerVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HamburgerVC.m; sourceTree = "<group>"; };
 		427EC3F61E0F948B00E2DEFA /* FlowerVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlowerVC.h; sourceTree = "<group>"; };
@@ -250,6 +258,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4256B6421E83C86E0053A256 /* CoreLocation.framework in Frameworks */,
 				4211CD9D1E7E9DF200ACA114 /* AssetsLibrary.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -464,6 +473,7 @@
 		4205B2821E01862400933D6C /* TangerineVC */ = {
 			isa = PBXGroup;
 			children = (
+				4256B63E1E83C8530053A256 /* Weather */,
 				4205B2831E01862400933D6C /* Controller */,
 				4205B2861E01862400933D6C /* Model */,
 				4205B2871E01862400933D6C /* View */,
@@ -518,6 +528,8 @@
 				422D78611E0BA51600AE1FD9 /* ActionView.m */,
 				422D78631E0BABE800AE1FD9 /* FloatView.h */,
 				422D78641E0BABE800AE1FD9 /* FloatView.m */,
+				42788F6E1E7FD11E00F129E2 /* ShareView.h */,
+				42788F6F1E7FD11E00F129E2 /* ShareView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -540,9 +552,35 @@
 		4211CD9B1E7E9DF200ACA114 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4256B6411E83C86E0053A256 /* CoreLocation.framework */,
 				4211CD9C1E7E9DF200ACA114 /* AssetsLibrary.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4256B63E1E83C8530053A256 /* Weather */ = {
+			isa = PBXGroup;
+			children = (
+				4256B63F1E83C8530053A256 /* Controller */,
+				4256B6401E83C8530053A256 /* Model */,
+			);
+			path = Weather;
+			sourceTree = "<group>";
+		};
+		4256B63F1E83C8530053A256 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				4256B63B1E83C81B0053A256 /* WeatherController.h */,
+				4256B63C1E83C81B0053A256 /* WeatherController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		4256B6401E83C8530053A256 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		427EC3F21E0F946C00E2DEFA /* FlowerVC */ = {
@@ -773,6 +811,7 @@
 				42E44C191E042BC8002C0659 /* MASViewConstraint.m in Sources */,
 				42AF9A341E7A5FEE0068B95B /* MyHeaderView.m in Sources */,
 				4205B2311E0185B100933D6C /* GoodsCell.m in Sources */,
+				42788F701E7FD11E00F129E2 /* ShareView.m in Sources */,
 				4205B2321E0185B100933D6C /* UIView+Animations.m in Sources */,
 				4205B22F1E0185B100933D6C /* ViewController.m in Sources */,
 				4205B2881E01862400933D6C /* TangerineVC.m in Sources */,
@@ -819,6 +858,7 @@
 				4205B2711E0185CD00933D6C /* SDWebImageDecoder.m in Sources */,
 				4205B27C1E0185CD00933D6C /* UIView+WebCacheOperation.m in Sources */,
 				42E44C1A1E042BC8002C0659 /* NSArray+MASAdditions.m in Sources */,
+				4256B63D1E83C81B0053A256 /* WeatherController.m in Sources */,
 				4205B1F31E01857100933D6C /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

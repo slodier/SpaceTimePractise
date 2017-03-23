@@ -31,7 +31,7 @@ static NSString *userIcon = @"userIcon";
     return image;
 }
 
-#pragma maek - 判断本地有无数据
+#pragma mark - 判断本地有无数据
 + (BOOL)isLocalExistImage {
     NSData *imageData = [[self defaults]objectForKey:userIcon];
     if (!imageData) {

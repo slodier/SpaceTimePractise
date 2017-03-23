@@ -14,6 +14,7 @@
 
 {
     UIImageView *_arrowImageView;  // 右箭头图层
+    UIImageView *_cutLineView; // 分割线
 }
 
 @end
@@ -83,6 +84,15 @@
         make.top.equalTo(self).offset((self.frame.size.height - 0.1 *KScreenWidth)/2);
         make.size.mas_equalTo(CGSizeMake(0.04 *KScreenWidth, 0.1 *KScreenWidth));
     }];
+    
+    _cutLineView = [[UIImageView alloc]initWithFrame:CGRectZero];
+    [self addSubview:_cutLineView];
+    [_cutLineView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self);
+        make.bottom.equalTo(self).offset(2);
+        make.size.mas_equalTo(CGSizeMake(KScreenWidth, 1));
+    }];
+    _cutLineView.image = [UIImage imageNamed:@"navigation_rainbow@2x"];
 }
 
 @end

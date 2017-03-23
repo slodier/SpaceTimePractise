@@ -25,6 +25,7 @@
 @implementation AboutSelfVC
 
 static NSString *clearCache = @"清理缓存";
+static NSString *shareLink = @"分享";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -60,23 +61,29 @@ static NSString *clearCache = @"清理缓存";
 
 #pragma mark - UITableViewDelegate
 - (nullable UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    _headerView = [[MyHeaderView alloc]initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight /6)];
-    [_headerView.iconButton addTarget:self action:@selector(openAlbum) forControlEvents:UIControlEventTouchUpInside];
-    return _headerView;
+    if (section == 0) {
+        _headerView = [[MyHeaderView alloc]initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight /6)];
+        [_headerView.iconButton addTarget:self action:@selector(openAlbum) forControlEvents:UIControlEventTouchUpInside];
+        return _headerView;
+    }
+    return nil;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return KScreenHeight /6;
+    if (section == 0) {
+        return KScreenHeight /6;
+    }
+    return 0;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
     UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, KScreenWidth, 22)];
-    view.backgroundColor = [UIColor grayColor];
+    view.backgroundColor = KColorWithRGB(204, 204, 204);
     return view;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    return 22;
+    return 0.0 *KScreenHeight;
 }
 
 #pragma mark - UITableViewDataSource 
@@ -101,7 +108,7 @@ static NSString *clearCache = @"清理缓存";
 #pragma mark - Getter
 - (UITableView *)myTableView {
     if (!_myTableView) {
-        _myTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, KScreenWidth, 0.6 *KScreenHeight) style:UITableViewStyleGrouped];
+        _myTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight) style:UITableViewStyleGrouped];
         //_myTableView.rowHeight =
         _myTableView.backgroundColor = [UIColor whiteColor];
         _myTableView.delegate = self;
@@ -114,7 +121,9 @@ static NSString *clearCache = @"清理缓存";
     if (!_myDataSource) {
         _myDataSource = [NSMutableArray array];
         NSArray *array1 = @[clearCache];
+        NSArray *array2 = @[shareLink];
         [_myDataSource addObject:array1];
+        [_myDataSource addObject:array2];
     }
     return _myDataSource;
 }
