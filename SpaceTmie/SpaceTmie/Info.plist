@@ -11,7 +11,7 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>$(PRODUCT_NAME)</string>
+	<string>Eternal</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
@@ -52,5 +52,9 @@
 	<string>使用相册</string>
 	<key>CFBundleAllowMixedLocalizations</key>
 	<true/>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>全程获得</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>当使用时获得位置</string>
 </dict>
 </plist>

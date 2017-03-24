@@ -725,6 +725,7 @@
 				TargetAttributes = {
 					4205B1ED1E01857100933D6C = {
 						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = G7K6RMN74W;
 						ProvisioningStyle = Automatic;
 					};
 					4205B2061E01857100933D6C = {
@@ -1010,6 +1011,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = G7K6RMN74W;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/SpaceTmie/Tool/PrefixHeader.pch";
 				INFOPLIST_FILE = SpaceTmie/Info.plist;
@@ -1023,6 +1025,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = G7K6RMN74W;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/SpaceTmie/Tool/PrefixHeader.pch";
 				INFOPLIST_FILE = SpaceTmie/Info.plist;

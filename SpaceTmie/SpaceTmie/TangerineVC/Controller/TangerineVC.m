@@ -16,6 +16,7 @@
 #import "HamburgerVC.h"
 #import "BombTransitioning.h"
 #import "AboutSelfVC.h"
+#import "WeatherController.h"
 
 static NSString *const cellBgStr = @"http://pic.58pic.com/58pic/15/69/49/60p58PICtXG_1024.jpg";
 static NSString *const trangerCellID = @"tangerCell";
@@ -89,6 +90,10 @@ static NSString *const trangerCellID = @"tangerCell";
         if (indexPath.row == 2) {
             HamburgerVC *hanburgerVC = [[HamburgerVC alloc]init];
             [self.navigationController pushViewController:hanburgerVC animated:YES];
+        }else if (indexPath.row == 3){
+            
+            WeatherController *weatherVC = [[WeatherController alloc]init];
+            [self.navigationController pushViewController:weatherVC animated:YES];
         }
         
     }else{
