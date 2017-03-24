@@ -30,33 +30,36 @@ typedef void(^ReturnBlock)(void);
 #pragma mark - 主按钮点击事件
 - (void)mainClick:(UIButton *)sender {
     sender.userInteractionEnabled = YES;
-
+    
     [self delayRun:^{
         sender.userInteractionEnabled = YES;
     }];
     
     sender.selected =! sender.selected;
     if (sender.selected) {
-
+        
         [self addSubview:_flowerBtn];
         [self addSubview:_chipBtn];
         [self addSubview:_tangerineBtn];
         
         [UIView animateWithDuration:0.5 animations:^{
-            self.frame = CGRectMake(0, 0.8863 *KScreenHeight, KScreenWidth, 0.158 *KScreenHeight);
+            self.frame = CGRectMake(0, 0.75 *KScreenHeight, KScreenWidth, 0.25 *KScreenHeight);
+            
+            _mainBtn.frame = CGRectMake(0.361 *KScreenWidth, 0.1 *KScreenHeight, 0.278 *KScreenWidth, 0.278 *KScreenWidth);
         }];
         
-        [UIView moveAndGain:_flowerBtn destination:CGPointMake(0.2915 *KScreenWidth - 0.039 *KScreenHeight, 0.068 *KScreenHeight)];
-        [UIView moveAndGain:_chipBtn destination:CGPointMake(0.5 *KScreenWidth, 0)];
-        [UIView moveAndGain:_tangerineBtn destination:CGPointMake(0.7085 *KScreenWidth + 0.039 *KScreenHeight, 0.068 *KScreenHeight)];
+        [UIView moveAndGain:_flowerBtn destination:CGPointMake(0.2915 *KScreenWidth - 0.039 *KScreenHeight, 0.17 *KScreenHeight)];
+        [UIView moveAndGain:_chipBtn destination:CGPointMake(0.5 *KScreenWidth, 0.039 *KScreenHeight)];
+        [UIView moveAndGain:_tangerineBtn destination:CGPointMake(0.7085 *KScreenWidth + 0.039 *KScreenHeight, 0.17 *KScreenHeight)];
         
     }else{
-
+        
         [UIView animateWithDuration:0.5 animations:^{
             self.frame = CGRectMake(0, 0.922 *KScreenHeight, KScreenWidth, 0.158 *KScreenHeight);
             [_flowerBtn removeFromSuperview];
             [_chipBtn removeFromSuperview];
             [_tangerineBtn removeFromSuperview];
+            _mainBtn.frame = CGRectMake(0.361 *KScreenWidth, 0.02 *KScreenHeight, 0.278 *KScreenWidth, 0.278 *KScreenWidth);
         }];
     }
 }
@@ -65,6 +68,7 @@ typedef void(^ReturnBlock)(void);
 - (void)storeMainBtn {
     [UIView animateWithDuration:0.5 animations:^{
         self.frame = CGRectMake(0, 0.922 *KScreenHeight, KScreenWidth, 0.158 *KScreenHeight);
+        _mainBtn.frame = CGRectMake(0.361 *KScreenWidth, 0.02 *KScreenHeight, 0.278 *KScreenWidth, 0.278 *KScreenWidth);
         [_flowerBtn removeFromSuperview];
         [_chipBtn removeFromSuperview];
         [_tangerineBtn removeFromSuperview];
@@ -91,18 +95,19 @@ typedef void(^ReturnBlock)(void);
 #pragma mark - 添加主按钮
 - (void)addMainBtn {
     _mainBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    _mainBtn.frame = CGRectMake(0.361 *KScreenWidth, 0.039 *KScreenHeight, 0.278 *KScreenWidth, 0.078 *KScreenHeight);
+    _mainBtn.frame = CGRectMake(0.361 *KScreenWidth, 0.02 *KScreenHeight, 0.278 *KScreenWidth, 0.278 *KScreenWidth);
     [_mainBtn setImage:[UIImage imageNamed:Img_path(@"main_click")] forState:UIControlStateNormal];
     [self addSubview:_mainBtn];
     [_mainBtn addTarget:self action:@selector(mainClick:) forControlEvents:UIControlEventTouchUpInside];
-
+    
     _flowerBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     _chipBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     _tangerineBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     
-    _flowerBtn.frame = CGRectMake(0.222 *KScreenWidth - 0.039 *KScreenHeight, 0.068 *KScreenHeight, 0.139 *KScreenWidth, 0.076 *KScreenHeight);
-    _chipBtn.frame = CGRectMake(0.4305 *KScreenWidth, 0, 0.139 *KScreenWidth, 0.039 *KScreenHeight);
-    _tangerineBtn.frame = CGRectMake(0.639 *KScreenWidth + 0.039 *KScreenHeight, 0.068 *KScreenHeight, 0.139 *KScreenWidth, 0.076 *KScreenHeight);
+    _flowerBtn.frame = CGRectMake(0.222 *KScreenWidth - 0.039 *KScreenHeight, 0.17 *KScreenHeight, 0.141 *KScreenWidth, 0.08 *KScreenHeight);
+    // 118 109
+    _chipBtn.frame = CGRectMake(0.4305 *KScreenWidth, 0, 0.157 *KScreenWidth, 0.08 *KScreenHeight);
+    _tangerineBtn.frame = CGRectMake(0.639 *KScreenWidth + 0.039 *KScreenHeight, 0.17 *KScreenHeight, 0.141 *KScreenWidth, 0.08 *KScreenHeight);
     
     [_flowerBtn setImage:[UIImage imageNamed:Img_path(@"flower@2x")] forState:UIControlStateNormal];
     [_chipBtn setImage:[UIImage imageNamed:Img_path(@"chip@2x")] forState:UIControlStateNormal];

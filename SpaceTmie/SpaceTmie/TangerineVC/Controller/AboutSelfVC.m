@@ -105,6 +105,16 @@ static NSString *shareLink = @"分享";
     return myCell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section == 0) {
+        
+    } else if (indexPath.section == 1){
+        if (indexPath.row == 0) {
+            
+        }
+    }
+}
+
 #pragma mark - Getter
 - (UITableView *)myTableView {
     if (!_myTableView) {

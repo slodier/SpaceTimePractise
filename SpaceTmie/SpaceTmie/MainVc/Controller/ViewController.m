@@ -43,6 +43,10 @@ static NSString *const goodCellID = @"goodsCell";
     self.navigationController.delegate = self;
 }
 
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    [_ccTabView storeMainBtn];
+}
+
 #pragma mark - 按钮点击
 #pragma mark 橙子按钮
 - (void)tangerineClick {

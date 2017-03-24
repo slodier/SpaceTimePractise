@@ -317,6 +317,7 @@ static NSString *const downloadStr = @"http://dlsw.baidu.com/sw-search-sp/soft/9
     [_resumeBtn   setTitle:@"继续" forState:UIControlStateNormal];
     [_suspendBtn  setTitle:@"挂起" forState:UIControlStateNormal];
     [deleteBtn   setTitle:@"删除文件" forState:UIControlStateNormal];
+    deleteBtn.titleLabel.font = [UIFont systemFontOfSize:12];
     
     UIColor *color = [UIColor grayColor];
     downloadBtn.backgroundColor = cancelBtn.backgroundColor = deleteBtn.backgroundColor = _suspendBtn.backgroundColor = _resumeBtn.backgroundColor = color;

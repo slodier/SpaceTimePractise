@@ -16,13 +16,13 @@
         //self.backgroundColor = [UIColor redColor];
         
         _imageView = [[UIImageView alloc]init];
-        _imageView.frame = CGRectMake(0.031 *KScreenWidth, 0.01 *KScreenHeight, 0.094 *KScreenWidth, 0.05 *KScreenHeight);
+        _imageView.frame = CGRectMake(0.0 *KScreenWidth, 0.0 *KScreenHeight, 0.125 *KScreenWidth, 0.06 *KScreenHeight);
         _imageView.userInteractionEnabled = YES;
         [self.contentView addSubview:_imageView];
         
         _titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, self.bounds.size.height *3/4, self.bounds.size.width, self.bounds.size.height /4)];
-        _titleLabel.font = [UIFont systemFontOfSize:10];
-        _titleLabel.textAlignment = NSTextAlignmentCenter;
+        _titleLabel.font = [UIFont systemFontOfSize:12];
+        _titleLabel.textAlignment = NSTextAlignmentLeft;
         [self.contentView addSubview:_titleLabel];
     }
     return self;
