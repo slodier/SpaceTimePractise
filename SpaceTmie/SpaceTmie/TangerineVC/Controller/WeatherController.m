@@ -8,6 +8,7 @@
 
 #import "WeatherController.h"
 #import <CoreLocation/CoreLocation.h>
+#import "MBProgressHUD.h"
 
 @interface WeatherController ()<CLLocationManagerDelegate>
 
@@ -25,6 +26,8 @@
 
 @implementation WeatherController
 
+static NSString *wheelStr = @"加载数据中...";
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 
@@ -33,6 +36,10 @@
     _webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight)];
     
     [self locatedUser];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES wheelStr:wheelStr];
 }
 
 #pragma mark - 先确认有没有开启定位权限
@@ -104,6 +111,7 @@
             [self.webView loadRequest:request];
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.view addSubview:_webView];
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
             });
         }
     }];
