@@ -26,14 +26,21 @@ static NSString *const newsCellID = @"newsCell";
 
 {
     // 请求的新闻数据从第 front 条到第 behind 条
-    int front;
+    int __block front;
     int __block behind;
+    
+    BOOL _isPullComplete;  // 上拉刷新是否完成
+    BOOL _isDropComplete;  // 下拉刷新是否完成
+
 }
 
 @property (nonatomic, strong) UICollectionView *collectionView;
 
 @property (nonatomic, strong) UITableView *newsTableView;
 
+@property (nonatomic, strong) UIImageView *segmentationView;  // 分割图
+
+@property (nonatomic, strong) SDCycleScrollView *cycleScrollView;
 @property (nonatomic, strong) CCTabView *ccTabView;
 
 @property (nonatomic, strong) CCNetWork *ccNetWork;
@@ -53,38 +60,52 @@ static NSString *const newsCellID = @"newsCell";
     
     front = 0;
     behind = 20;
+    _isPullComplete = YES;
+    _isDropComplete = YES;
+    
+    [self.view addSubview:self.ccTabView];
     
     UIBarButtonItem *backItem = [[UIBarButtonItem alloc]init];
-    backItem.title = @"主界面";
+    backItem.title = @"新闻";
     self.navigationItem.backBarButtonItem = backItem;
-    
     self.navigationItem.title = @"新闻";
+    self.navigationController.navigationBar.backgroundColor = [UIColor lightGrayColor];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    //[self layoutUI];
-    [self addsegmentationView];
-    [self cycleData];
-    [self pullTabelView];
-    [self dropTabelView];
     
+    [self addsegmentationView];
+
     [_ccTabView storeMainBtn];
     self.navigationController.delegate = self;
+    // 防止 tableView 自动下移 64 px
+    self.automaticallyAdjustsScrollViewInsets = NO;
+
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [self cycleData];
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     [_ccTabView storeMainBtn];
 }
 
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    NSLog(@"%@",NSStringFromCGPoint(scrollView.contentOffset));
+    [_ccTabView storeMainBtn];
+}
+
 #pragma mark - 获取轮播图图片和文字数组 
 - (void)cycleData {
+    
     _ccNetWork    = [[CCNetWork alloc]init];
     _cyclePicture = [[CyslePicture alloc]init];
     _newsModel    = [[NewsModel alloc]init];
     
     _cycleTitleArray = [NSMutableArray arrayWithCapacity:5];
     _cycleImgArray   = [NSMutableArray arrayWithCapacity:5];
-    _newsDataSource = [NSMutableArray array];
+    _newsDataSource  = [NSMutableArray array];
 
     NSString *urlStr = [NSString stringWithFormat:@"http://c.m.163.com/nc/article/headline/T1348647853363/%d-%d.html",front,behind];
     
@@ -106,55 +127,64 @@ static NSString *const newsCellID = @"newsCell";
         dispatch_async(dispatch_get_main_queue(), ^{
             [strongSelf layoutUI:strongSelf.cycleImgArray titleArray:strongSelf.cycleTitleArray];
             [strongSelf.view addSubview:strongSelf.newsTableView];
-            [self.view addSubview:self.ccTabView];
-            [self.view bringSubviewToFront:self.ccTabView];
+            [strongSelf.view bringSubviewToFront:strongSelf.ccTabView];
+            
+            [strongSelf dropTabelView];
+            [strongSelf pullTabelView];
         });
     }];
 }
 
 #pragma mark - 上拉刷新当前
 - (void)pullTabelView {
-    front = 0;
-    behind = 20;
-    __weak typeof(self)weakSelf = self;
-    self.newsTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        front = 0;
-        behind = 20;
-        NSString *urlStr = [NSString stringWithFormat:@"http://c.m.163.com/nc/article/headline/T1348647853363/%d-%d.html",front,behind];
-        [_ccNetWork analysisUrl:urlStr];
-        [_ccNetWork getDicBlock:^(NSDictionary *dict) {
-            __strong typeof(weakSelf)strongSelf = weakSelf;
-            [strongSelf.newsModel newsData:dict dataSource:strongSelf.newsDataSource];
 
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [strongSelf.newsTableView reloadData];
-                [_newsTableView.mj_header endRefreshing];
-            });
+    if (_isPullComplete) {
+        __weak typeof(self)weakSelf = self;
+        self.newsTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+            front = 0;
+            behind = 20;
+            NSString *urlStr = [NSString stringWithFormat:@"http://c.m.163.com/nc/article/headline/T1348647853363/%d-%d.html",front,behind];
+            [_ccNetWork analysisUrl:urlStr];
+            [_ccNetWork getDicBlock:^(NSDictionary *dict) {
+                __strong typeof(weakSelf)strongSelf = weakSelf;
+                [strongSelf.newsDataSource removeAllObjects];
+                [strongSelf.newsModel newsData:dict dataSource:strongSelf.newsDataSource];
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [strongSelf.newsTableView reloadData];
+                    [strongSelf.newsTableView.mj_header endRefreshing];
+                    _isPullComplete = NO;
+                });
+            }];
         }];
-    }];
+    }
 }
 
 #pragma mark - 下拉加载更多
 - (void)dropTabelView {
     
-    front += 20;
-    behind += 20;
-    __weak typeof(self)weakSelf = self;
-    self.newsTableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
-        front += 20;
-        behind += 20;
-        NSString *urlStr = [NSString stringWithFormat:@"http://c.m.163.com/nc/article/headline/T1348647853363/%d-%d.html",front,behind];
-        [_ccNetWork analysisUrl:urlStr];
-        [_ccNetWork getDicBlock:^(NSDictionary *dict) {
-            __strong typeof(weakSelf)strongSelf = weakSelf;
-            [strongSelf.newsModel newsData:dict dataSource:strongSelf.newsDataSource];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [strongSelf.newsTableView reloadData];
-                [_newsTableView.mj_footer endRefreshing];
-            });
+    if (_isDropComplete) {
+        __weak typeof(self)weakSelf = self;
+        self.newsTableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+            front += 20;
+            behind += 20;
+            NSString *urlStr = [NSString stringWithFormat:@"http://c.m.163.com/nc/article/headline/T1348647853363/%d-%d.html",front,behind];
+            [_ccNetWork analysisUrl:urlStr];
+            [_ccNetWork getDicBlock:^(NSDictionary *dict) {
+                __strong typeof(weakSelf)strongSelf = weakSelf;
+                [strongSelf.newsModel newsData:dict dataSource:strongSelf.newsDataSource];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [strongSelf.newsTableView reloadData];
+                    [strongSelf.newsTableView.mj_footer endRefreshing];
+                    _isDropComplete = NO;
+                });
+            }];
         }];
+    
+    }else{
         
-    }];
+        [self.newsTableView.mj_footer endRefreshing];
+    }
 }
 
 #pragma mark - 按钮点击
@@ -182,52 +212,87 @@ static NSString *const newsCellID = @"newsCell";
     return cardModel;
 }
 
+#pragma mark - UITableViewDelegate
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    if (section == 0) {
+        return _cycleScrollView;
+
+    }else if (section == 1){
+       // return _segmentationView;
+        return nil;
+    }
+    return nil;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    if (section == 0) {
+       return 0.3 *KScreenHeight;
+    }else if (section == 1){
+       //return 0.1 *KScreenHeight;
+    }
+    return 0;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section == 1) {
+        return 0.487 *KScreenHeight;
+    }
+    return 0;
+}
+
 #pragma mark - UITableViewDataSource
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 2;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return _newsDataSource.count;
+    if (section == 1) {
+        return _newsDataSource.count;
+    }
+    return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NewsCell *newCell = [tableView dequeueReusableCellWithIdentifier:@"newsCell"];
-    if (!newCell) {
-        newCell = [[NewsCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"newsCell"];
+    if (indexPath.section == 1) {
+        NewsCell *newCell = [tableView dequeueReusableCellWithIdentifier:newsCellID];
+        if (!newCell) {
+            newCell = [[NewsCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:newsCellID];
+        }
+        NewsModel *newsModel = _newsDataSource[indexPath.row];
+        [newCell para:newsModel];
+        return newCell;
     }
-    NewsModel *newsModel = _newsDataSource[indexPath.row];
-    [newCell para:newsModel];
-    return newCell;
+    return nil;
 }
-
 
 #pragma mark - 构建 UI
 - (void)layoutUI:(NSMutableArray *)pictureArray
       titleArray:(NSMutableArray *)titleArray
 {
     /** 导航栏透明 **/
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
-    self.navigationController.navigationBar.shadowImage = [UIImage new];
-    self.navigationController.navigationBar.translucent = YES;
+//    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+//    self.navigationController.navigationBar.shadowImage = [UIImage new];
+//    self.navigationController.navigationBar.translucent = YES;
     
     CGRect frame = CGRectMake(0, 64, KScreenWidth, 0.3 *KScreenHeight);
     UIImage *placeholder = [UIImage imageNamed:Img_path(@"placeholder")];
-    SDCycleScrollView *scrollView = [SDCycleScrollView cycleScrollViewWithFrame:frame delegate:self placeholderImage:placeholder];
-    scrollView.imageURLStringsGroup = pictureArray;
-    scrollView.titlesGroup = titleArray;
-    scrollView.pageControlAliment = SDCycleScrollViewPageContolAlimentRight;
-    [self.view addSubview:scrollView];
-    [self.view addSubview:self.ccTabView];
+    _cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:frame delegate:self placeholderImage:placeholder];
+    
+    _cycleScrollView.imageURLStringsGroup = pictureArray;
+    _cycleScrollView.titlesGroup = titleArray;
+    _cycleScrollView.pageControlAliment = SDCycleScrollViewPageContolAlimentRight;
 }
 
 #pragma mark - 轮播图和新闻之间加一张分割图
 - (void)addsegmentationView {
-    UIImageView *segmentationView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0.3 *KScreenHeight + 64, KScreenWidth, 0.1 *KScreenHeight)];
+    _segmentationView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0.3 *KScreenHeight + 64, KScreenWidth, 0.1 *KScreenHeight)];
     NSURL *imageUrl = [NSURL URLWithString:segmentationUrlStr];
-    [segmentationView sd_setImageWithURL:imageUrl];
-    [self.view addSubview:segmentationView];
+    [_segmentationView sd_setImageWithURL:imageUrl];
     
     UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(KScreenWidth /3, KScreenHeight *0.1/6, KScreenWidth / 3, 0.1 *2 /3 *KScreenHeight)];
     titleLabel.text = @"网易新闻";
     titleLabel.textAlignment = NSTextAlignmentCenter;
-    [segmentationView addSubview:titleLabel];
+    [_segmentationView addSubview:titleLabel];
 }
 
 #pragma mark - getter 
@@ -243,10 +308,10 @@ static NSString *const newsCellID = @"newsCell";
 
 - (UITableView *)newsTableView {
     if (!_newsTableView) {
-        _newsTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0.4 *KScreenHeight + 64, KScreenWidth, 0.7 *KScreenHeight) style:UITableViewStylePlain];
+        _newsTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 64, KScreenWidth, KScreenHeight - 64) style:UITableViewStyleGrouped];
+        //_newsTableView = [[UITableView alloc]initWithFrame:self.view.frame style:UITableViewStyleGrouped];
         _newsTableView.delegate = self;
         _newsTableView.dataSource = self;
-        _newsTableView.rowHeight = 0.487 *KScreenHeight;
     }
     return _newsTableView;
 }

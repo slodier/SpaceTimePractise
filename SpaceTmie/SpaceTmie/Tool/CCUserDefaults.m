@@ -11,10 +11,25 @@
 @implementation CCUserDefaults
 
 static NSString *userIcon = @"userIcon";
+static NSString *pushed = @"pushed";
 
 + (NSUserDefaults *)defaults {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     return defaults;
+}
+
+#pragma mark - 判断是否 push
++ (void)saveValueWhenPush {
+    [[self defaults]setObject:@"1" forKey:pushed];
+    [[self defaults]synchronize];
+}
+
++ (BOOL)isPush {
+    NSString *pushStr = [[self defaults]objectForKey:pushed];
+    if (pushStr.intValue == 1) {
+        return YES;
+    }
+    return NO;
 }
 
 #pragma mark - 保存图片到本地

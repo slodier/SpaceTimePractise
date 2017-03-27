@@ -20,4 +20,9 @@
 #pragma maek - 判断本地有无数据
 + (BOOL)isLocalExistImage;
 
+#pragma mark - 判断是否 push
++ (void)saveValueWhenPush;
+
++ (BOOL)isPush;
+
 @end

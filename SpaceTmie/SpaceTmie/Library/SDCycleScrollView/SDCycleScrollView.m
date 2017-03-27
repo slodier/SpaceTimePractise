@@ -346,6 +346,8 @@ NSString * const ID = @"cycleCell";
     NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:self.autoScrollTimeInterval target:self selector:@selector(automaticScroll) userInfo:nil repeats:YES];
     _timer = timer;
     [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
+    //[[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
+
 }
 
 - (void)invalidateTimer
