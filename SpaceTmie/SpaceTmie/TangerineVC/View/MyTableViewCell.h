@@ -14,6 +14,6 @@
 
 @property (nonatomic, strong) UILabel *cacheLabel; // 缓存值
 
-
+- (void)adaptStyle;
 
 @end

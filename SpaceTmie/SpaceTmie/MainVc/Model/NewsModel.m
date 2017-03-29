@@ -8,6 +8,7 @@
 
 #import "NewsModel.h"
 #import "TrangerModel.h"
+#import "StoreNews.h"
 
 @implementation NewsModel
 
@@ -24,6 +25,17 @@
         newModel.replyCount = JsonStr(dii[@"replyCount"]);
         [dataSource addObject:newModel];
     }
+    
+    // 每次只执行一次,将数据存进数据库
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        StoreNews *storeNew = [[StoreNews alloc]init];
+        [storeNew deleteSqlite];
+        for (int i = 0; i < dataSource.count; i++) {
+            NewsModel *newModel = dataSource[i];
+            [storeNew insertNews:newModel];
+        }
+    });
 }
 
 @end

@@ -10,6 +10,7 @@
 #import "MyTableViewCell.h"
 #import "MyHeaderView.h"
 #import "CCUserDefaults.h"
+#import "FileRelate.h"
 
 @interface AboutSelfVC ()<UITableViewDelegate,UITableViewDataSource,UINavigationControllerDelegate,UIImagePickerControllerDelegate>
 
@@ -19,6 +20,8 @@
 @property (nonatomic, strong) NSMutableArray *secionArray;  // section 数据源
 
 @property (nonatomic, strong) MyHeaderView *headerView; // headerView
+
+@property (nonatomic, strong) FileRelate *fileRelate;
 
 @end
 
@@ -31,6 +34,8 @@ static NSString *shareLink = @"分享";
     [super viewDidLoad];
     
     [self.view addSubview:self.myTableView];
+    
+    _fileRelate = [[FileRelate alloc]init];
 }
 
 #pragma mark - headerView 头像按钮点击事件
@@ -86,7 +91,19 @@ static NSString *shareLink = @"分享";
     return 0.0 *KScreenHeight;
 }
 
-#pragma mark - UITableViewDataSource 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (indexPath.section == 0) {
+        if ([_fileRelate deleteCacheFile]) {
+            MyTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+            cell.cacheLabel.text = @"0";
+        }
+    }else{
+        // share code
+    }
+}
+
+#pragma mark - UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return self.myDataSource.count;
 }
@@ -102,17 +119,8 @@ static NSString *shareLink = @"分享";
     }
     myCell.selectionStyle = UITableViewCellSelectionStyleNone;
     myCell.itemLabel.text = _myDataSource[indexPath.section][indexPath.row];
+    [myCell adaptStyle];
     return myCell;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == 0) {
-        
-    } else if (indexPath.section == 1){
-        if (indexPath.row == 0) {
-            
-        }
-    }
 }
 
 #pragma mark - Getter

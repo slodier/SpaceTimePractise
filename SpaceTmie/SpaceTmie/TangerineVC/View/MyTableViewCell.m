@@ -8,6 +8,7 @@
 
 #import "MyTableViewCell.h"
 #import "Masonry.h"
+#import "FileRelate.h"
 
 @interface MyTableViewCell ()
 
@@ -24,6 +25,19 @@
         [self layoutUI];
     }
     return self;
+}
+
+#pragma mark - 样式不同
+- (void)adaptStyle {
+    if ([_itemLabel.text isEqualToString:@"清理缓存"]) {
+        _arrowImageView.hidden = YES;
+        _cacheLabel.hidden = NO;
+        FileRelate *fileRelate = [[FileRelate alloc]init];
+        _cacheLabel.text = [fileRelate folderSizeAtPath];
+    }else{
+        _arrowImageView.hidden = NO;
+        _cacheLabel.hidden = YES;
+    }
 }
 
 #pragma mark - 构建 UI
@@ -54,6 +68,16 @@
         make.size.mas_equalTo(CGSizeMake(0.04 *KScreenWidth, 0.03 *KScreenHeight));
     }];
     _arrowImageView.image = [UIImage imageNamed:@"19858PICScJ_1024.jpg"];
+    
+    _cacheLabel = [[UILabel alloc]initWithFrame:CGRectZero];
+    [self addSubview:_cacheLabel];
+    [_cacheLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(self).offset(0.01 *KScreenWidth);
+        make.top.equalTo(_arrowImageView);
+        make.size.mas_equalTo(CGSizeMake(0.2 *KScreenWidth, 0.03 *KScreenHeight));
+    }];
+    _arrowImageView.hidden = YES;
+    _cacheLabel.textAlignment = NSTextAlignmentCenter;
 }
 
 @end

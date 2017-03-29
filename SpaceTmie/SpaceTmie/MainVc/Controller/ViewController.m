@@ -19,6 +19,7 @@
 #import "NewsCell.h"
 #import "MJRefresh.h"
 #import "UIImageView+WebCache.h"
+#import "StoreNews.h"
 
 static NSString *const newsCellID = @"newsCell";
 
@@ -29,9 +30,9 @@ static NSString *const newsCellID = @"newsCell";
     int __block front;
     int __block behind;
     
-    BOOL _isPullComplete;  // 上拉刷新是否完成
-    BOOL _isDropComplete;  // 下拉刷新是否完成
-
+    BOOL _isPullComplete;   // 上拉刷新是否完成
+    BOOL _isDropComplete;   // 下拉刷新是否完成
+    BOOL __block _isOnline; // 是否在线
 }
 
 @property (nonatomic, strong) UICollectionView *collectionView;
@@ -74,13 +75,19 @@ static NSString *const newsCellID = @"newsCell";
 
 - (void)viewWillAppear:(BOOL)animated {
     
+    if (_cycleScrollView) {
+        [_cycleScrollView adjustWhenControllerViewWillAppera];
+    }
+    
     [self addsegmentationView];
 
     [_ccTabView storeMainBtn];
     self.navigationController.delegate = self;
     // 防止 tableView 自动下移 64 px
     self.automaticallyAdjustsScrollViewInsets = NO;
-
+    
+    [self.view addSubview:self.newsTableView];
+    [self.view bringSubviewToFront:self.ccTabView];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -92,7 +99,7 @@ static NSString *const newsCellID = @"newsCell";
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    NSLog(@"%@",NSStringFromCGPoint(scrollView.contentOffset));
+    //NSLog(@"%@",NSStringFromCGPoint(scrollView.contentOffset));
     [_ccTabView storeMainBtn];
 }
 
@@ -114,8 +121,11 @@ static NSString *const newsCellID = @"newsCell";
     __weak typeof(self)weakSelf = self;
     // 此操作是异步,不会阻塞主线程
     [_ccNetWork getDicBlock:^(NSDictionary *dict) {
-        __strong typeof(self)strongSelf = weakSelf;
         
+        _isOnline = YES;
+        
+        __strong typeof(self)strongSelf = weakSelf;
+        [strongSelf.newsDataSource removeAllObjects];
         [strongSelf.newsModel newsData:dict
                             dataSource:strongSelf.newsDataSource];
 
@@ -126,13 +136,21 @@ static NSString *const newsCellID = @"newsCell";
         // 主线程更新轮播图和新闻
         dispatch_async(dispatch_get_main_queue(), ^{
             [strongSelf layoutUI:strongSelf.cycleImgArray titleArray:strongSelf.cycleTitleArray];
-            [strongSelf.view addSubview:strongSelf.newsTableView];
-            [strongSelf.view bringSubviewToFront:strongSelf.ccTabView];
-            
+            [strongSelf.newsTableView reloadData];
             [strongSelf dropTabelView];
             [strongSelf pullTabelView];
         });
     }];
+    
+    if (!_isOnline) {
+        StoreNews *storeNew = [[StoreNews alloc]init];
+        _newsDataSource = [storeNew selectTable];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            __strong typeof(self)strongSelf = weakSelf;
+            [strongSelf.newsTableView reloadData];
+        });
+    }
+    
 }
 
 #pragma mark - 上拉刷新当前
@@ -309,7 +327,6 @@ static NSString *const newsCellID = @"newsCell";
 - (UITableView *)newsTableView {
     if (!_newsTableView) {
         _newsTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 64, KScreenWidth, KScreenHeight - 64) style:UITableViewStyleGrouped];
-        //_newsTableView = [[UITableView alloc]initWithFrame:self.view.frame style:UITableViewStyleGrouped];
         _newsTableView.delegate = self;
         _newsTableView.dataSource = self;
     }
