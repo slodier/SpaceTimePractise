@@ -233,6 +233,9 @@ static NSString *const newsCellID = @"newsCell";
 #pragma mark - UITableViewDelegate
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     if (section == 0) {
+        if (!_cycleScrollView.timer) {
+            [_cycleScrollView setupTimer];
+        }
         return _cycleScrollView;
 
     }else if (section == 1){

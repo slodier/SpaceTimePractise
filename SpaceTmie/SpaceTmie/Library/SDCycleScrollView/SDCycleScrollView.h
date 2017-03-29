@@ -173,7 +173,7 @@ typedef enum {
 /** 轮播文字label高度 */
 @property (nonatomic, assign) CGFloat titleLabelHeight;
 
-
+@property (nonatomic, weak) NSTimer *timer;
 
 //////////////////////  清除缓存接口  //////////////////////
 
@@ -182,5 +182,7 @@ typedef enum {
 
 /** 清除图片缓存（兼容旧版本方法） */
 - (void)clearCache;
+
+- (void)setupTimer;
 
 @end
