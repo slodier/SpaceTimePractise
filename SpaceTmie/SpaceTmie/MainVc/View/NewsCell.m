@@ -23,11 +23,18 @@
 #pragma mark - 值操作
 - (void)para:(NewsModel *)newModel {
     
-    _titleLabel.text = newModel.titleStr;
-    NSURL *imageUrl = [NSURL URLWithString:newModel.imgStr];
+    _titleLabel.text  = newModel.titleStr;
+    NSURL *imageUrl   = [NSURL URLWithString:newModel.imgStr];
     [_newsImageView sd_setImageWithURL:imageUrl];
     _sourceLabel.text = newModel.sourceStr;
     _replayLabel.text = [newModel.replyCount stringByAppendingString:@"评"];
+    
+    CGFloat titleHeight = [self heightForTitle];
+    [_titleLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self).offset(0.007 *KScreenHeight);
+        make.left.equalTo(self).offset(0.02 *KScreenWidth);
+        make.size.mas_equalTo(CGSizeMake(KScreenWidth - 0.04 *KScreenWidth, titleHeight));
+    }];
     
     CGFloat sourceWidth = [self reSizeLabel:_sourceLabel];
     [_sourceLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
@@ -52,6 +59,15 @@
     return attrSize.width;
 }
 
+// 标题的高度
+- (CGFloat)heightForTitle {
+    
+    NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc]initWithString:_titleLabel.text];
+        CGSize attrSize = [attrStr boundingRectWithSize:CGSizeMake(200, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading context:nil].size;
+    //NSLog(@"标题高度:%f",attrSize.height);
+    return attrSize.height + 15;
+}
+
 #pragma mark - 构建 UI
 - (void)layoutUI {
     
@@ -62,6 +78,9 @@
         make.left.equalTo(self).offset(0.02 *KScreenWidth);
         make.size.mas_equalTo(CGSizeMake(KScreenWidth - 0.04 *KScreenWidth, 0.03 *KScreenHeight));
     }];
+    _titleLabel.font = [UIFont systemFontOfSize:15];
+    _titleLabel.numberOfLines = 0;
+    _titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
     
     _newsImageView = [[UIImageView alloc]initWithFrame:CGRectZero];
     [self addSubview:_newsImageView];

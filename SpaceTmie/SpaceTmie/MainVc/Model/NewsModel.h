@@ -16,6 +16,8 @@
 @property (nonatomic, copy) NSString *sourceStr;   // 点开详情链接
 @property (nonatomic, copy) NSString *replyCount;   // 回复数
 
+@property (nonatomic, copy) NSString *rowH;  // 计算 row 总高度
+
 - (void)newsData:(NSDictionary *)dict
       dataSource:(NSMutableArray *)dataSource;
 

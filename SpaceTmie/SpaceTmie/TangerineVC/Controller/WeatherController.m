@@ -10,7 +10,7 @@
 #import <CoreLocation/CoreLocation.h>
 #import "MBProgressHUD.h"
 
-@interface WeatherController ()<CLLocationManagerDelegate>
+@interface WeatherController ()<CLLocationManagerDelegate,UIGestureRecognizerDelegate>
 
 {
     NSString *currentCity;
@@ -33,17 +33,40 @@ static NSString *wheelStr = @"加载数据中...";
 
     self.view.backgroundColor = [UIColor whiteColor];
     
-    _webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight)];
+    _webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 20, KScreenWidth, KScreenHeight)];
     
     [self locatedUser];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES wheelStr:wheelStr];
+    
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
+    
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    
+    [self slideView];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+}
+
+#pragma mark - 滑动返回
+- (void)slideView {
+    
+    id target = self.navigationController.interactivePopGestureRecognizer.delegate;
+    UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc]initWithTarget:target action:@selector(handleNavigationTransition:)];
+    pan.delegate = self;
+    [self.view addGestureRecognizer:pan];
+    self.navigationController.interactivePopGestureRecognizer.enabled = NO;
 }
 
 #pragma mark - 先确认有没有开启定位权限
 - (void)locatedUser {
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES wheelStr:wheelStr];
+    
     self.locationManager = [[CLLocationManager alloc]init];
     self.locationManager.delegate = self;
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
@@ -111,6 +134,10 @@ static NSString *wheelStr = @"加载数据中...";
             [self.webView loadRequest:request];
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.view addSubview:_webView];
+            });
+            
+            dispatch_time_t time = dispatch_time(DISPATCH_TIME_NOW, 1 *NSEC_PER_SEC);
+            dispatch_after(time, dispatch_get_main_queue(), ^{
                 [MBProgressHUD hideHUDForView:self.view animated:YES];
             });
         }

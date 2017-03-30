@@ -16,12 +16,18 @@
     UIImageView *_arrowImageView; // 右箭头
 }
 
+@property (nonatomic, copy) NSString *cacheStr;
+
 @end
 
 @implementation MyTableViewCell
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+        
+        FileRelate *fileRelate = [[FileRelate alloc]init];
+        _cacheStr = [fileRelate folderSizeAtPath];
+        
         [self layoutUI];
     }
     return self;
@@ -32,8 +38,8 @@
     if ([_itemLabel.text isEqualToString:@"清理缓存"]) {
         _arrowImageView.hidden = YES;
         _cacheLabel.hidden = NO;
-        FileRelate *fileRelate = [[FileRelate alloc]init];
-        _cacheLabel.text = [fileRelate folderSizeAtPath];
+
+        _cacheLabel.text = _cacheStr;
     }else{
         _arrowImageView.hidden = NO;
         _cacheLabel.hidden = YES;
@@ -69,15 +75,25 @@
     }];
     _arrowImageView.image = [UIImage imageNamed:@"19858PICScJ_1024.jpg"];
     
+    CGFloat cacheW = [self reSizeCacheStr:_cacheStr];
+    
     _cacheLabel = [[UILabel alloc]initWithFrame:CGRectZero];
     [self addSubview:_cacheLabel];
     [_cacheLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self).offset(0.01 *KScreenWidth);
         make.top.equalTo(_arrowImageView);
-        make.size.mas_equalTo(CGSizeMake(0.2 *KScreenWidth, 0.03 *KScreenHeight));
+        make.size.mas_equalTo(CGSizeMake(cacheW + 30, 0.03 *KScreenHeight));
     }];
     _arrowImageView.hidden = YES;
     _cacheLabel.textAlignment = NSTextAlignmentCenter;
+}
+
+#pragma mark - 计算文字宽度
+- (CGFloat)reSizeCacheStr:(NSString *)labelStr {
+    
+    NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc]initWithString:labelStr];
+    CGSize attrSize = [attrStr boundingRectWithSize:CGSizeMake(MAXFLOAT, 200) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading context:nil].size;
+    return attrSize.width;
 }
 
 @end

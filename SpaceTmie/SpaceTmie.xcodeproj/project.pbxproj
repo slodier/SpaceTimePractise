@@ -64,6 +64,7 @@
 		427EC3F11E0F8FED00E2DEFA /* HamburgerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 427EC3F01E0F8FED00E2DEFA /* HamburgerVC.m */; };
 		427EC3F81E0F948B00E2DEFA /* FlowerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 427EC3F71E0F948B00E2DEFA /* FlowerVC.m */; };
 		428682D11E0281BD0045A6A8 /* BombTransitioning.m in Sources */ = {isa = PBXBuildFile; fileRef = 428682D01E0281BD0045A6A8 /* BombTransitioning.m */; };
+		42A1E3BA1E8CEC2F00255FF7 /* NewsDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A1E3B91E8CEC2F00255FF7 /* NewsDetailVC.m */; };
 		42AF9A2E1E7A41E10068B95B /* AboutSelfVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 42AF9A2D1E7A41E10068B95B /* AboutSelfVC.m */; };
 		42AF9A311E7A448B0068B95B /* MyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 42AF9A301E7A448B0068B95B /* MyTableViewCell.m */; };
 		42AF9A341E7A5FEE0068B95B /* MyHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 42AF9A331E7A5FEE0068B95B /* MyHeaderView.m */; };
@@ -243,6 +244,8 @@
 		427EC3F71E0F948B00E2DEFA /* FlowerVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlowerVC.m; sourceTree = "<group>"; };
 		428682CF1E0281BD0045A6A8 /* BombTransitioning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BombTransitioning.h; sourceTree = "<group>"; };
 		428682D01E0281BD0045A6A8 /* BombTransitioning.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BombTransitioning.m; sourceTree = "<group>"; };
+		42A1E3B81E8CEC2F00255FF7 /* NewsDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsDetailVC.h; sourceTree = "<group>"; };
+		42A1E3B91E8CEC2F00255FF7 /* NewsDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsDetailVC.m; sourceTree = "<group>"; };
 		42AF9A2C1E7A41E10068B95B /* AboutSelfVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutSelfVC.h; sourceTree = "<group>"; };
 		42AF9A2D1E7A41E10068B95B /* AboutSelfVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutSelfVC.m; sourceTree = "<group>"; };
 		42AF9A2F1E7A448B0068B95B /* MyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyTableViewCell.h; sourceTree = "<group>"; };
@@ -461,6 +464,8 @@
 			children = (
 				4205B2261E0185B100933D6C /* ViewController.h */,
 				4205B2271E0185B100933D6C /* ViewController.m */,
+				42A1E3B81E8CEC2F00255FF7 /* NewsDetailVC.h */,
+				42A1E3B91E8CEC2F00255FF7 /* NewsDetailVC.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1123,6 +1128,7 @@
 				42E44C171E042BC8002C0659 /* MASLayoutConstraint.m in Sources */,
 				42B0D16D1E869DD200BEF92E /* CCNetWork.m in Sources */,
 				4205B2711E0185CD00933D6C /* SDWebImageDecoder.m in Sources */,
+				42A1E3BA1E8CEC2F00255FF7 /* NewsDetailVC.m in Sources */,
 				42B0D2B81E87B5F800BEF92E /* MJRefreshBackNormalFooter.m in Sources */,
 				4205B27C1E0185CD00933D6C /* UIView+WebCacheOperation.m in Sources */,
 				42E44C1A1E042BC8002C0659 /* NSArray+MASAdditions.m in Sources */,

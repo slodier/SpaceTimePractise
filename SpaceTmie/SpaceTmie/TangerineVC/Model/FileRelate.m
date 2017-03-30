@@ -49,7 +49,7 @@
         folderSize += [self fileSizeAtPath:fileAbsolutePath];
     }
     NSLog(@"文件夹大小:%f M",folderSize/(1024.0*1024.0));
-    NSString *fileSize = [NSString stringWithFormat:@"%.2f 兆",folderSize/(1024.0*1024.0)];
+    NSString *fileSize = [NSString stringWithFormat:@"%.2f M",folderSize/(1024.0*1024.0)];
     return fileSize;
 }
 

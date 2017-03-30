@@ -12,7 +12,7 @@
 #import "CCUserDefaults.h"
 #import "FileRelate.h"
 
-@interface AboutSelfVC ()<UITableViewDelegate,UITableViewDataSource,UINavigationControllerDelegate,UIImagePickerControllerDelegate>
+@interface AboutSelfVC ()<UITableViewDelegate,UITableViewDataSource,UINavigationControllerDelegate,UIImagePickerControllerDelegate,UIGestureRecognizerDelegate>
 
 @property (nonatomic, strong) UITableView *myTableView;
 
@@ -37,6 +37,21 @@ static NSString *shareLink = @"分享";
     
     _fileRelate = [[FileRelate alloc]init];
 }
+
+- (void)viewWillAppear:(BOOL)animated {
+    [self slideView];
+}
+
+#pragma mark - 滑动返回
+- (void)slideView {
+    
+    id target = self.navigationController.interactivePopGestureRecognizer.delegate;
+    UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc]initWithTarget:target action:@selector(handleNavigationTransition:)];
+    pan.delegate = self;
+    [self.view addGestureRecognizer:pan];
+    self.navigationController.interactivePopGestureRecognizer.enabled = NO;
+}
+
 
 #pragma mark - headerView 头像按钮点击事件
 #pragma mark - 打开本地图册

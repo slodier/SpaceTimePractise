@@ -23,6 +23,10 @@
         newModel.urlStr     = JsonStr(dii[@"url"]);
         newModel.sourceStr  = JsonStr(dii[@"source"]);
         newModel.replyCount = JsonStr(dii[@"replyCount"]);
+        
+        CGFloat rowHeight = [self heightForTitle:newModel.titleStr] + 0.462 *KScreenHeight;
+        newModel.rowH = JsonStr([NSNumber numberWithFloat:rowHeight]);
+        
         [dataSource addObject:newModel];
     }
     
@@ -36,6 +40,15 @@
             [storeNew insertNews:newModel];
         }
     });
+}
+
+// 标题的高度
+- (CGFloat)heightForTitle:(NSString *)titleStr {
+    
+    NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc]initWithString:titleStr];
+    CGSize attrSize = [attrStr boundingRectWithSize:CGSizeMake(200, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading context:nil].size;
+    NSLog(@"标题高度:%f",attrSize.height);
+    return attrSize.height + 15;
 }
 
 @end

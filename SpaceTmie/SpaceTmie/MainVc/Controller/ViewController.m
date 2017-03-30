@@ -20,6 +20,7 @@
 #import "MJRefresh.h"
 #import "UIImageView+WebCache.h"
 #import "StoreNews.h"
+#import "NewsDetailVC.h"
 
 static NSString *const newsCellID = @"newsCell";
 
@@ -256,7 +257,13 @@ static NSString *const newsCellID = @"newsCell";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 1) {
-        return 0.487 *KScreenHeight;
+//        return 0.487 *KScreenHeight;
+        if (_newsDataSource.count > 21) {
+            NewsModel *newModel = _newsDataSource[indexPath.row];
+            return [newModel.rowH floatValue];
+        }else{
+            return 0.493 *KScreenHeight;
+        }
     }
     return 0;
 }
@@ -279,11 +286,25 @@ static NSString *const newsCellID = @"newsCell";
         if (!newCell) {
             newCell = [[NewsCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:newsCellID];
         }
-        NewsModel *newsModel = _newsDataSource[indexPath.row];
-        [newCell para:newsModel];
+        if (_newsDataSource.count > 21) {
+            NewsModel *newsModel = _newsDataSource[indexPath.row];
+            [newCell para:newsModel];
+        }
         return newCell;
     }
     return nil;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (indexPath.section == 1) {
+        NewsModel *newModel = _newsDataSource[indexPath.row];
+        NewsDetailVC *newDetainVC = [[NewsDetailVC alloc]init];
+        newDetainVC.urlStr = newModel.urlStr;
+        if (newModel.urlStr.length > 5) {
+            [self.navigationController pushViewController:newDetainVC animated:YES];
+        }
+    }
 }
 
 #pragma mark - 构建 UI
