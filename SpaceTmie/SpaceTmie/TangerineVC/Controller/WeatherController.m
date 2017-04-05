@@ -50,6 +50,7 @@ static NSString *wheelStr = @"加载数据中...";
 - (void)viewWillDisappear:(BOOL)animated {
     
     [self.navigationController setNavigationBarHidden:NO animated:YES];
+    [self.locationManager stopUpdatingLocation];
 }
 
 #pragma mark - 滑动返回

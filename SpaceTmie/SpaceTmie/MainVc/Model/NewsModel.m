@@ -47,7 +47,7 @@
     
     NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc]initWithString:titleStr];
     CGSize attrSize = [attrStr boundingRectWithSize:CGSizeMake(200, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading context:nil].size;
-    NSLog(@"标题高度:%f",attrSize.height);
+    //NSLog(@"标题高度:%f",attrSize.height);
     return attrSize.height + 15;
 }
 

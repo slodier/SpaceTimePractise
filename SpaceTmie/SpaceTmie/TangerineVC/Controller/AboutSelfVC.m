@@ -11,6 +11,7 @@
 #import "MyHeaderView.h"
 #import "CCUserDefaults.h"
 #import "FileRelate.h"
+#import "MBProgressHUD.h"
 
 @interface AboutSelfVC ()<UITableViewDelegate,UITableViewDataSource,UINavigationControllerDelegate,UIImagePickerControllerDelegate,UIGestureRecognizerDelegate>
 
@@ -109,9 +110,11 @@ static NSString *shareLink = @"分享";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     if (indexPath.section == 0) {
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES wheelStr:@"清理缓存中..."];
         if ([_fileRelate deleteCacheFile]) {
             MyTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
             cell.cacheLabel.text = @"0";
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
         }
     }else{
         // share code
