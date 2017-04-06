@@ -38,8 +38,13 @@
     if ([_itemLabel.text isEqualToString:@"清理缓存"]) {
         _arrowImageView.hidden = YES;
         _cacheLabel.hidden = NO;
-
-        _cacheLabel.text = _cacheStr;
+        
+        if (!(_cacheStr.length > 0)) {
+            _cacheLabel.text = @"0";
+        }else{
+            _cacheLabel.text = _cacheStr;
+        }
+        
     }else{
         _arrowImageView.hidden = NO;
         _cacheLabel.hidden = YES;
@@ -75,7 +80,10 @@
     }];
     _arrowImageView.image = [UIImage imageNamed:@"19858PICScJ_1024.jpg"];
     
-    CGFloat cacheW = [self reSizeCacheStr:_cacheStr];
+    CGFloat cacheW = 0;
+    if (_cacheStr.length > 0) {
+        cacheW = [self reSizeCacheStr:_cacheStr];
+    }
     
     _cacheLabel = [[UILabel alloc]initWithFrame:CGRectZero];
     [self addSubview:_cacheLabel];

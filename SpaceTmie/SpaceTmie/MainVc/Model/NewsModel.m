@@ -42,6 +42,11 @@
     });
 }
 
+- (CGFloat)cellHeightArrayNewsArray:(NewsModel *)newModel {
+    float cellH = [self heightForTitle:newModel.titleStr] + 0.462 *KScreenHeight;
+    return cellH;
+}
+
 // 标题的高度
 - (CGFloat)heightForTitle:(NSString *)titleStr {
     

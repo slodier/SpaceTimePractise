@@ -10,7 +10,7 @@
 
 @interface FileRelate ()
 
-@property (nonatomic, strong) NSString *folderPath;
+@property (nonatomic, copy) NSString *folderPath;
 
 @property (nonatomic, strong) NSFileManager* manager;
 
@@ -21,7 +21,7 @@
 - (instancetype)init {
     if (self = [super init]) {
         _folderPath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES)lastObject];
-        
+        _folderPath = [_folderPath stringByAppendingPathComponent:@"/default"];
         _manager = [NSFileManager defaultManager];
 
     }

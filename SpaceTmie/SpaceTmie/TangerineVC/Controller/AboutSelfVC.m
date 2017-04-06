@@ -31,6 +31,8 @@
 static NSString *clearCache = @"清理缓存";
 static NSString *shareLink = @"分享";
 
+static NSString *myCellID = @"myCell";
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -110,7 +112,12 @@ static NSString *shareLink = @"分享";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     if (indexPath.section == 0) {
-        [MBProgressHUD showHUDAddedTo:self.view animated:YES wheelStr:@"清理缓存中..."];
+        
+        MyTableViewCell *selectCell = (MyTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
+        if (![selectCell.cacheLabel.text isEqualToString:@"0"]) {
+            [MBProgressHUD showHUDAddedTo:self.view animated:YES wheelStr:@"清理缓存中..."];
+        }
+        
         if ([_fileRelate deleteCacheFile]) {
             MyTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
             cell.cacheLabel.text = @"0";
@@ -131,11 +138,11 @@ static NSString *shareLink = @"分享";
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    MyTableViewCell *myCell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+    MyTableViewCell *myCell = [tableView dequeueReusableCellWithIdentifier:myCellID];
     if (!myCell) {
-        myCell = [[MyTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
+        myCell = [[MyTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:myCellID];
     }
-    myCell.selectionStyle = UITableViewCellSelectionStyleNone;
+    myCell.selectionStyle = UITableViewCellSelectionStyleBlue;
     myCell.itemLabel.text = _myDataSource[indexPath.section][indexPath.row];
     [myCell adaptStyle];
     return myCell;

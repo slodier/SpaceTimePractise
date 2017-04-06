@@ -21,4 +21,7 @@
 - (void)newsData:(NSDictionary *)dict
       dataSource:(NSMutableArray *)dataSource;
 
+// 计算 cell 高度
+- (CGFloat)cellHeightArrayNewsArray:(NewsModel *)newModel;
+
 @end

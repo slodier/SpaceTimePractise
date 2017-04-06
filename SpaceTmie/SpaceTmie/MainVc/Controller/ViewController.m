@@ -145,13 +145,19 @@ static NSString *const newsCellID = @"newsCell";
     
     if (!_isOnline) {
         StoreNews *storeNew = [[StoreNews alloc]init];
-        _newsDataSource = [storeNew selectTable];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            __strong typeof(self)strongSelf = weakSelf;
-            [strongSelf.newsTableView reloadData];
+        [_newsDataSource removeAllObjects];
+        
+        dispatch_queue_t queue = dispatch_queue_create("com.news.cc", NULL);
+        __weak typeof(self)weakSelf = self;
+        dispatch_async(queue, ^{
+            __strong typeof(weakSelf)strongSelf = weakSelf;
+            strongSelf.newsDataSource = [storeNew selectTable];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [strongSelf.newsTableView reloadData];
+            });
         });
     }
-    
 }
 
 #pragma mark - 上拉刷新当前
@@ -258,9 +264,11 @@ static NSString *const newsCellID = @"newsCell";
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 1) {
 //        return 0.487 *KScreenHeight;
-        if (_newsDataSource.count > 21) {
+        if (_newsDataSource.count >= 1) {
             NewsModel *newModel = _newsDataSource[indexPath.row];
-            return [newModel.rowH floatValue];
+            return [_newsModel cellHeightArrayNewsArray:newModel];
+            
+            
         }else{
             return 0.493 *KScreenHeight;
         }

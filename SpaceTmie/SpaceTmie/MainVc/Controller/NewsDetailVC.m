@@ -38,6 +38,11 @@
     [self slideView];
 }
 
+- (void)viewWillDisappear:(BOOL)animated {
+    
+    [_webView stopLoading];
+}
+
 #pragma mark - UIWebViewDelegate
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
     if (!_isLoaded) {
