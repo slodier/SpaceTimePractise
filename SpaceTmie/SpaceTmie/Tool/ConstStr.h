@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-UIKIT_EXTERN NSString *const urlImageStr1;
 UIKIT_EXTERN NSString *const urlImageStr2;
 UIKIT_EXTERN NSString *const urlImageStr3;
 UIKIT_EXTERN NSString *const urlImageStr4;

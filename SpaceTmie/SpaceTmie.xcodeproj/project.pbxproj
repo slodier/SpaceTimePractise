@@ -65,6 +65,8 @@
 		427EC3F81E0F948B00E2DEFA /* FlowerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 427EC3F71E0F948B00E2DEFA /* FlowerVC.m */; };
 		428682D11E0281BD0045A6A8 /* BombTransitioning.m in Sources */ = {isa = PBXBuildFile; fileRef = 428682D01E0281BD0045A6A8 /* BombTransitioning.m */; };
 		42A1E3BA1E8CEC2F00255FF7 /* NewsDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A1E3B91E8CEC2F00255FF7 /* NewsDetailVC.m */; };
+		42AB181B1E964D3B0009EEC3 /* CycleImgModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 42AB181A1E964D3B0009EEC3 /* CycleImgModel.m */; };
+		42AB185E1E9659960009EEC3 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 42AB185D1E9659960009EEC3 /* Reachability.m */; };
 		42AF9A2E1E7A41E10068B95B /* AboutSelfVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 42AF9A2D1E7A41E10068B95B /* AboutSelfVC.m */; };
 		42AF9A311E7A448B0068B95B /* MyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 42AF9A301E7A448B0068B95B /* MyTableViewCell.m */; };
 		42AF9A341E7A5FEE0068B95B /* MyHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 42AF9A331E7A5FEE0068B95B /* MyHeaderView.m */; };
@@ -246,6 +248,10 @@
 		428682D01E0281BD0045A6A8 /* BombTransitioning.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BombTransitioning.m; sourceTree = "<group>"; };
 		42A1E3B81E8CEC2F00255FF7 /* NewsDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsDetailVC.h; sourceTree = "<group>"; };
 		42A1E3B91E8CEC2F00255FF7 /* NewsDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsDetailVC.m; sourceTree = "<group>"; };
+		42AB18191E964D3B0009EEC3 /* CycleImgModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CycleImgModel.h; sourceTree = "<group>"; };
+		42AB181A1E964D3B0009EEC3 /* CycleImgModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CycleImgModel.m; sourceTree = "<group>"; };
+		42AB185C1E9659960009EEC3 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		42AB185D1E9659960009EEC3 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		42AF9A2C1E7A41E10068B95B /* AboutSelfVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutSelfVC.h; sourceTree = "<group>"; };
 		42AF9A2D1E7A41E10068B95B /* AboutSelfVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutSelfVC.m; sourceTree = "<group>"; };
 		42AF9A2F1E7A448B0068B95B /* MyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyTableViewCell.h; sourceTree = "<group>"; };
@@ -486,6 +492,7 @@
 		4205B2331E0185CD00933D6C /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				42AB185B1E9659960009EEC3 /* Reachability */,
 				42DEA78E1E8AAE7300E7FB0E /* FMDB */,
 				42B0D2C61E87C07800BEF92E /* MBProgressHUD */,
 				42B0D2801E87B5F800BEF92E /* MJRefresh */,
@@ -735,12 +742,23 @@
 				42B0D2C41E87B63F00BEF92E /* NewsModel.m */,
 				42DEA7A11E8AAE9600E7FB0E /* StoreNews.h */,
 				42DEA7A21E8AAE9600E7FB0E /* StoreNews.m */,
+				42AB18191E964D3B0009EEC3 /* CycleImgModel.h */,
+				42AB181A1E964D3B0009EEC3 /* CycleImgModel.m */,
 				428682CF1E0281BD0045A6A8 /* BombTransitioning.h */,
 				428682D01E0281BD0045A6A8 /* BombTransitioning.m */,
 				42B0D1681E869D9000BEF92E /* CyslePicture.h */,
 				42B0D1691E869D9000BEF92E /* CyslePicture.m */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		42AB185B1E9659960009EEC3 /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				42AB185C1E9659960009EEC3 /* Reachability.h */,
+				42AB185D1E9659960009EEC3 /* Reachability.m */,
+			);
+			path = Reachability;
 			sourceTree = "<group>";
 		};
 		42B0D2801E87B5F800BEF92E /* MJRefresh */ = {
@@ -1084,6 +1102,7 @@
 				4205B2691E0185CD00933D6C /* TAPageControl.m in Sources */,
 				42B0D2B71E87B5F800BEF92E /* MJRefreshBackGifFooter.m in Sources */,
 				42E44C1B1E042BC8002C0659 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
+				42AB181B1E964D3B0009EEC3 /* CycleImgModel.m in Sources */,
 				42B0D2BA1E87B5F800BEF92E /* MJRefreshGifHeader.m in Sources */,
 				42B0D2AF1E87B5F800BEF92E /* MJRefreshAutoFooter.m in Sources */,
 				4205B2741E0185CD00933D6C /* SDWebImageManager.m in Sources */,
@@ -1116,6 +1135,7 @@
 				42B0D2B11E87B5F800BEF92E /* MJRefreshComponent.m in Sources */,
 				4205B2751E0185CD00933D6C /* SDWebImagePrefetcher.m in Sources */,
 				42E44BF41E03D7D5002C0659 /* CCProgressView.m in Sources */,
+				42AB185E1E9659960009EEC3 /* Reachability.m in Sources */,
 				4205B2941E018B9500933D6C /* TrangerineCell.m in Sources */,
 				42B0D2B01E87B5F800BEF92E /* MJRefreshBackFooter.m in Sources */,
 				422D78621E0BA51600AE1FD9 /* ActionView.m in Sources */,

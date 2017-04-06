@@ -8,7 +8,6 @@
 
 #import "ConstStr.h"
 
-NSString *const urlImageStr1 = @"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1490457477121&di=b5752016870ac5c0d00c2ffd5536a818&imgtype=0&src=http%3A%2F%2Fimg3.3454.com%2Fc%2F1475214906333.jpg";
 NSString *const urlImageStr2 = @"http://img.guatian.com/Upload/image/20161209/584a8038620d1.jpg";
 NSString *const urlImageStr3 = @"http://im5.tongbu.com/ArticleImage/ddf6417f-b.jpg?w=480,343";
 NSString *const urlImageStr4 = @"http://2t.5068.com/uploads/allimg/160406/65-1604061H214.jpg";

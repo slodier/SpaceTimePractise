@@ -9,6 +9,7 @@
 #import "WeatherController.h"
 #import <CoreLocation/CoreLocation.h>
 #import "MBProgressHUD.h"
+#import "Reachability.h"
 
 @interface WeatherController ()<CLLocationManagerDelegate,UIGestureRecognizerDelegate>
 
@@ -22,6 +23,8 @@
 
 @property (nonatomic, strong) UIWebView *webView;
 
+@property (nonatomic, strong) Reachability *reach;
+
 @end
 
 @implementation WeatherController
@@ -33,9 +36,11 @@ static NSString *wheelStr = @"加载数据中...";
 
     self.view.backgroundColor = [UIColor whiteColor];
     
+    _reach = [Reachability reachabilityWithHostName:@"www.baidu.com"];
+    
     _webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 20, KScreenWidth, KScreenHeight)];
     
-    [self locatedUser];
+    [self isOnline];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -51,6 +56,14 @@ static NSString *wheelStr = @"加载数据中...";
     
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     [self.locationManager stopUpdatingLocation];
+}
+
+#pragma mark - 判断有无网络,没有不执行
+- (void)isOnline {
+    __weak typeof(self)weakSelf = self;
+    _reach.reachableBlock = ^(Reachability *reachability) {
+        [weakSelf locatedUser];
+    };
 }
 
 #pragma mark - 滑动返回

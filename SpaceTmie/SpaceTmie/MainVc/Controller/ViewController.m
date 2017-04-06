@@ -21,6 +21,8 @@
 #import "UIImageView+WebCache.h"
 #import "StoreNews.h"
 #import "NewsDetailVC.h"
+#import "CycleImgModel.h"
+#import "Reachability.h"
 
 static NSString *const newsCellID = @"newsCell";
 
@@ -53,6 +55,8 @@ static NSString *const newsCellID = @"newsCell";
 @property (nonatomic, strong) NSMutableArray *cycleTitleArray;  // 轮播图文字数组
 @property (nonatomic, strong) NSMutableArray *newsDataSource;   // 首页新闻数组源
 
+@property (nonatomic, strong) Reachability *reach;
+
 @end
 
 @implementation ViewController
@@ -64,6 +68,8 @@ static NSString *const newsCellID = @"newsCell";
     behind = 20;
     _isPullComplete = YES;
     _isDropComplete = YES;
+    
+    _reach = [Reachability reachabilityWithHostName:@"www.baidu.com"];
     
     [self.view addSubview:self.ccTabView];
     
@@ -93,6 +99,10 @@ static NSString *const newsCellID = @"newsCell";
 
 - (void)viewDidAppear:(BOOL)animated {
     [self cycleData];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [_reach stopNotifier];
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
@@ -143,7 +153,7 @@ static NSString *const newsCellID = @"newsCell";
         });
     }];
     
-    if (!_isOnline) {
+    _reach.unreachableBlock = ^(Reachability *reachability) {
         StoreNews *storeNew = [[StoreNews alloc]init];
         [_newsDataSource removeAllObjects];
         
@@ -153,11 +163,46 @@ static NSString *const newsCellID = @"newsCell";
             __strong typeof(weakSelf)strongSelf = weakSelf;
             strongSelf.newsDataSource = [storeNew selectTable];
             
+            CycleImgModel *cycleImgModel = [[CycleImgModel alloc]init];
+            [_cycleImgArray removeAllObjects];
+            [_cycleTitleArray removeAllObjects];
+            
+            NSMutableArray *cycleData = [cycleImgModel selectImageData];
+            _cycleImgArray   = cycleData[0];
+            _cycleTitleArray = cycleData[1];
+            
             dispatch_async(dispatch_get_main_queue(), ^{
                 [strongSelf.newsTableView reloadData];
+                [strongSelf layoutUI:strongSelf.cycleImgArray titleArray:strongSelf.cycleTitleArray];
             });
         });
-    }
+    };
+    [_reach startNotifier];
+    
+//    if (!_isOnline) {
+//        StoreNews *storeNew = [[StoreNews alloc]init];
+//        [_newsDataSource removeAllObjects];
+//        
+//        dispatch_queue_t queue = dispatch_queue_create("com.news.cc", NULL);
+//        __weak typeof(self)weakSelf = self;
+//        dispatch_async(queue, ^{
+//            __strong typeof(weakSelf)strongSelf = weakSelf;
+//            strongSelf.newsDataSource = [storeNew selectTable];
+//            
+//            CycleImgModel *cycleImgModel = [[CycleImgModel alloc]init];
+//            [_cycleImgArray removeAllObjects];
+//            [_cycleTitleArray removeAllObjects];
+//            
+//            NSMutableArray *cycleData = [cycleImgModel selectImageData];
+//            _cycleImgArray   = cycleData[0];
+//            _cycleTitleArray = cycleData[1];
+//            
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//                [strongSelf.newsTableView reloadData];
+//                [strongSelf layoutUI:strongSelf.cycleImgArray titleArray:strongSelf.cycleTitleArray];
+//            });
+//        });
+//    }
 }
 
 #pragma mark - 上拉刷新当前
