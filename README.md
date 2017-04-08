@@ -6,8 +6,9 @@
 #### 4. 设置本地相册图片为新头像,及相关判断、存储
 #### 5. 用户信息界面,为以后加上微信和 QQ 登陆作准备
 #### 6. 显示当前地区天气情况(上海气象局接口),定位
-#### 7. 网易新闻,上拉刷新、下拉加载
+#### 7. 网易新闻,刷新功能
 #### 8. FMDB 存储离线数据,增加清除缓存
+#### 9. 视频列表,可小屏幕播放,刷新功能
 
 ## 相关库
 #### 1.[SDWebImage](https://github.com/rs/SDWebImage)
@@ -16,3 +17,5 @@
 #### 4.[MJRefresh](https://github.com/CoderMJLee/MJRefresh)
 #### 5.[MBProgressHUD](https://github.com/jdg/MBProgressHUD)
 #### 6.[FMDB](https://github.com/ccgus/fmdb)
+#### 7.[WMPlayer](https://github.com/zhengwenming/WMPlayer)
+#### 8.[Reachability](https://github.com/tonymillion/Reachability)

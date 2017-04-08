@@ -10,46 +10,34 @@
 
 @implementation CCNetWork
 
-- (void)jiexi:(NSString *)urlStr {
-    NSURL *url = [NSURL URLWithString:urlStr];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    NSURLSession *session = [NSURLSession sharedSession];
-    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        
-        NSError *jsonError = nil;
-        
-        if (error) {
-          
-            NSLog(@"dataTaskError:%@",error);
-        }else{
-            
-            NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-            if (jsonError) {
-               
-                NSLog(@"jsonError:%@",jsonError);
+- (void)analysisUrl:(NSString *)urlStr
+           complete:(OnFailed)onfailed
+          returnDic:(ReturnDicBlock)returnBlock
+{
+    dispatch_queue_t queue = dispatch_queue_create("com.jiexi.cc", NULL);
+    dispatch_async(queue, ^{
+        NSURL *url = [NSURL URLWithString:urlStr];
+        NSURLRequest *request = [NSURLRequest requestWithURL:url];
+        NSURLSession *session = [NSURLSession sharedSession];
+        NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+            NSError *jsonError = nil;
+            if (error) {
+                onfailed(error);
+                NSLog(@"dataTaskError:%@",error);
             }else{
-                
-                if (_dicBlock) {
-                    _dicBlock(dict);
+                NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+                if (jsonError) {
+                    onfailed(jsonError);
+                    NSLog(@"jsonError:%@",jsonError);
+                }else{
+                    if (returnBlock) {
+                        returnBlock(dict);
+                    }
                 }
             }
-        }
-    }];
-    [dataTask resume];
-}
-
-- (void)analysisUrl:(NSString *)urlStr {
-    dispatch_queue_t queue = dispatch_queue_create("com.jiexi.cc", NULL);
-    __weak typeof(self)weakSelf = self;
-    dispatch_async(queue, ^{
-        __strong typeof(weakSelf)strongSelf = weakSelf;
-        [strongSelf jiexi:urlStr];
+        }];
+        [dataTask resume];
     });
-}
-
-#pragma mark - Block 传值
-- (void)getDicBlock:(ReturnDicBlock)block {
-    _dicBlock = block;;
 }
 
 @end

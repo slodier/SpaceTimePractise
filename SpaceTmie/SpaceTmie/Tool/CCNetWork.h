@@ -9,13 +9,12 @@
 #import <Foundation/Foundation.h>
 
 typedef void(^ReturnDicBlock)(NSDictionary *dict);
+typedef void(^OnFailed)(NSError *error);
 
 @interface CCNetWork : NSObject
 
-@property (nonatomic, copy) ReturnDicBlock dicBlock;
-
-- (void)analysisUrl:(NSString *)urlStr;
-
-- (void)getDicBlock:(ReturnDicBlock)block;
+- (void)analysisUrl:(NSString *)urlStr
+           complete:(OnFailed)onfailed
+          returnDic:(ReturnDicBlock)returnBlock;
 
 @end

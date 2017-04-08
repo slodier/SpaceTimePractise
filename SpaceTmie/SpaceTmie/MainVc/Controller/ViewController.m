@@ -127,22 +127,41 @@ static NSString *const newsCellID = @"newsCell";
 
     NSString *urlStr = [NSString stringWithFormat:@"http://c.m.163.com/nc/article/headline/T1348647853363/%d-%d.html",front,behind];
     
-    [_ccNetWork analysisUrl:urlStr];
-    
     __weak typeof(self)weakSelf = self;
-    // 此操作是异步,不会阻塞主线程
-    [_ccNetWork getDicBlock:^(NSDictionary *dict) {
-        
-        _isOnline = YES;
-        
-        __strong typeof(self)strongSelf = weakSelf;
+    [_ccNetWork analysisUrl:urlStr complete:^(NSError *error) {
+        __strong typeof(weakSelf)strongSelf = weakSelf;
+
+        if (error) {
+            StoreNews *storeNew = [[StoreNews alloc]init];
+            [strongSelf.newsDataSource removeAllObjects];
+            
+            dispatch_queue_t queue = dispatch_queue_create("com.news.cc", NULL);
+            dispatch_async(queue, ^{
+                strongSelf.newsDataSource = [storeNew selectTable];
+                
+                CycleImgModel *cycleImgModel = [[CycleImgModel alloc]init];
+                [strongSelf.cycleImgArray removeAllObjects];
+                [strongSelf.cycleTitleArray removeAllObjects];
+                
+                NSMutableArray *cycleData = [cycleImgModel selectImageData];
+                strongSelf.cycleImgArray   = cycleData[0];
+                strongSelf.cycleTitleArray = cycleData[1];
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [strongSelf.newsTableView reloadData];
+                    [strongSelf layoutUI:strongSelf.cycleImgArray titleArray:strongSelf.cycleTitleArray];
+                });
+            });
+        }
+    } returnDic:^(NSDictionary *dict) {
+        __strong typeof(weakSelf)strongSelf = weakSelf;
         [strongSelf.newsDataSource removeAllObjects];
         [strongSelf.newsModel newsData:dict
                             dataSource:strongSelf.newsDataSource];
-
+        
         [strongSelf.cyclePicture getValueFrom:dict
-                           imgArray:strongSelf.cycleImgArray
-                         titleArray:strongSelf.cycleTitleArray];
+                                     imgArray:strongSelf.cycleImgArray
+                                   titleArray:strongSelf.cycleTitleArray];
         
         // 主线程更新轮播图和新闻
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -152,57 +171,6 @@ static NSString *const newsCellID = @"newsCell";
             [strongSelf pullTabelView];
         });
     }];
-    
-    _reach.unreachableBlock = ^(Reachability *reachability) {
-        StoreNews *storeNew = [[StoreNews alloc]init];
-        [_newsDataSource removeAllObjects];
-        
-        dispatch_queue_t queue = dispatch_queue_create("com.news.cc", NULL);
-        __weak typeof(self)weakSelf = self;
-        dispatch_async(queue, ^{
-            __strong typeof(weakSelf)strongSelf = weakSelf;
-            strongSelf.newsDataSource = [storeNew selectTable];
-            
-            CycleImgModel *cycleImgModel = [[CycleImgModel alloc]init];
-            [_cycleImgArray removeAllObjects];
-            [_cycleTitleArray removeAllObjects];
-            
-            NSMutableArray *cycleData = [cycleImgModel selectImageData];
-            _cycleImgArray   = cycleData[0];
-            _cycleTitleArray = cycleData[1];
-            
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [strongSelf.newsTableView reloadData];
-                [strongSelf layoutUI:strongSelf.cycleImgArray titleArray:strongSelf.cycleTitleArray];
-            });
-        });
-    };
-    [_reach startNotifier];
-    
-//    if (!_isOnline) {
-//        StoreNews *storeNew = [[StoreNews alloc]init];
-//        [_newsDataSource removeAllObjects];
-//        
-//        dispatch_queue_t queue = dispatch_queue_create("com.news.cc", NULL);
-//        __weak typeof(self)weakSelf = self;
-//        dispatch_async(queue, ^{
-//            __strong typeof(weakSelf)strongSelf = weakSelf;
-//            strongSelf.newsDataSource = [storeNew selectTable];
-//            
-//            CycleImgModel *cycleImgModel = [[CycleImgModel alloc]init];
-//            [_cycleImgArray removeAllObjects];
-//            [_cycleTitleArray removeAllObjects];
-//            
-//            NSMutableArray *cycleData = [cycleImgModel selectImageData];
-//            _cycleImgArray   = cycleData[0];
-//            _cycleTitleArray = cycleData[1];
-//            
-//            dispatch_async(dispatch_get_main_queue(), ^{
-//                [strongSelf.newsTableView reloadData];
-//                [strongSelf layoutUI:strongSelf.cycleImgArray titleArray:strongSelf.cycleTitleArray];
-//            });
-//        });
-//    }
 }
 
 #pragma mark - 上拉刷新当前
@@ -214,13 +182,19 @@ static NSString *const newsCellID = @"newsCell";
             front = 0;
             behind = 20;
             NSString *urlStr = [NSString stringWithFormat:@"http://c.m.163.com/nc/article/headline/T1348647853363/%d-%d.html",front,behind];
-            [_ccNetWork analysisUrl:urlStr];
-            [_ccNetWork getDicBlock:^(NSDictionary *dict) {
+            
+            [_ccNetWork analysisUrl:urlStr complete:^(NSError *error) {
+                __strong typeof(weakSelf)strongSelf = weakSelf;
+
+                if (error) {
+                    [strongSelf.newsTableView.mj_header endRefreshing];
+                }
+            } returnDic:^(NSDictionary *dict) {
                 __strong typeof(weakSelf)strongSelf = weakSelf;
                 [strongSelf.newsDataSource removeAllObjects];
                 [strongSelf.newsModel newsData:dict dataSource:strongSelf.newsDataSource];
-                
-                dispatch_async(dispatch_get_main_queue(), ^{
+
+                dispatch_main_async_safe(^{
                     [strongSelf.newsTableView reloadData];
                     [strongSelf.newsTableView.mj_header endRefreshing];
                     _isPullComplete = NO;
@@ -239,8 +213,13 @@ static NSString *const newsCellID = @"newsCell";
             front += 20;
             behind += 20;
             NSString *urlStr = [NSString stringWithFormat:@"http://c.m.163.com/nc/article/headline/T1348647853363/%d-%d.html",front,behind];
-            [_ccNetWork analysisUrl:urlStr];
-            [_ccNetWork getDicBlock:^(NSDictionary *dict) {
+            
+            [_ccNetWork analysisUrl:urlStr complete:^(NSError *error) {
+                __strong typeof(weakSelf)strongSelf = weakSelf;
+                if (error) {
+                    [strongSelf.newsTableView.mj_footer endRefreshing];
+                }
+            } returnDic:^(NSDictionary *dict) {
                 __strong typeof(weakSelf)strongSelf = weakSelf;
                 [strongSelf.newsModel newsData:dict dataSource:strongSelf.newsDataSource];
                 dispatch_async(dispatch_get_main_queue(), ^{
@@ -266,8 +245,21 @@ static NSString *const newsCellID = @"newsCell";
 
 #pragma mark 鲜花按钮
 - (void)flowerClick {
-    FlowerVC *flowerVC = [[FlowerVC alloc]init];
-    [self.navigationController pushViewController:flowerVC animated:YES];
+    __weak typeof(self)weakSelf = self;
+    _reach.unreachableBlock = ^(Reachability *reachability) {
+        __strong typeof(weakSelf)strongSelf = weakSelf;
+        
+    };
+    
+    _reach.reachableBlock = ^(Reachability *reachability) {
+        __strong typeof(self)strongSelf = weakSelf;
+        FlowerVC *flowerVC = [[FlowerVC alloc]init];
+        
+        dispatch_main_async_safe(^{
+            [strongSelf.navigationController pushViewController:flowerVC animated:YES];
+        });
+    };
+    [_reach startNotifier];
 }
 
 #pragma mark 金币按钮
@@ -312,8 +304,6 @@ static NSString *const newsCellID = @"newsCell";
         if (_newsDataSource.count >= 1) {
             NewsModel *newModel = _newsDataSource[indexPath.row];
             return [_newsModel cellHeightArrayNewsArray:newModel];
-            
-            
         }else{
             return 0.493 *KScreenHeight;
         }
@@ -339,7 +329,7 @@ static NSString *const newsCellID = @"newsCell";
         if (!newCell) {
             newCell = [[NewsCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:newsCellID];
         }
-        if (_newsDataSource.count > 21) {
+        if (_newsDataSource.count > 0) {
             NewsModel *newsModel = _newsDataSource[indexPath.row];
             [newCell para:newsModel];
         }
