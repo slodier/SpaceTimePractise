@@ -10,4 +10,6 @@
 
 @interface ShareView : UIView
 
+@property (nonatomic, strong) UIButton *cancelBtn;    // 取消按钮
+
 @end

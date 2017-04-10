@@ -12,6 +12,9 @@
 #import "CCUserDefaults.h"
 #import "FileRelate.h"
 #import "MBProgressHUD.h"
+#import "ShareView.h"
+#import "Masonry.h"
+#import "UIView+Animations.h"
 
 @interface AboutSelfVC ()<UITableViewDelegate,UITableViewDataSource,UINavigationControllerDelegate,UIImagePickerControllerDelegate,UIGestureRecognizerDelegate>
 
@@ -21,6 +24,7 @@
 @property (nonatomic, strong) NSMutableArray *secionArray;  // section 数据源
 
 @property (nonatomic, strong) MyHeaderView *headerView; // headerView
+@property (nonatomic, strong) ShareView *shareView;  // 分享图层
 
 @property (nonatomic, strong) FileRelate *fileRelate;
 
@@ -55,6 +59,35 @@ static NSString *myCellID = @"myCell";
     self.navigationController.interactivePopGestureRecognizer.enabled = NO;
 }
 
+#pragma mark 分享视图
+- (void)addShareView {
+    if (!_shareView) {
+        _shareView = [[ShareView alloc]initWithFrame:CGRectZero];
+    }
+    [self.view addSubview:_shareView];
+    [_shareView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.mas_equalTo(self.view);
+    }];
+    
+    [_shareView.cancelBtn addTarget:self action:@selector(closeShareView) forControlEvents:UIControlEventTouchUpInside];
+    
+    [UIView moveAndGain:_shareView destination:CGPointMake(KScreenWidth / 2, KScreenHeight / 2)];
+}
+
+- (void)closeShareView {
+    [UIView animateWithDuration:0.3 animations:^{
+        _shareView.bounds = CGRectMake(0, - KScreenHeight, KScreenWidth, KScreenHeight);
+    }completion:^(BOOL finished) {
+        [_shareView removeFromSuperview];
+        _shareView = nil;
+    }];
+}
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    if (_shareView) {
+        [self closeShareView];
+    }
+}
 
 #pragma mark - headerView 头像按钮点击事件
 #pragma mark - 打开本地图册
@@ -125,6 +158,7 @@ static NSString *myCellID = @"myCell";
         }
     }else{
         // share code
+        [self addShareView];
     }
 }
 
@@ -142,7 +176,7 @@ static NSString *myCellID = @"myCell";
     if (!myCell) {
         myCell = [[MyTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:myCellID];
     }
-    myCell.selectionStyle = UITableViewCellSelectionStyleBlue;
+    myCell.selectionStyle = UITableViewCellSelectionStyleNone;
     myCell.itemLabel.text = _myDataSource[indexPath.section][indexPath.row];
     [myCell adaptStyle];
     return myCell;

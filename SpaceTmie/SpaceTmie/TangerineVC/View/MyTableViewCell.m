@@ -24,7 +24,6 @@
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-        self.selectionStyle = UITableViewCellSelectionStyleNone;
         FileRelate *fileRelate = [[FileRelate alloc]init];
         _cacheStr = [fileRelate folderSizeAtPath];
         [self layoutUI];

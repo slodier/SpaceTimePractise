@@ -47,8 +47,9 @@
     group.fillMode = kCAFillModeForwards;
     group.animations = @[posiAnimation,scaleAnimation];
     //NSString *animaStr = [NSString stringWithFormat:@"%@",view];
-    [view.layer addAnimation:group forKey:nil];
-    
+    if (view) {
+        [view.layer addAnimation:group forKey:nil];
+    }
 }
 
 @end
