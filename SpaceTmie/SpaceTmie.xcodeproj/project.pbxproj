@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		4205B1F31E01857100933D6C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4205B1F21E01857100933D6C /* main.m */; };
 		4205B1F61E01857100933D6C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4205B1F51E01857100933D6C /* AppDelegate.m */; };
-		4205B1FC1E01857100933D6C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4205B1FA1E01857100933D6C /* Main.storyboard */; };
 		4205B1FE1E01857100933D6C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4205B1FD1E01857100933D6C /* Assets.xcassets */; };
 		4205B2011E01857100933D6C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4205B1FF1E01857100933D6C /* LaunchScreen.storyboard */; };
 		4205B20C1E01857100933D6C /* SpaceTmieTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4205B20B1E01857100933D6C /* SpaceTmieTests.m */; };
@@ -74,14 +73,12 @@
 		422FD6401E98F3AD00557398 /* video_play_btn_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 422FD63A1E98F3AD00557398 /* video_play_btn_bg@2x.png */; };
 		423365B01E9B2F9700095F6C /* return.png in Resources */ = {isa = PBXBuildFile; fileRef = 423365AF1E9B2F9700095F6C /* return.png */; };
 		423365B21E9B544C00095F6C /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 423365B11E9B544C00095F6C /* libz.tbd */; };
-		423365B41E9B545300095F6C /* libc.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 423365B31E9B545300095F6C /* libc.tbd */; };
 		423365B61E9B545D00095F6C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 423365B51E9B545D00095F6C /* CoreGraphics.framework */; };
 		423365B81E9B546500095F6C /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 423365B71E9B546500095F6C /* CoreTelephony.framework */; };
 		423365BA1E9B546C00095F6C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 423365B91E9B546C00095F6C /* SystemConfiguration.framework */; };
 		423365BC1E9B547200095F6C /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 423365BB1E9B547200095F6C /* Security.framework */; };
 		423365BE1E9B547700095F6C /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 423365BD1E9B547700095F6C /* CFNetwork.framework */; };
 		423365C01E9B548700095F6C /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 423365BF1E9B548700095F6C /* libiconv.tbd */; };
-		423365C81E9B54B100095F6C /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 423365C21E9B54B100095F6C /* libWeChatSDK.a */; };
 		423365C91E9B54B100095F6C /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 423365C31E9B54B100095F6C /* TencentOpenAPI.framework */; };
 		423365CA1E9B54B100095F6C /* TencentOpenApi_IOS_Bundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 423365C41E9B54B100095F6C /* TencentOpenApi_IOS_Bundle.bundle */; };
 		423365CF1E9B594B00095F6C /* qq.png in Resources */ = {isa = PBXBuildFile; fileRef = 423365CC1E9B594B00095F6C /* qq.png */; };
@@ -96,6 +93,13 @@
 		427EC3F11E0F8FED00E2DEFA /* HamburgerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 427EC3F01E0F8FED00E2DEFA /* HamburgerVC.m */; };
 		427EC3F81E0F948B00E2DEFA /* FlowerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 427EC3F71E0F948B00E2DEFA /* FlowerVC.m */; };
 		428682D11E0281BD0045A6A8 /* BombTransitioning.m in Sources */ = {isa = PBXBuildFile; fileRef = 428682D01E0281BD0045A6A8 /* BombTransitioning.m */; };
+		428F07FC1E9BA24F00DCCC25 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 428F07FB1E9BA24F00DCCC25 /* libWeChatSDK.a */; };
+		428F07FF1E9BB24000DCCC25 /* LogInVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 428F07FE1E9BB24000DCCC25 /* LogInVC.m */; };
+		428F08071E9BB45400DCCC25 /* icon_wx.png in Resources */ = {isa = PBXBuildFile; fileRef = 428F08051E9BB45400DCCC25 /* icon_wx.png */; };
+		428F08081E9BB45400DCCC25 /* icon_qq.png in Resources */ = {isa = PBXBuildFile; fileRef = 428F08061E9BB45400DCCC25 /* icon_qq.png */; };
+		428F080F1E9BB68100DCCC25 /* CCKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 428F080B1E9BB68100DCCC25 /* CCKeychain.m */; };
+		428F08101E9BB68100DCCC25 /* CCLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 428F080D1E9BB68100DCCC25 /* CCLogin.m */; };
+		428F08121E9BB92900DCCC25 /* bg.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 428F08111E9BB92900DCCC25 /* bg.jpeg */; };
 		42A1E3BA1E8CEC2F00255FF7 /* NewsDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A1E3B91E8CEC2F00255FF7 /* NewsDetailVC.m */; };
 		42AB181B1E964D3B0009EEC3 /* CycleImgModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 42AB181A1E964D3B0009EEC3 /* CycleImgModel.m */; };
 		42AB185E1E9659960009EEC3 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 42AB185D1E9659960009EEC3 /* Reachability.m */; };
@@ -175,7 +179,6 @@
 		4205B1F21E01857100933D6C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4205B1F41E01857100933D6C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4205B1F51E01857100933D6C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		4205B1FB1E01857100933D6C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4205B1FD1E01857100933D6C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4205B2001E01857100933D6C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4205B2021E01857100933D6C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -296,7 +299,6 @@
 		423365BB1E9B547200095F6C /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		423365BD1E9B547700095F6C /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		423365BF1E9B548700095F6C /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
-		423365C21E9B54B100095F6C /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
 		423365C31E9B54B100095F6C /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TencentOpenAPI.framework; sourceTree = "<group>"; };
 		423365C41E9B54B100095F6C /* TencentOpenApi_IOS_Bundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TencentOpenApi_IOS_Bundle.bundle; sourceTree = "<group>"; };
 		423365C51E9B54B100095F6C /* WechatAuthSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WechatAuthSDK.h; sourceTree = "<group>"; };
@@ -320,6 +322,16 @@
 		427EC3F71E0F948B00E2DEFA /* FlowerVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlowerVC.m; sourceTree = "<group>"; };
 		428682CF1E0281BD0045A6A8 /* BombTransitioning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BombTransitioning.h; sourceTree = "<group>"; };
 		428682D01E0281BD0045A6A8 /* BombTransitioning.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BombTransitioning.m; sourceTree = "<group>"; };
+		428F07FB1E9BA24F00DCCC25 /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
+		428F07FD1E9BB24000DCCC25 /* LogInVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogInVC.h; sourceTree = "<group>"; };
+		428F07FE1E9BB24000DCCC25 /* LogInVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogInVC.m; sourceTree = "<group>"; };
+		428F08051E9BB45400DCCC25 /* icon_wx.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_wx.png; sourceTree = "<group>"; };
+		428F08061E9BB45400DCCC25 /* icon_qq.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_qq.png; sourceTree = "<group>"; };
+		428F080A1E9BB68100DCCC25 /* CCKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCKeychain.h; sourceTree = "<group>"; };
+		428F080B1E9BB68100DCCC25 /* CCKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCKeychain.m; sourceTree = "<group>"; };
+		428F080C1E9BB68100DCCC25 /* CCLogin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCLogin.h; sourceTree = "<group>"; };
+		428F080D1E9BB68100DCCC25 /* CCLogin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCLogin.m; sourceTree = "<group>"; };
+		428F08111E9BB92900DCCC25 /* bg.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bg.jpeg; sourceTree = "<group>"; };
 		42A1E3B81E8CEC2F00255FF7 /* NewsDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsDetailVC.h; sourceTree = "<group>"; };
 		42A1E3B91E8CEC2F00255FF7 /* NewsDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsDetailVC.m; sourceTree = "<group>"; };
 		42AB18191E964D3B0009EEC3 /* CycleImgModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CycleImgModel.h; sourceTree = "<group>"; };
@@ -442,13 +454,12 @@
 				423365D81E9B641700095F6C /* libc++.tbd in Frameworks */,
 				423365C01E9B548700095F6C /* libiconv.tbd in Frameworks */,
 				423365BE1E9B547700095F6C /* CFNetwork.framework in Frameworks */,
-				423365C81E9B54B100095F6C /* libWeChatSDK.a in Frameworks */,
 				423365BC1E9B547200095F6C /* Security.framework in Frameworks */,
+				428F07FC1E9BA24F00DCCC25 /* libWeChatSDK.a in Frameworks */,
 				423365C91E9B54B100095F6C /* TencentOpenAPI.framework in Frameworks */,
 				423365BA1E9B546C00095F6C /* SystemConfiguration.framework in Frameworks */,
 				423365B81E9B546500095F6C /* CoreTelephony.framework in Frameworks */,
 				423365B61E9B545D00095F6C /* CoreGraphics.framework in Frameworks */,
-				423365B41E9B545300095F6C /* libc.tbd in Frameworks */,
 				423365B21E9B544C00095F6C /* libz.tbd in Frameworks */,
 				42DEA7A51E8AAEC200E7FB0E /* libsqlite3.dylib in Frameworks */,
 				4256B6421E83C86E0053A256 /* CoreLocation.framework in Frameworks */,
@@ -505,7 +516,6 @@
 				4205B2331E0185CD00933D6C /* Library */,
 				4205B1F41E01857100933D6C /* AppDelegate.h */,
 				4205B1F51E01857100933D6C /* AppDelegate.m */,
-				4205B1FA1E01857100933D6C /* Main.storyboard */,
 				4205B1FD1E01857100933D6C /* Assets.xcassets */,
 				4205B1FF1E01857100933D6C /* LaunchScreen.storyboard */,
 				4205B2021E01857100933D6C /* Info.plist */,
@@ -553,6 +563,8 @@
 		4205B2251E0185B100933D6C /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				428F07FD1E9BB24000DCCC25 /* LogInVC.h */,
+				428F07FE1E9BB24000DCCC25 /* LogInVC.m */,
 				4205B2261E0185B100933D6C /* ViewController.h */,
 				4205B2271E0185B100933D6C /* ViewController.m */,
 				42A1E3B81E8CEC2F00255FF7 /* NewsDetailVC.h */,
@@ -662,6 +674,7 @@
 		4205B27D1E0185ED00933D6C /* Tool */ = {
 			isa = PBXGroup;
 			children = (
+				428F08091E9BB68100DCCC25 /* LogInTool */,
 				42B0D16B1E869DD200BEF92E /* CCNetWork.h */,
 				42B0D16C1E869DD200BEF92E /* CCNetWork.m */,
 				4211CDA21E7EA1C800ACA114 /* CCUserDefaults.h */,
@@ -744,6 +757,7 @@
 		4205B2891E01863200933D6C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				428F08021E9BB43C00DCCC25 /* LogIn */,
 				423365CB1E9B594200095F6C /* Tencent */,
 				422FD6341E98F3AD00557398 /* WMPlayer */,
 				4211CD571E7E7D3D00ACA114 /* 19858PICScJ_1024.jpg */,
@@ -827,7 +841,7 @@
 		423365C11E9B54B100095F6C /* Tencent */ = {
 			isa = PBXGroup;
 			children = (
-				423365C21E9B54B100095F6C /* libWeChatSDK.a */,
+				428F07FB1E9BA24F00DCCC25 /* libWeChatSDK.a */,
 				423365C31E9B54B100095F6C /* TencentOpenAPI.framework */,
 				423365C41E9B54B100095F6C /* TencentOpenApi_IOS_Bundle.bundle */,
 				423365C51E9B54B100095F6C /* WechatAuthSDK.h */,
@@ -925,6 +939,27 @@
 				42B0D1691E869D9000BEF92E /* CyslePicture.m */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		428F08021E9BB43C00DCCC25 /* LogIn */ = {
+			isa = PBXGroup;
+			children = (
+				428F08111E9BB92900DCCC25 /* bg.jpeg */,
+				428F08051E9BB45400DCCC25 /* icon_wx.png */,
+				428F08061E9BB45400DCCC25 /* icon_qq.png */,
+			);
+			path = LogIn;
+			sourceTree = "<group>";
+		};
+		428F08091E9BB68100DCCC25 /* LogInTool */ = {
+			isa = PBXGroup;
+			children = (
+				428F080A1E9BB68100DCCC25 /* CCKeychain.h */,
+				428F080B1E9BB68100DCCC25 /* CCKeychain.m */,
+				428F080C1E9BB68100DCCC25 /* CCLogin.h */,
+				428F080D1E9BB68100DCCC25 /* CCLogin.m */,
+			);
+			path = LogInTool;
 			sourceTree = "<group>";
 		};
 		42AB185B1E9659960009EEC3 /* Reachability */ = {
@@ -1199,6 +1234,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				428F08121E9BB92900DCCC25 /* bg.jpeg in Resources */,
 				423365CA1E9B54B100095F6C /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				4205B2011E01857100933D6C /* LaunchScreen.storyboard in Resources */,
 				4205B2911E01863200933D6C /* pull_refresh_arrow@2x.png in Resources */,
@@ -1218,11 +1254,12 @@
 				422FD63C1E98F3AD00557398 /* close@2x.png in Resources */,
 				422FD6181E98D9ED00557398 /* WMPlayer.bundle in Resources */,
 				42B0D2BD1E87B5F800BEF92E /* MJRefresh.bundle in Resources */,
+				428F08081E9BB45400DCCC25 /* icon_qq.png in Resources */,
 				422FD63D1E98F3AD00557398 /* play.png in Resources */,
+				428F08071E9BB45400DCCC25 /* icon_wx.png in Resources */,
 				42E44C8E1E058480002C0659 /* 确定.png in Resources */,
 				423365B01E9B2F9700095F6C /* return.png in Resources */,
 				4205B28E1E01863200933D6C /* BtnImages.bundle in Resources */,
-				4205B1FC1E01857100933D6C /* Main.storyboard in Resources */,
 				4205B2901E01863200933D6C /* navigation_rainbow@2x.png in Resources */,
 				422FD63B1E98F3AD00557398 /* clear@2x.png in Resources */,
 				4205B2961E018C6700933D6C /* Tranger.json in Resources */,
@@ -1294,6 +1331,7 @@
 				42E44C1B1E042BC8002C0659 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
 				42AB181B1E964D3B0009EEC3 /* CycleImgModel.m in Sources */,
 				42B0D2BA1E87B5F800BEF92E /* MJRefreshGifHeader.m in Sources */,
+				428F080F1E9BB68100DCCC25 /* CCKeychain.m in Sources */,
 				423365D41E9B5D4700095F6C /* ShareModel.m in Sources */,
 				42B0D2AF1E87B5F800BEF92E /* MJRefreshAutoFooter.m in Sources */,
 				4205B2741E0185CD00933D6C /* SDWebImageManager.m in Sources */,
@@ -1303,6 +1341,7 @@
 				4205B27B1E0185CD00933D6C /* UIImageView+WebCache.m in Sources */,
 				4205B27A1E0185CD00933D6C /* UIImageView+HighlightedWebCache.m in Sources */,
 				42B0D2C01E87B5F800BEF92E /* UIScrollView+MJExtension.m in Sources */,
+				428F08101E9BB68100DCCC25 /* CCLogin.m in Sources */,
 				42B0D2B91E87B5F800BEF92E /* MJRefreshBackStateFooter.m in Sources */,
 				42DEA7A31E8AAE9600E7FB0E /* StoreNews.m in Sources */,
 				4211CDA31E7EA1C800ACA114 /* CCUserDefaults.m in Sources */,
@@ -1345,6 +1384,7 @@
 				4205B2711E0185CD00933D6C /* SDWebImageDecoder.m in Sources */,
 				42A1E3BA1E8CEC2F00255FF7 /* NewsDetailVC.m in Sources */,
 				42B0D2B81E87B5F800BEF92E /* MJRefreshBackNormalFooter.m in Sources */,
+				428F07FF1E9BB24000DCCC25 /* LogInVC.m in Sources */,
 				4205B27C1E0185CD00933D6C /* UIView+WebCacheOperation.m in Sources */,
 				42E44C1A1E042BC8002C0659 /* NSArray+MASAdditions.m in Sources */,
 				4256B63D1E83C81B0053A256 /* WeatherController.m in Sources */,
@@ -1386,14 +1426,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		4205B1FA1E01857100933D6C /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				4205B1FB1E01857100933D6C /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		4205B1FF1E01857100933D6C /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

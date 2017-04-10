@@ -38,11 +38,11 @@
 
 #pragma mark - 按钮点击事件
 - (void)wxFriendClick {
-    [_shareModel textWXShare:0];
+    [_shareModel pictureWXShare:0];
 }
 
 - (void)wxZoneClick {
-    [_shareModel textWXShare:1];
+    [_shareModel pictureWXShare:1];
 }
 
 - (void)qqClick {

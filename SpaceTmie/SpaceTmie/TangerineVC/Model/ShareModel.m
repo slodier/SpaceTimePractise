@@ -12,8 +12,6 @@
 #import <TencentOpenAPI/TencentApiInterface.h>
 #import <TencentOpenAPI/QQApiInterface.h>
 
-#define QQappid @"2222"  // 原本的 tencent + xxxx, 要去掉 tencent
-
 @interface ShareModel ()<TencentSessionDelegate>
 
 @property (nonatomic, strong) TencentOAuth *tencent;

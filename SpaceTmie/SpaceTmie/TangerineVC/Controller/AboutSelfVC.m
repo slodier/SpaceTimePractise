@@ -15,6 +15,8 @@
 #import "ShareView.h"
 #import "Masonry.h"
 #import "UIView+Animations.h"
+#import "CCKeychain.h"
+#import "LogInVC.h"
 
 @interface AboutSelfVC ()<UITableViewDelegate,UITableViewDataSource,UINavigationControllerDelegate,UIImagePickerControllerDelegate,UIGestureRecognizerDelegate>
 
@@ -34,6 +36,7 @@
 
 static NSString *clearCache = @"清理缓存";
 static NSString *shareLink = @"分享";
+static NSString *logOut = @"注销";
 
 static NSString *myCellID = @"myCell";
 
@@ -47,6 +50,23 @@ static NSString *myCellID = @"myCell";
 
 - (void)viewWillAppear:(BOOL)animated {
     [self slideView];
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self
+                                            selector:@selector(removeShareView)
+                                                name:UIApplicationWillEnterForegroundNotification
+                                              object:nil];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
+}
+
+#pragma mark - 回到前台通知方法
+- (void)removeShareView {
+    UIView *currentView = (ShareView *)[self.view viewWithTag:100];
+    if (currentView) {
+        [self closeShareView];
+    }
 }
 
 #pragma mark - 滑动返回
@@ -63,6 +83,7 @@ static NSString *myCellID = @"myCell";
 - (void)addShareView {
     if (!_shareView) {
         _shareView = [[ShareView alloc]initWithFrame:CGRectZero];
+        _shareView.tag = 100;
     }
     [self.view addSubview:_shareView];
     [_shareView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -156,9 +177,16 @@ static NSString *myCellID = @"myCell";
             cell.cacheLabel.text = @"0";
             [MBProgressHUD hideHUDForView:self.view animated:YES];
         }
-    }else{
+    }else if(indexPath.section == 1){
         // share code
         [self addShareView];
+        
+    }else if (indexPath.section == 2){
+        // 注销,删除本地微信和 qq 凭证
+        [CCKeychain delete:KEY_WX_PASSWORD];
+        [CCKeychain delete:KEY_QQ_PASSWORD];
+        LogInVC *logInVC = [[LogInVC alloc]init];
+        [self presentViewController:logInVC animated:YES completion:nil];
     }
 }
 
@@ -199,8 +227,10 @@ static NSString *myCellID = @"myCell";
         _myDataSource = [NSMutableArray array];
         NSArray *array1 = @[clearCache];
         NSArray *array2 = @[shareLink];
+        NSArray *array3 = @[logOut];
         [_myDataSource addObject:array1];
         [_myDataSource addObject:array2];
+        [_myDataSource addObject:array3];
     }
     return _myDataSource;
 }

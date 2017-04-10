@@ -73,6 +73,10 @@ static NSString *const newsCellID = @"newsCell";
     
     [self.view addSubview:self.ccTabView];
     
+    //UINavigationController *nav = [UINavigationController alloc]initWithRootViewController:<#(nonnull UIViewController *)#>
+    
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    
     UIBarButtonItem *backItem = [[UIBarButtonItem alloc]init];
     backItem.title = @"新闻";
     self.navigationItem.backBarButtonItem = backItem;

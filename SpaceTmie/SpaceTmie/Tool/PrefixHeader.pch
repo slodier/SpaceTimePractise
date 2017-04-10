@@ -21,4 +21,13 @@
 
 #define KColorWithRGB(r, g, b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1]
 
+#define QQappid @"2222"  // 原来的 tencent + xxxx, 要去掉 tencent
+#define WXAppid @"wx1111"
+
+#define KEY_QQ_PASSWORD @"com.userQQ.dictionaryKey"
+#define QQ_PASSWORD @"com.QQ.keychainKey"
+
+#define KEY_WX_PASSWORD @"com.userWX.dictionaryKey"
+#define WX_PASSWORD @"com.WX.keychainKey"
+
 #endif /* PrefixHeader_pch */
