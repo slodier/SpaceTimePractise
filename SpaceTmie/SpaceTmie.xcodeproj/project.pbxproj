@@ -72,6 +72,7 @@
 		422FD63E1E98F3AD00557398 /* playcount.png in Resources */ = {isa = PBXBuildFile; fileRef = 422FD6381E98F3AD00557398 /* playcount.png */; };
 		422FD63F1E98F3AD00557398 /* time.png in Resources */ = {isa = PBXBuildFile; fileRef = 422FD6391E98F3AD00557398 /* time.png */; };
 		422FD6401E98F3AD00557398 /* video_play_btn_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 422FD63A1E98F3AD00557398 /* video_play_btn_bg@2x.png */; };
+		423365B01E9B2F9700095F6C /* return.png in Resources */ = {isa = PBXBuildFile; fileRef = 423365AF1E9B2F9700095F6C /* return.png */; };
 		4256B63D1E83C81B0053A256 /* WeatherController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4256B63C1E83C81B0053A256 /* WeatherController.m */; };
 		4256B6421E83C86E0053A256 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4256B6411E83C86E0053A256 /* CoreLocation.framework */; };
 		42788F701E7FD11E00F129E2 /* ShareView.m in Sources */ = {isa = PBXBuildFile; fileRef = 42788F6F1E7FD11E00F129E2 /* ShareView.m */; };
@@ -269,6 +270,7 @@
 		422FD6381E98F3AD00557398 /* playcount.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = playcount.png; sourceTree = "<group>"; };
 		422FD6391E98F3AD00557398 /* time.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = time.png; sourceTree = "<group>"; };
 		422FD63A1E98F3AD00557398 /* video_play_btn_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "video_play_btn_bg@2x.png"; sourceTree = "<group>"; };
+		423365AF1E9B2F9700095F6C /* return.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = return.png; sourceTree = "<group>"; };
 		4256B63B1E83C81B0053A256 /* WeatherController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WeatherController.h; path = ../../Controller/WeatherController.h; sourceTree = "<group>"; };
 		4256B63C1E83C81B0053A256 /* WeatherController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WeatherController.m; path = ../../Controller/WeatherController.m; sourceTree = "<group>"; };
 		4256B6411E83C86E0053A256 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -693,6 +695,7 @@
 				422FD6341E98F3AD00557398 /* WMPlayer */,
 				4211CD571E7E7D3D00ACA114 /* 19858PICScJ_1024.jpg */,
 				422D785E1E0BA49600AE1FD9 /* 取消.png */,
+				423365AF1E9B2F9700095F6C /* return.png */,
 				42E44C8D1E058480002C0659 /* 确定.png */,
 				4205B28A1E01863200933D6C /* BtnImages.bundle */,
 				4205B28B1E01863200933D6C /* download_click.png */,
@@ -1126,6 +1129,7 @@
 				42B0D2BD1E87B5F800BEF92E /* MJRefresh.bundle in Resources */,
 				422FD63D1E98F3AD00557398 /* play.png in Resources */,
 				42E44C8E1E058480002C0659 /* 确定.png in Resources */,
+				423365B01E9B2F9700095F6C /* return.png in Resources */,
 				4205B28E1E01863200933D6C /* BtnImages.bundle in Resources */,
 				4205B1FC1E01857100933D6C /* Main.storyboard in Resources */,
 				4205B2901E01863200933D6C /* navigation_rainbow@2x.png in Resources */,

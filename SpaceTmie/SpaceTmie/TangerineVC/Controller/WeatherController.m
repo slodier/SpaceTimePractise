@@ -25,6 +25,8 @@
 
 @property (nonatomic, strong) Reachability *reach;
 
+@property (nonatomic, strong) UIButton *backBtn; // 返回按钮
+
 @end
 
 @implementation WeatherController
@@ -39,8 +41,11 @@ static NSString *wheelStr = @"加载数据中...";
     _reach = [Reachability reachabilityWithHostName:@"www.baidu.com"];
     
     _webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 20, KScreenWidth, KScreenHeight)];
+    [self.view addSubview:_webView];
+
+    [_webView addSubview:self.backBtn];
     
-    [self isOnline];
+    [self locatedUser];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -62,7 +67,10 @@ static NSString *wheelStr = @"加载数据中...";
 - (void)isOnline {
     __weak typeof(self)weakSelf = self;
     _reach.reachableBlock = ^(Reachability *reachability) {
-        [weakSelf locatedUser];
+        dispatch_queue_t queue = dispatch_queue_create("com.weather.cc", NULL);
+        dispatch_async(queue, ^{
+            [weakSelf locatedUser];
+        });
     };
 }
 
@@ -128,8 +136,16 @@ static NSString *wheelStr = @"加载数据中...";
         }else if (error) {
             
             NSLog(@"location error: %@ ",error);
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
         }
     }];
+}
+
+#pragma mark 失败
+- (void)locationManager:(CLLocationManager *)manager
+       didFailWithError:(NSError *)error {
+    NSLog(@"location fail error:%@",error.localizedDescription);
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
 }
 
 - (void)getWeatherDataBy:(NSString *)province city:(NSString *)city {
@@ -137,28 +153,33 @@ static NSString *wheelStr = @"加载数据中...";
     NSURL *url = [self removeProvince:province city:city];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     NSURLSession *session = [NSURLSession sharedSession];
+    __weak typeof(self)weakSelf = self;
     NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        __strong typeof(weakSelf)strongSelf = weakSelf;
         if (error) {
             NSLog(@"JSON error:%@",error);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [MBProgressHUD hideHUDForView:strongSelf.view animated:YES];
+            });
         }else{
             NSDictionary *str = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
             NSLog(@"JSONStr:%@",str[@"chinaWeatherUrl"]);
             NSURL *url = [NSURL URLWithString:str[@"chinaWeatherUrl"]];
             NSURLRequest *request = [NSURLRequest requestWithURL:url];
-            [self.webView loadRequest:request];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self.view addSubview:_webView];
-            });
+            [strongSelf.webView loadRequest:request];
             
             dispatch_time_t time = dispatch_time(DISPATCH_TIME_NOW, 1 *NSEC_PER_SEC);
             dispatch_after(time, dispatch_get_main_queue(), ^{
-                [MBProgressHUD hideHUDForView:self.view animated:YES];
+                [MBProgressHUD hideHUDForView:strongSelf.view animated:YES];
             });
         }
     }];
     [dataTask resume];
-    
     _isLocate = NO;
+}
+
+- (void)locationManager:(CLLocationManager *)manager didFinishDeferredUpdatesWithError:(NSError *)error {
+    NSLog(@"121321321");
 }
 
 #pragma mark - 判断是否包含省、市字符
@@ -178,6 +199,22 @@ static NSString *wheelStr = @"加载数据中...";
     urlStr = [urlStr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSURL *url = [NSURL URLWithString:urlStr];
     return url;
+}
+
+#pragma mark - 按钮点击
+- (void)backClick {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+#pragma mark - getter
+- (UIButton *)backBtn {
+    if (!_backBtn) {
+        _backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _backBtn.frame = CGRectMake(0.026 *KScreenWidth, 0.026 *KScreenWidth, 0.1755 *KScreenWidth, 0.075 *KScreenHeight);
+        [_backBtn addTarget:self action:@selector(backClick) forControlEvents:UIControlEventTouchUpInside];
+        [_backBtn setImage:[UIImage imageNamed:@"return"] forState:UIControlStateNormal];
+    }
+    return _backBtn;
 }
 
 @end

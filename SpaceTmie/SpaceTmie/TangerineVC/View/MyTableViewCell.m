@@ -24,10 +24,9 @@
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-        
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
         FileRelate *fileRelate = [[FileRelate alloc]init];
         _cacheStr = [fileRelate folderSizeAtPath];
-        
         [self layoutUI];
     }
     return self;
@@ -57,7 +56,7 @@
     [self addSubview:_itemLabel];
     [_itemLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self).offset(0.05 *KScreenWidth);
-        make.top.equalTo(self).offset(0.03 *KScreenWidth);
+        make.top.equalTo(self).offset(0.023 *KScreenHeight);
         make.size.mas_equalTo(CGSizeMake(KScreenWidth /2, 0.022 *KScreenHeight));
     }];
     
@@ -74,8 +73,8 @@
     [self addSubview:_arrowImageView];
     _arrowImageView.backgroundColor = [UIColor redColor];
     [_arrowImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self).offset(-0.03 *KScreenWidth);
-        make.top.equalTo(self).offset(0.015 *KScreenHeight);
+        make.right.equalTo(self).offset(- 0.03 *KScreenWidth);
+        make.top.equalTo(self).offset(0.02 *KScreenHeight);
         make.size.mas_equalTo(CGSizeMake(0.04 *KScreenWidth, 0.03 *KScreenHeight));
     }];
     _arrowImageView.image = [UIImage imageNamed:@"19858PICScJ_1024.jpg"];
