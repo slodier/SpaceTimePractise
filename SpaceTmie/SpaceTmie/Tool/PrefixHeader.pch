@@ -8,7 +8,13 @@
 
 #ifndef PrefixHeader_pch
 #define PrefixHeader_pch
+
+#ifdef __OBJC__
 #import "TrangerModel.h"
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+
+#endif
 
 #define KScreenWidth  [UIScreen mainScreen].bounds.size.width
 #define KScreenHeight [UIScreen mainScreen].bounds.size.height
@@ -29,5 +35,8 @@
 
 #define KEY_WX_PASSWORD @"com.userWX.dictionaryKey"
 #define WX_PASSWORD @"com.WX.keychainKey"
+
+#define BaiduAPIKey @"rGjZi3g3RmjqQblC95abdoMy"
+#define BaiduSecretKey @"NPXtVWQIkRkgBmT3Ng5eOM6oXyPFqZ2v"
 
 #endif /* PrefixHeader_pch */

@@ -10,6 +10,7 @@
 #import <TencentOpenAPI/TencentOAuth.h>
 #import "CCKeychain.h"
 #import "WXApi.h"
+#import "PromptView.h"
 
 @interface CCLogin ()<TencentSessionDelegate>
 
@@ -115,9 +116,40 @@ static NSUInteger EXPIRETIME = 86400;  // 过期时间
 - (void)tencentDidNotLogin:(BOOL)cancelled {
     if (cancelled) {
         NSLog(@"Users cancel landing");
+        PromptView *promptView = [[PromptView alloc]initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight)];
+        promptView.attenLabel.text = @"您取消了 QQ 登陆,需要授权才可以登陆哦.";
+        [[self getCurrentVC].view addSubview:promptView];
     }else{
         NSLog(@"登录失败");
     }
+}
+
+#pragma mark - 获取当前 ViewController
+- (UIViewController *)getCurrentVC
+{
+    UIViewController *result = nil;
+    UIWindow * window = [[UIApplication sharedApplication] keyWindow];
+    if (window.windowLevel != UIWindowLevelNormal)
+    {
+        NSArray *windows = [[UIApplication sharedApplication] windows];
+        for(UIWindow * tmpWin in windows)
+        {
+            if (tmpWin.windowLevel == UIWindowLevelNormal)
+            {
+                window = tmpWin;
+                break;
+            }
+        }
+    }
+    UIView *frontView = [[window subviews] objectAtIndex:0];
+    id nextResponder = [frontView nextResponder];
+    
+    if ([nextResponder isKindOfClass:[UIViewController class]])
+        result = nextResponder;
+    else{
+        result = window.rootViewController;
+    }
+    return result;
 }
 
 #pragma mark 没有网络连接

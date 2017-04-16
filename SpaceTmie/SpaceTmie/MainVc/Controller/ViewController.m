@@ -23,6 +23,7 @@
 #import "NewsDetailVC.h"
 #import "CycleImgModel.h"
 #import "Reachability.h"
+#import "ChatViewController.h"
 
 static NSString *const newsCellID = @"newsCell";
 
@@ -72,8 +73,6 @@ static NSString *const newsCellID = @"newsCell";
     _reach = [Reachability reachabilityWithHostName:@"www.baidu.com"];
     
     [self.view addSubview:self.ccTabView];
-    
-    //UINavigationController *nav = [UINavigationController alloc]initWithRootViewController:<#(nonnull UIViewController *)#>
     
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     
@@ -268,7 +267,8 @@ static NSString *const newsCellID = @"newsCell";
 
 #pragma mark 金币按钮
 - (void)chipClick {
-    
+    ChatViewController *chatViewController = [[ChatViewController alloc]init];
+    [self.navigationController pushViewController:chatViewController animated:YES];
 }
 
 #pragma mark - UINavigationControllerDelegate

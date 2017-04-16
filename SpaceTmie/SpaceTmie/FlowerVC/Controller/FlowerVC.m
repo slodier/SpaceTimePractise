@@ -628,7 +628,7 @@ static NSString *videoCellID = @"videoCell";
 #pragma mark - getter
 - (UITableView *)videoTableView {
     if (!_videoTableView) {
-        _videoTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight) style:UITableViewStylePlain];
+        _videoTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 64, KScreenWidth, KScreenHeight - 64) style:UITableViewStylePlain];
         _videoTableView.delegate = self;
         _videoTableView.dataSource = self;
         _videoTableView.rowHeight = 0.372 *KScreenHeight;

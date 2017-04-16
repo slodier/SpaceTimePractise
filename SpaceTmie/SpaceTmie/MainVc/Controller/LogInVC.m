@@ -35,6 +35,26 @@
     [self.navigationController setNavigationBarHidden:YES animated:YES];
     _ccLogin = [[CCLogin alloc]init];
     _ccLogin.mainVC = [[ViewController alloc]init];
+    
+    [self addTestBtn];
+}
+
+#pragma mark - test
+- (void)addTestBtn {
+    UIButton *testBtn = [[UIButton alloc]initWithFrame:CGRectMake(100, 100, 100, 100)];
+    testBtn.backgroundColor = [UIColor redColor];
+    [self.view addSubview:testBtn];
+    [testBtn addTarget:self action:@selector(testClick) forControlEvents:UIControlEventTouchUpInside];
+}
+
+- (void)testClick {
+    ViewController *vc1 = [[ViewController alloc]init];
+   // [self presentViewController:vc1 animated:YES completion:nil];
+    
+    // 登陆成功直接跳转到主界面,使用设置 rootViewController 方法
+    UIWindow *keyWindow = [UIApplication sharedApplication].keyWindow;
+    UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:vc1];
+    keyWindow.rootViewController = nav;
 }
 
 #pragma mark - 按钮方法

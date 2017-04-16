@@ -92,7 +92,7 @@
     _cancelBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [_bgView addSubview:_cancelBtn];
     [_cancelBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(_bgView).offset(0.43 *KScreenWidth);
+        make.left.equalTo(_bgView).offset(0.4 *KScreenWidth);
         make.bottom.equalTo(_bgView).offset(- 0.06 *KScreenHeight);
         make.size.mas_equalTo(CGSizeMake(0.2 *KScreenWidth, 0.2 *KScreenWidth));
     }];

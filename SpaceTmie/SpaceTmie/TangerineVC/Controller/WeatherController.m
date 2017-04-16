@@ -11,7 +11,7 @@
 #import "MBProgressHUD.h"
 #import "Reachability.h"
 
-@interface WeatherController ()<CLLocationManagerDelegate,UIGestureRecognizerDelegate>
+@interface WeatherController ()<CLLocationManagerDelegate,UIGestureRecognizerDelegate,UIScrollViewDelegate>
 
 {
     NSString *currentCity;
@@ -41,6 +41,7 @@ static NSString *wheelStr = @"加载数据中...";
     _reach = [Reachability reachabilityWithHostName:@"www.baidu.com"];
     
     _webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 20, KScreenWidth, KScreenHeight)];
+    _webView.scrollView.delegate = self;
     [self.view addSubview:_webView];
 
     [_webView addSubview:self.backBtn];
@@ -61,6 +62,20 @@ static NSString *wheelStr = @"加载数据中...";
     
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     [self.locationManager stopUpdatingLocation];
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    // 隐藏返回按钮,小把戏...
+    CGFloat offY = scrollView.contentOffset.y;
+    if (offY > 0.101 *KScreenHeight) {
+        [UIView animateWithDuration:0.5 animations:^{
+            _backBtn.alpha = 0;
+        }];
+    }else{
+        [UIView animateWithDuration:0.5 animations:^{
+            _backBtn.alpha = 1;
+        }];
+    }
 }
 
 #pragma mark - 判断有无网络,没有不执行

@@ -65,7 +65,7 @@
         make.top.equalTo(_tipLabel).offset(0.23 *KScreenHeight);
         make.size.mas_equalTo(CGSizeMake(0.28 *KScreenWidth, 0.1 *KScreenWidth));
     }];
-    [_closeBtn setImage:[UIImage imageNamed:@"确定"] forState:UIControlStateNormal];
+    [_closeBtn setImage:[UIImage imageNamed:@"define"] forState:UIControlStateNormal];
     [_closeBtn addTarget:self action:@selector(closeTipView) forControlEvents:UIControlEventTouchUpInside];
 }
 

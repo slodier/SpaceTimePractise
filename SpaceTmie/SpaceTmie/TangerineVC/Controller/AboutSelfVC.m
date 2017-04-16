@@ -17,6 +17,7 @@
 #import "UIView+Animations.h"
 #import "CCKeychain.h"
 #import "LogInVC.h"
+#import "TipsView.h"
 
 @interface AboutSelfVC ()<UITableViewDelegate,UITableViewDataSource,UINavigationControllerDelegate,UIImagePickerControllerDelegate,UIGestureRecognizerDelegate>
 
@@ -27,6 +28,7 @@
 
 @property (nonatomic, strong) MyHeaderView *headerView; // headerView
 @property (nonatomic, strong) ShareView *shareView;  // 分享图层
+@property (nonatomic, strong) TipsView *tipsView;    // 提示视图
 
 @property (nonatomic, strong) FileRelate *fileRelate;
 
@@ -176,6 +178,9 @@ static NSString *myCellID = @"myCell";
             MyTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
             cell.cacheLabel.text = @"0";
             [MBProgressHUD hideHUDForView:self.view animated:YES];
+            [_myTableView addSubview:self.tipsView];
+            _tipsView.tipsLabel.text = @"缓存清理成功";
+            [_tipsView addAnimations];
         }
     }else if(indexPath.section == 1){
         // share code
@@ -233,6 +238,13 @@ static NSString *myCellID = @"myCell";
         [_myDataSource addObject:array3];
     }
     return _myDataSource;
+}
+
+- (TipsView *)tipsView {
+    if (!_tipsView) {
+        _tipsView = [[TipsView alloc]initWithFrame:self.view.bounds];
+    }
+    return _tipsView;
 }
 
 @end

@@ -14,8 +14,11 @@
 #import "ShareView.h"
 #import "ViewController.h"
 #import "CCKeychain.h"
+#import "PromptView.h"
 
 @interface AppDelegate ()<WXApiDelegate>
+
+@property (nonatomic, strong) LogInVC *logInVC;
 
 @end
 
@@ -88,8 +91,8 @@
         NSLog(@"WX 自动登陆");
 
     }else{
-        LogInVC *logInVC = [[LogInVC alloc]init];
-        mainVC = logInVC;
+        _logInVC = [[LogInVC alloc]init];
+        mainVC = _logInVC;
         self.window.rootViewController = mainVC;
         NSLog(@"重新登陆");
     }
@@ -135,8 +138,10 @@
         [CCKeychain delete:KEY_QQ_PASSWORD];
         [CCKeychain wxSave:aresp.code];
         
-    }else {
-
+    }else if(resp.errCode == -2){
+        PromptView *promptView = [[PromptView alloc]initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight)];
+        promptView.attenLabel.text = @"您取消了微信登陆,需要授权才可以登陆哦.";
+        [_logInVC.view addSubview:promptView];
     }
 }
 

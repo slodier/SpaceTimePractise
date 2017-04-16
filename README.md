@@ -10,6 +10,7 @@
 #### 8. 网易新闻,刷新功能
 #### 9. FMDB 存储离线数据,增加清除缓存
 #### 10. 视频列表,可小屏幕播放,刷新功能
+#### 11. 图灵机器人聊天,用户可以发送文字和语音,语音自动转换为文字
 
 ## 相关库
 #### 1.[SDWebImage](https://github.com/rs/SDWebImage)
@@ -20,3 +21,23 @@
 #### 6.[FMDB](https://github.com/ccgus/fmdb)
 #### 7.[WMPlayer](https://github.com/zhengwenming/WMPlayer)
 #### 8.[Reachability](https://github.com/tonymillion/Reachability)
+#### 9.[Turing](https://github.com/turing-robot/sdk-ios)
+
+## 踩到的一些坑
+#### 1.腾讯 SDK, 分享和登陆,详见 [链接](https://github.com/slodier/TencentShare)
+#### 2.图灵机器人
+	   1).报 Linker command failed with exit code 1 连接失败
+		解决方法:
+		Building Setting - Library Search Paths 拖进 libTuringSDK.a 的路径,或者添加相对路径 $(SRCROOT)/项目名称/ pch 文件
+
+	   2).报很多错误, too many errors emitted, stopping now...
+		Expected unqualified-id 
+		Unknown type name ’NSString’
+		由于存在和 C++ 混编, pch 里面自动加的头文件是全局性的,当在 C 文件 import 是没有意义的,也就是问题出处,所以要和 Objective-C 区分开编译
+		pch 中引用头文件加入
+```OBjective-C
+#ifdef __OBJC__
+  #import <Foundation/Foundation.h>
+  #import <UIKit/UIKit.h>
+#endif
+```

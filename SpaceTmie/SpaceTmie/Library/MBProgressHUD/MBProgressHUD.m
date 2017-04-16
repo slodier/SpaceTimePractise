@@ -61,7 +61,7 @@ static const CGFloat MBDefaultDetailsLabelFontSize = 12.f;
 + (instancetype)showHUDAddedTo:(UIView *)view animated:(BOOL)animated wheelStr:(NSString *)str {
     MBProgressHUD *hud = [[self alloc] initWithView:view];
     hud.label.text = str;
-    hud.graceTime = 2;
+    hud.graceTime = 0.5;
     hud.removeFromSuperViewOnHide = YES;
     [view addSubview:hud];
     [hud showAnimated:animated];
