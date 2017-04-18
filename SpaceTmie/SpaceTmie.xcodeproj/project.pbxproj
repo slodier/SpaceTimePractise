@@ -51,6 +51,9 @@
 		4211CD581E7E7D3D00ACA114 /* 19858PICScJ_1024.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4211CD571E7E7D3D00ACA114 /* 19858PICScJ_1024.jpg */; };
 		4211CD9D1E7E9DF200ACA114 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4211CD9C1E7E9DF200ACA114 /* AssetsLibrary.framework */; };
 		4211CDA31E7EA1C800ACA114 /* CCUserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 4211CDA11E7EA1C800ACA114 /* CCUserDefaults.m */; };
+		421D94B31EA5D63C00DD3DD5 /* SpeakModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 421D94B21EA5D63C00DD3DD5 /* SpeakModel.m */; };
+		421D94B51EA5D64600DD3DD5 /* iflyMSC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 421D94B41EA5D64600DD3DD5 /* iflyMSC.framework */; };
+		421D94B71EA5D65A00DD3DD5 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 421D94B61EA5D65A00DD3DD5 /* AddressBook.framework */; };
 		421F0E5F1EA33AFB00D6B9AA /* ChatViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 421F0E5E1EA33AFB00D6B9AA /* ChatViewController.mm */; };
 		421F0E621EA33B1200D6B9AA /* ChatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 421F0E611EA33B1200D6B9AA /* ChatCell.m */; };
 		421F0E651EA33B2600D6B9AA /* ChatModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 421F0E641EA33B2600D6B9AA /* ChatModel.m */; };
@@ -280,6 +283,10 @@
 		4211CD9C1E7E9DF200ACA114 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		4211CDA11E7EA1C800ACA114 /* CCUserDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCUserDefaults.m; sourceTree = "<group>"; };
 		4211CDA21E7EA1C800ACA114 /* CCUserDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCUserDefaults.h; sourceTree = "<group>"; };
+		421D94B11EA5D63C00DD3DD5 /* SpeakModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeakModel.h; sourceTree = "<group>"; };
+		421D94B21EA5D63C00DD3DD5 /* SpeakModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpeakModel.m; sourceTree = "<group>"; };
+		421D94B41EA5D64600DD3DD5 /* iflyMSC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = iflyMSC.framework; sourceTree = "<group>"; };
+		421D94B61EA5D65A00DD3DD5 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		421F0E5D1EA33AFB00D6B9AA /* ChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatViewController.h; sourceTree = "<group>"; };
 		421F0E5E1EA33AFB00D6B9AA /* ChatViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ChatViewController.mm; sourceTree = "<group>"; };
 		421F0E601EA33B1200D6B9AA /* ChatCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatCell.h; sourceTree = "<group>"; };
@@ -512,10 +519,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				421D94B71EA5D65A00DD3DD5 /* AddressBook.framework in Frameworks */,
 				421F0E9C1EA33D5C00D6B9AA /* Foundation.framework in Frameworks */,
 				421F0E9A1EA33CCC00D6B9AA /* OpenGLES.framework in Frameworks */,
 				421F0E981EA33CC200D6B9AA /* GLKit.framework in Frameworks */,
 				421F0E961EA33CAD00D6B9AA /* AVFoundation.framework in Frameworks */,
+				421D94B51EA5D64600DD3DD5 /* iflyMSC.framework in Frameworks */,
 				423365D81E9B641700095F6C /* libc++.tbd in Frameworks */,
 				423365C01E9B548700095F6C /* libiconv.tbd in Frameworks */,
 				423365BE1E9B547700095F6C /* CFNetwork.framework in Frameworks */,
@@ -656,6 +665,7 @@
 		4205B2331E0185CD00933D6C /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				421D94B41EA5D64600DD3DD5 /* iflyMSC.framework */,
 				421F0E721EA33C9300D6B9AA /* Turing */,
 				423365C11E9B54B100095F6C /* Tencent */,
 				422FD60D1E98D9CC00557398 /* WMPlayer */,
@@ -849,6 +859,7 @@
 		4211CD9B1E7E9DF200ACA114 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				421D94B61EA5D65A00DD3DD5 /* AddressBook.framework */,
 				421F0E9B1EA33D5C00D6B9AA /* Foundation.framework */,
 				421F0E991EA33CCC00D6B9AA /* OpenGLES.framework */,
 				421F0E971EA33CC200D6B9AA /* GLKit.framework */,
@@ -893,6 +904,8 @@
 			children = (
 				421F0E631EA33B2600D6B9AA /* ChatModel.h */,
 				421F0E641EA33B2600D6B9AA /* ChatModel.m */,
+				421D94B11EA5D63C00DD3DD5 /* SpeakModel.h */,
+				421D94B21EA5D63C00DD3DD5 /* SpeakModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1558,6 +1571,7 @@
 				4205B2741E0185CD00933D6C /* SDWebImageManager.m in Sources */,
 				4205B2721E0185CD00933D6C /* SDWebImageDownloader.m in Sources */,
 				421F0E651EA33B2600D6B9AA /* ChatModel.m in Sources */,
+				421D94B31EA5D63C00DD3DD5 /* SpeakModel.m in Sources */,
 				42AF9A311E7A448B0068B95B /* MyTableViewCell.m in Sources */,
 				42E44BE51E03BFE6002C0659 /* CardModel.m in Sources */,
 				4205B27B1E0185CD00933D6C /* UIImageView+WebCache.m in Sources */,
@@ -1766,6 +1780,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/SpaceTmie/Library/Tencent",
+					"$(PROJECT_DIR)/SpaceTmie/Library",
 				);
 				GCC_INPUT_FILETYPE = automatic;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1798,6 +1813,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/SpaceTmie/Library/Tencent",
+					"$(PROJECT_DIR)/SpaceTmie/Library",
 				);
 				GCC_INPUT_FILETYPE = automatic;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;

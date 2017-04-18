@@ -30,6 +30,8 @@
 #define QQappid @"2222"  // 原来的 tencent + xxxx, 要去掉 tencent
 #define WXAppid @"wx1111"
 
+#define XUNFEIID @"feixun"
+
 #define KEY_QQ_PASSWORD @"com.userQQ.dictionaryKey"
 #define QQ_PASSWORD @"com.QQ.keychainKey"
 

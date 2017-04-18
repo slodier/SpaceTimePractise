@@ -16,7 +16,7 @@
 #import "TRRTuringAPIConfig.h"
 #import "TRRSpeechSythesizer.h"
 #import "TRRTuringRequestManager.h"
-
+#import "SpeakModel.h"
 
 @interface ChatViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate,TRRVoiceRecognitionManagerDelegate>
 
@@ -31,6 +31,7 @@
 @property (nonatomic, strong) CCNetWork *ccNetWork;
 @property (nonatomic, strong) Calculation *calculation;
 @property (nonatomic, strong) ChatModel *chatNormalModel;
+@property (nonatomic, strong) SpeakModel *speakModel;
 
 @property (nonatomic, strong) UITableView *chatTableView;
 
@@ -52,6 +53,7 @@ static NSString *cell_ID = @"chatCell";
     _calculation = [[Calculation alloc]init];
     _dataSource = [NSMutableArray array];
     _chatNormalModel = [[ChatModel alloc]init];
+    _speakModel = [[SpeakModel alloc]init];
     
     self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.chatTableView];
@@ -81,6 +83,7 @@ static NSString *cell_ID = @"chatCell";
 - (void)viewWillDisappear:(BOOL)animated {
     [_sharedInstance stopRecognize];
     _sharedInstance = nil;
+    [_speakModel stopSpeak];
 }
 
 #pragma mark - 按钮点击事件
@@ -90,6 +93,7 @@ static NSString *cell_ID = @"chatCell";
     if (sender.selected) {
         [self.view addSubview:self.speedBtn];
         [_sharedInstance startVoiceRecognition];
+        [_speakModel stopSpeak];
     }else{
         [self.speedBtn removeFromSuperview];
         [_sharedInstance stopRecognize];
@@ -97,7 +101,7 @@ static NSString *cell_ID = @"chatCell";
 }
 
 - (void)speedVoice:(UIButton *)sender {
-    sender.selected =! sender.selected;
+    //sender.selected =! sender.selected;
 }
 
 //#pragma mark 长按事件
@@ -157,6 +161,8 @@ static NSString *cell_ID = @"chatCell";
 - (void)onSpeechEnd {
     NSLog(@"停止讲话");
     [_speedBtn setTitle:@"停止讲话" forState:UIControlStateNormal];
+    _voiceBtn.selected =! _voiceBtn.selected;
+    [_speedBtn removeFromSuperview];
 
 }
 
@@ -262,13 +268,17 @@ static NSString *cell_ID = @"chatCell";
                                                 dataSource:_dataSource];
                        
                        if (_isSpeed) {
-                           [_sharedInstance startVoiceRecognition];
+                           //[_sharedInstance startVoiceRecognition];
+//                           [_speakModel speak:text];
                            _isSpeed = NO;
                        }
                        
                        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:strongSelf.dataSource.count - 1 inSection:0];
                        // 主线程插入新的一行
                        dispatch_async(dispatch_get_main_queue(), ^{
+                           
+                           // 
+                           [_speakModel speak:dict[@"text"]];
                            
                            [MBProgressHUD hideHUDForView:strongSelf.view animated:YES];
                            
@@ -289,8 +299,8 @@ static NSString *cell_ID = @"chatCell";
         _speedBtn.frame = self.field.frame;
         _speedBtn.backgroundColor = [UIColor whiteColor];
         [_speedBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [_speedBtn setTitle:@"按住 说话" forState:UIControlStateNormal];
-        [_speedBtn setTitle:@"松开 结束" forState:UIControlStateSelected];
+        //[_speedBtn setTitle:@"按住 说话" forState:UIControlStateNormal];
+        //[_speedBtn setTitle:@"松开 结束" forState:UIControlStateSelected];
         
         _speedBtn.layer.borderColor = [UIColor blackColor].CGColor;
         _speedBtn.layer.borderWidth = 0.5;
