@@ -62,6 +62,7 @@ static NSString *cell_ID = @"chatCell";
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.navigationItem.title = @"图灵机器人";
     self.navigationController.navigationBar.backgroundColor = [UIColor lightGrayColor];
+    self.navigationController.navigationBar.tintColor = KColorWithRGB(83, 167, 176);
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
@@ -214,6 +215,7 @@ static NSString *cell_ID = @"chatCell";
 #pragma mark - UITextFieldDelegate
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
     [textField becomeFirstResponder];
+    [_speakModel stopSpeak];
     [UIView animateWithDuration:0.4 animations:^{
         
         textField.frame = CGRectMake(20, KScreenHeight - 50 - 271, KScreenWidth - 40, 40);

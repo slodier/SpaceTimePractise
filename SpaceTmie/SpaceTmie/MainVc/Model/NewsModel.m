@@ -43,7 +43,7 @@
 }
 
 - (CGFloat)cellHeightArrayNewsArray:(NewsModel *)newModel {
-    float cellH = [self heightForTitle:newModel.titleStr] + 0.462 *KScreenHeight;
+    float cellH = [self heightForTitle:newModel.titleStr] + 0.412 *KScreenHeight;
     return cellH;
 }
 

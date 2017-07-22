@@ -171,7 +171,7 @@ static NSString *videoCellID = @"videoCell";
     VideoCell *currentCell = (VideoCell *)[self.videoTableView cellForRowAtIndexPath:_selectIndexPath];
     [currentCell.playBtn.superview bringSubviewToFront:currentCell.playBtn];
     _selectIndexPath = [NSIndexPath indexPathForRow:sender.tag inSection:0];
-    NSLog(@"currentIndexPath.row = %ld",_selectIndexPath.row);
+    NSLog(@"currentIndexPath.row = %lld",(long long )_selectIndexPath.row);
     
     UIView *cellView = [sender superview];
     while (![cellView isKindOfClass:[UITableViewCell class]])

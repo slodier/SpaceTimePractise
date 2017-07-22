@@ -11,6 +11,7 @@
 #### 9. FMDB 存储离线数据,增加清除缓存
 #### 10. 视频列表,可小屏幕播放,刷新功能
 #### 11. 图灵机器人聊天,用户可以发送文字和语音,语音自动转换为文字,机器人回复语音播报
+#### 12. 直播,使用抓取的印客直播数据
 
 ## 相关库
 #### 1.[SDWebImage](https://github.com/rs/SDWebImage)
@@ -22,6 +23,7 @@
 #### 7.[WMPlayer](https://github.com/zhengwenming/WMPlayer)
 #### 8.[Reachability](https://github.com/tonymillion/Reachability)
 #### 9.[Turing](https://github.com/turing-robot/sdk-ios)
+#### 10.[ijkplayer](https://github.com/Bilibili/ijkplayer)
 
 ## 踩到的一些坑
 #### 1.腾讯 SDK, 分享和登陆,详见 [链接](https://github.com/slodier/TencentShare)

@@ -74,7 +74,7 @@
     [self.contentView addSubview:_titleLabel];
     [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self).offset(0.013 *KScreenWidth);
-        make.top.equalTo(self).offset(0.015 *KScreenWidth);
+        make.top.equalTo(self).offset(0.016 *KScreenWidth);
         make.right.equalTo(self).offset(0.013 *KScreenWidth);
         make.height.equalTo(@(0.015 *KScreenHeight));
     }];
@@ -112,7 +112,7 @@
     [_lengthLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self).offset(0.048 *KScreenWidth);
         make.top.equalTo(_timeImgView);
-        make.size.mas_equalTo(CGSizeMake(0.056 *KScreenWidth, 0.015 *KScreenHeight));
+        make.size.mas_equalTo(CGSizeMake(0.056 *KScreenWidth, 0.016 *KScreenHeight));
     }];
     _lengthLabel.font = [UIFont systemFontOfSize:14];
     

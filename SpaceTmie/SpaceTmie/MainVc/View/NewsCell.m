@@ -86,8 +86,8 @@
     [self addSubview:_newsImageView];
     [_newsImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(_titleLabel);
-        make.bottom.equalTo(_titleLabel).offset(0.4 *KScreenHeight);
-        make.size.mas_equalTo(CGSizeMake(KScreenWidth - 0.04 *KScreenWidth, 0.4 *KScreenHeight));
+        make.bottom.equalTo(_titleLabel).offset(0.36 *KScreenHeight);
+        make.size.mas_equalTo(CGSizeMake(KScreenWidth - 0.04 *KScreenWidth, 0.35 *KScreenHeight));
     }];
     
     _sourceLabel = [[UILabel alloc]initWithFrame:CGRectZero];

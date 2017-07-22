@@ -48,7 +48,7 @@ static NSString *const trangerCellID = @"tangerCell";
     _secondArray  = [NSMutableArray array];
     
     [self layoutUI];
-
+    self.navigationItem.title = @"其他";
     self.navigationController.navigationBar.tintColor = KColorWithRGB(83, 167, 176);
     
     [TrangerModel createArray:_sectionArray firstArray:_firstArray secondArray:_secondArray collectionView:_trangerCollectionView];
@@ -84,34 +84,30 @@ static NSString *const trangerCellID = @"tangerCell";
     _selectIndexPath = indexPath;
     
     UIBarButtonItem *backItem = [[UIBarButtonItem alloc]init];
+    backItem.title = @"其他";
     if (indexPath.section == 0) {
-        TrangerModel *model = _firstArray[indexPath.row];
-        backItem.title = model.title;
+        //TrangerModel *model = _firstArray[indexPath.row];
+        //backItem.title = model.title;
         if (indexPath.row == 2) {
             HamburgerVC *hanburgerVC = [[HamburgerVC alloc]init];
             [self.navigationController pushViewController:hanburgerVC animated:YES];
         }else if (indexPath.row == 3){
-            
             WeatherController *weatherVC = [[WeatherController alloc]init];
             [self.navigationController pushViewController:weatherVC animated:YES];
         }
-        
     }else{
-        TrangerModel *model = _secondArray[indexPath.row];
-        backItem.title = model.title;
-
+        //TrangerModel *model = _secondArray[indexPath.row];
+        //backItem.title = model.title;
         if (indexPath.row == 0) {
             DownLoadVC *downLoadVC = [[DownLoadVC alloc]init];
             [self.navigationController pushViewController:downLoadVC animated:YES];
         }else if (indexPath.row == 1){
             AboutSelfVC *aboutVC = [[AboutSelfVC alloc]init];
             [self.navigationController pushViewController:aboutVC animated:YES];
-            
         }
     }
     self.navigationItem.backBarButtonItem = backItem;
 }
-
 
 #pragma mark - UICollectionViewDataSource
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
